@@ -1,0 +1,85 @@
+<resources>
+
+    <!-- 单个菜单中的edittext文本设置 Edittext text settings in a single menu -->
+    <style name="ui_base_aisle_edittext">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:background">@drawable/ui_base_circlebuttonstyle</item>
+        <item name="android:padding">5px</item>
+        <item name="android:textColorHint">@color/ui_base_text_background</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_marginTop">10px</item>
+    </style>
+    <!-- 单个菜单中的textview文本设置 Textview text settings in a single menu-->
+    <style name="ui_base_aisle_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/ui_base_text_color_black</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:gravity">right</item>
+    </style>
+    <!-- 菜单按钮字体 Menu button font-->
+    <style name="ui_base_menubutton">
+        <item name="android:textColor">@color/ui_base_text_color</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <!-- 菜单上方字体 Font above menu-->
+    <style name="ui_base_menutop">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/ui_base_text_color</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="ui_base_Dialog_bocop">
+        <item name="android:windowBackground">@color/ui_base_bocop_dialog_bg</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowIsFloating">true
+        </item><!--是否浮现在activity之上 Whether to appear on the activity-->
+        <item name="android:backgroundDimEnabled">true</item><!--模糊 blurry-->
+    </style>
+
+    <!-- 控件离屏幕两边距离 The distance of the controls from both sides of the screen-->
+    <style name="background_lrmargin">
+        <item name="android:layout_marginLeft">80dp</item>
+        <item name="android:layout_marginRight">80dp</item>
+    </style>
+
+    <!-- edit控件离屏幕两边距离+距离上个控件距离Edit control distance from both sides of the screen + distance from the previous control -->
+    <style name="background_lrmarginson" parent="background_lrmargin">
+        <item name="android:layout_marginTop">40px</item>
+    </style>
+
+    <!-- edit控件离屏幕两边距离+距离上个控件距离 Edit control distance from both sides of the screen + distance from the previous control-->
+    <style name="background_lrmarginss" parent="background_lrmargin">
+        <item name="android:layout_marginTop">10px</item>
+    </style>
+
+    <!--按钮 控件离屏幕两边距离+距离上个控件距离 Button Control distance from both sides of the screen + distance from previous control-->
+    <style name="background_lrmarginson1" parent="background_lrmargin">
+        <item name="android:layout_marginTop">80px</item>
+    </style>
+
+    <!-- 控件离屏幕两边距离 The distance of the controls from both sides of the screen-->
+    <style name="lrmargin">
+        <item name="android:layout_marginLeft">80dp</item>
+        <item name="android:layout_marginRight">80dp</item>
+    </style>
+
+    <!-- edit控件离屏幕两边距离+距离上个控件距离 Edit control distance from both sides of the screen + distance from the previous control-->
+    <style name="lrmarginss" parent="lrmargin">
+        <item name="android:layout_marginTop">10px</item>
+    </style>
+
+    <style name="background_menubutton_20">
+        <item name="android:textColor">@color/background_text_color</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+</resources>

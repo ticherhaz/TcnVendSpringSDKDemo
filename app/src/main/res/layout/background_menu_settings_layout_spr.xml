@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_main_background">
+
+
+    <com.tcn.sdk.springdemo.Titlebar
+        android:id="@+id/menu_setttings_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="100px">
+
+    </com.tcn.sdk.springdemo.Titlebar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/menu_setttings_titlebar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/main_serport"
+                android:layout_width="match_parent"
+                android:layout_height="60px"
+                android:background="@color/ui_base_blue"
+                android:gravity="center"
+                android:text="设置串口"
+                android:textColor="@color/ui_base_red"
+                android:textSize="18sp" />
+
+
+            <com.tcn.sdk.springdemo.ButtonEditSelectD
+                android:id="@+id/menu_spring_display_price"
+                style="@style/background_lrmarginss"
+                android:layout_width="match_parent"
+                android:layout_height="100px">
+
+            </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:orientation="horizontal">
+
+                <com.tcn.sdk.springdemo.ButtonSwitch
+                    android:id="@+id/menu_spr_light_check"
+                    style="@style/background_lrmarginson"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonSwitch>
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_query_slot"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+            </LinearLayout>
+
+            <com.tcn.sdk.springdemo.ButtonEditSelectD
+                android:id="@+id/menu_spr_ship_slot"
+                style="@style/background_lrmarginss"
+                android:layout_width="match_parent"
+                android:layout_height="100px">
+
+            </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+
+            <com.tcn.sdk.springdemo.ButtonEditSelectD
+                android:id="@+id/menu_spr_ship_slot_test"
+                style="@style/background_lrmarginss"
+                android:layout_width="match_parent"
+                android:layout_height="100px">
+
+            </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+            <com.tcn.sdk.springdemo.ButtonEditSelectD
+                android:id="@+id/menu_spr_reqselect"
+                style="@style/background_lrmarginss"
+                android:layout_width="match_parent"
+                android:layout_height="100px">
+
+            </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:orientation="horizontal">
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_self_check"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_reset"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:orientation="horizontal">
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_set_heat_cool"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+                <!--<com.tcn.uicommon.button.ButtonEditSelectD-->
+                <!--android:id="@+id/menu_spr_set_temp"-->
+                <!--android:layout_width="0px"-->
+                <!--android:layout_height="100px"-->
+                <!--android:layout_weight="1"-->
+                <!--style="@style/app_lrmarginss">-->
+
+                <!--</com.tcn.uicommon.button.ButtonEditSelectD>-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/menu_spr_set_heat_cool_layout"
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="目标温度（填数字）"
+                        android:textColor="@color/background_black"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/menu_spr_set_heat_cool_temp"
+                        style="@style/background_lrmarginss"
+                        android:layout_width="match_parent"
+                        android:layout_height="80px"
+                        android:textSize="22sp">
+
+                    </EditText>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="起始时间（单位小时）"
+                        android:textColor="@color/background_black"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/menu_spr_set_heat_cool_start_time"
+                        style="@style/background_lrmarginss"
+                        android:layout_width="match_parent"
+                        android:layout_height="80px"
+                        android:numeric="integer"
+                        android:textSize="22sp">
+
+                    </EditText>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="结束时间（单位小时）"
+                        android:textColor="@color/background_black"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/menu_spr_set_heat_cool_end_time"
+                        style="@style/background_lrmarginss"
+                        android:layout_width="match_parent"
+                        android:layout_height="80px"
+                        android:numeric="integer"
+                        android:textSize="22sp">
+
+                    </EditText>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:layout_marginTop="20px"
+                android:orientation="horizontal">
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_glass_heat_enable"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_glass_heat_disable"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:orientation="horizontal">
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_open_led"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_close_led"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:orientation="horizontal">
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_buzzer_open"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_buzzer_close"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:orientation="horizontal">
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_set_slot_spring"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_set_slot_belts"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:orientation="horizontal">
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_set_slot_spring_all"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_set_slot_belts_all"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:orientation="horizontal">
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_set_single_slot"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_set_double_slot"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:orientation="horizontal">
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_set_single_slot_all"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_spr_test_mode"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/func_coin_prestorage"
+                style="@style/background_lrmarginss"
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="20px"
+                android:visibility="gone">
+
+            </Button>
+
+            <LinearLayout
+                android:id="@+id/func_coin_open_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/func_coin_open_edit"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:digits="01"
+                    android:hint="@string/background_func_paper_coin_open_tips"
+                    android:numeric="integer"
+                    android:textSize="20sp">
+
+                </EditText>
+
+                <Button
+                    android:id="@+id/func_coin_open_set_btn"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="@string/background_func_coin_open_set"
+                    android:textSize="16sp">
+
+                </Button>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/func_paper_open_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/func_paper_open_edit"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:digits="01"
+                    android:hint="@string/background_func_paper_coin_open_tips"
+                    android:numeric="integer"
+                    android:textSize="20sp">
+
+                </EditText>
+
+                <Button
+                    android:id="@+id/func_paper_open_set_btn"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="@string/background_func_paper_open_set"
+                    android:textSize="16sp">
+
+                </Button>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/func_gezij_set_btn"
+                style="@style/background_lrmarginss"
+                android:layout_width="150px"
+                android:layout_height="80px"
+                android:text="格子机设置"
+                android:textSize="18sp"
+                android:visibility="gone">
+
+            </Button>
+
+            <Button
+                android:id="@+id/func_5inch_board_btn"
+                style="@style/background_lrmarginss"
+                android:layout_width="250px"
+                android:layout_height="80px"
+                android:text="MDB通讯主板设置"
+                android:textSize="18sp"
+                android:visibility="gone">
+
+            </Button>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TcnVendSpringSDKDemo</string>
+    <string name="ui_base_back">back</string>
+    <string name="ui_base_exit">Exit system</string>
+    <string name="background_menu_settings">Menu settings</string>
+    <string name="background_menu_set_tool">Setup tool</string>
+    <string name="background_menu_func_set">Function set</string>
+    <string name="background_menu_drop_sensor_whole">drop sensor whole</string>
+    <string name="background_menu_enable_bill_escrow">Paper money can be returned</string>
+    <string name="background_menu_enable_change">The coin can change</string>
+    <string name="background_menu_give_change_direct">Geben Sie Änderungen direkt an</string>
+    <string name="background_menu_glass_demist_enable">Glas-Entnebelung</string>
+
+    <string name="background_serial_port_setup">Serial port setup</string>
+    <string name="serial_port_motherboard_serial">Motherboard serial</string>
+    <string name="serial_port_motherboard_baud_rate">Motherboard baud rate</string>
+    <string name="serial_port_server_serial">Deputy cabinet serial port</string>
+
+
+    <string name="background_drive_spring_set">spring setting</string>
+    <string name="background_drive_lift_set">elevator setting</string>
+    <string name="background_drive_lattice_set">lattice setting</string>
+    <string name="background_drive_coff_set">coff setting</string>
+    <string name="background_drive_snake_set">Snake machine setting</string>
+    <string name="background_drive_light_set">Light bar setting</string>
+    <string name="background_drive_setting">setting</string>
+    <string name="background_drive_tips_input_slotno">Please enter number!</string>
+    <string name="background_drive_tips_select_cabinetno">select the cabinet number!</string>
+    <string name="background_drive_modify_ask">Fix?</string>
+    <string name="background_drive_set">set</string>
+    <string name="background_drive_query">query</string>
+    <string name="background_drive_clean">clean</string>
+    <string name="background_drive_clean_fault">clean board faults</string>
+    <string name="background_drive_query_slot">query slot</string>
+    <string name="background_drive_query_fault">query board faults</string>
+    <string name="background_spring_self_check">self check</string>
+    <string name="background_spring_reset">reset</string>
+    <string name="background_spring_set_heat_cool">refrigeration or heating</string>
+    <string name="background_spring_set_temp">temperature</string>
+    <string name="background_spring_glass_heat_open">Glass heating open</string>
+    <string name="background_spring_glass_heat_close">Glass heating off</string>
+    <string name="background_spring_led_open">OpenLED</string>
+    <string name="background_spring_led_close">Close LED</string>
+    <string name="background_spring_buzzer_open">Open buzzer</string>
+    <string name="background_spring_buzzer_close">Close buzzer</string>
+    <string name="background_spring_double_ask">sure fix?</string>
+    <string name="background_spring_set_slot_spring">Set to spring slot (cautious change)! )</string>
+    <string name="background_spring_set_slot_belts">Set to belt slot (cautious change)! )</string>
+    <string name="background_spring_set_slot_spring_all">All set to spring slot (cautious change)! )</string>
+    <string name="background_spring_set_slot_belts_all">All set to belt slot (cautious change)! )</string>
+    <string name="background_spring_set_single_slot">Split into a single slot (cautious change)! )</string>
+    <string name="background_spring_set_single">split</string>
+    <string name="background_spring_set_double_slot">Merge with the next slot(careful change)! )</string>
+    <string name="background_spring_set_double">merge</string>
+    <string name="background_spring_set_single_slot_all">All set to single slot (cautious change)! )</string>
+    <string name="background_spring_test_mode">Test mode (power cut to stop)</string>
+
+
+    <string name="background_backgroound_ensure">Confirm</string>
+    <string name="background_backgroound_cancel">Cancel</string>
+
+    <string name="background_lift_tips_select_control_action">Please select control action!</string>
+    <string name="background_lift_tips_select_query_parameters">Please select query parameters!</string>
+    <string name="background_lift_tips_select_set_parameters">Please select the parameters you want to set</string>
+    <string name="background_lift_tips_set_value_canont_empty">The value set cannot be empty!</string>
+
+    <string name="background_notify_contact_merchant">Contact merchant</string>
+    <string name="background_drive_tips_clean_fault_success">Clear failure success</string>
+    <string name="background_drive_tips_no_fault">no faults</string>
+    <string name="background_drive_tips_have_fault">have faults</string>
+    <string name="ui_base_notify_coin_back">Coin is Returning</string>
+    <string name="ui_base_notify_coinback_success">Successful return coin</string>
+    <string name="ui_base_notify_coinback_fail">return coin fail</string>
+
+    <string name="ui_base_notify_slot">SlotNo: </string>
+    <string name="ui_base_notify_not_open">Not opened</string>
+    <string name="ui_base_notify_loading">Loading</string>
+    <string name="ui_base_notify_load_fail">Load fail</string>
+    <string name="ui_base_notify_invalid_slot">Invalid slot</string>
+    <string name="ui_base_notify_sys_busy">system busy</string>
+    <string name="ui_base_notify_slot_faultSlot">Fault slot</string>
+    <string name="ui_base_notify_slot_fault">Fault error: </string>
+    <string name="ui_base_notify_slot_code">Fault code: </string>
+    <string name="ui_base_notify_slot_err">Fault:</string>
+    <string name="ui_base_notify_sold_out">The goods have been sold out, please choose other goods！</string>
+    <string name="ui_base_notify_select_other">Please choose other goods！</string>
+    <string name="ui_base_aisle_name">Slot number</string>
+    <string name="ui_base_notify_shipping">Please wait</string>
+    <string name="ui_base_notify_shipment_fail">Dispense error, please call customer service</string>
+    <string name="ui_base_notify_contact_merchant">Contact merchant</string>
+    <string name="ui_base_notify_fail_contact">Shoping Fail,please contact the merchant!</string>
+    <string name="ui_base_notify_shipment_success">Successful delivery</string>
+    <string name="ui_base_notify_receive_goods">Take your goods</string>
+    <string name="ui_base_notify_shipsuc_rec_notify">Delivery success, please take your goods！</string>
+    <string name="ui_base_notify_receive_goods_first">take goods fist</string>
+
+    <string name="background_func_coin_open_set">Receiving coin type (fill 16 bits)</string>
+    <string name="background_func_paper_open_set">Receiving note type (fill 16 bits)</string>
+
+    <string name="background_func_paper_coin_open_tips">fill 1 or 0 (fill 16 bits)</string>
+    <string name="background_func_coin_prestorage">Coin pre storage</string>
+    <string name="background_menu_preparemoney_please">Please pre coin</string>
+    <string name="background_menu_preparemoney_end">End</string>
+    <string name="background_bill_type_enable_all">Receive all banknotes currency</string>
+    <string name="background_bill_type_disable_all">Prohibit all banknotes currency</string>
+    <string name="background_coin_type_enable_all">Receive all coins currency</string>
+    <string name="background_coin_type_disable_all">Currency of all coins prohibited</string>
+    <string name="background_menu_preparemoney_clean">reset</string>
+    <string name="ui_base_menu_save">save</string>
+    <string name="ui_base_begin">begin</string>
+    <string name="ui_base_backgroound_ensure">confirm</string>
+    <string name="ui_base_backgroound_cancel">cancel</string>
+    <string name="ui_base_end">end</string>
+    <string name="ui_base_saving">saving</string>
+
+
+    <string name="background_backgroound_clear_fault"> clear fault </string>
+        
+    <string name="background_backgroound_query_fault"> Query fault </string>
+
+        
+    <string name="background_lat_query_addr"> Query grid address </string>
+        
+    <string name="background_lat_query_slot"> Query grid </string>
+        
+    <string name="background_lat_input_start_cabinetno"> Please enter the starting grid number </string>
+        
+    <string name="background_lat_input_start_row"> Please enter the starting line </string>
+        
+    <string name="background_lat_input_row"> Please enter a row number </string>
+        
+    <string name="background_lat_input_start_column"> Please enter the starting column </string>
+        
+    <string name="background_lat_input_end_column"> Please enter the end column </string>
+        
+    <string name="background_lat_input_cabinetno"> Please enter the grid number </string>
+        
+    <string name="background_lat_set_success"> Set successfully </string>
+        
+    <string name="background_lat_start_cabinetno"> start grid number </string>
+        
+    <string name="background_lat_end_cabinetno"> End grid number </string>
+        
+    <string name="background_lat_open_cabinetno"> Open grid </string>
+        
+    <string name="background_lat_close_cabinetno"> Close grid </string>
+        
+    <string name="background_lat_start_row"> start line (0-11) </string>
+        
+    <string name="background_lat_end_row"> End line (0-11) </string>
+        
+    <string name="background_lat_set_scan_light"> Scan light settings </string>
+        
+    <string name="background_lat_row"> Line (1-10) </string>
+        
+    <string name="background_lat_start_column"> Starting column (1-8) </string>
+        
+    <string name="background_lat_end_column"> End column (1-8)</string>
+        
+    <string name="background_lat_invaild"> Invalid</string>
+        
+    <string name="background_lat_set_vaild"> Grid effective settings </string>
+
+        
+    <string name="background_tip_wait_amoment"> Please wait </string>
+        
+    <string name="background_tip_select_sure"> Please select OK </string>
+
+        
+    <string name="background_tip_set_select_cabinet_no"> Please select a cabinet number for the following settings </string>
+
+        
+    <string name="board_tip_off_closing"> Closed </string>
+        
+    <string name="board_tip_off_success"> Successful shutdown </string>
+        
+    <string name="board_tip_off_fail"> Failed to close </string>
+    <string name="background_drive_check_seriport">Please check the serial port</string>
+    <string name="background_drive_slot_testing">testing</string>
+
+    <string name="background_notify_shipment_success">Successful delivery</string>
+    <string name="background_notify_receive_goods">Take your goods</string>
+    <string name="background_notify_shipment_fail">Shipment failure</string>
+</resources>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_main_background"
+    android:orientation="vertical">
+
+
+    <com.tcn.sdk.springdemo.Titlebar
+        android:id="@+id/menu_setttings_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="100px">
+
+    </com.tcn.sdk.springdemo.Titlebar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_ys_query_drive_fault"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_ys_clear_drive_fault"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100px"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+            </LinearLayout>
+
+            <com.tcn.sdk.springdemo.ButtonSwitch
+                android:id="@+id/menu_ys_light_check"
+                style="@style/background_lrmarginson"
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:visibility="visible">
+
+            </com.tcn.sdk.springdemo.ButtonSwitch>
+
+            <com.tcn.sdk.springdemo.ButtonEditSelectD
+                android:id="@+id/menu_ys_query_drive_info"
+                style="@style/background_lrmarginss"
+                android:layout_width="match_parent"
+                android:layout_height="100px">
+
+            </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+            <com.tcn.sdk.springdemo.ButtonEditSelectD
+                android:id="@+id/menu_ys_action"
+                style="@style/background_lrmarginss"
+                android:layout_width="match_parent"
+                android:layout_height="100px">
+
+            </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+            <com.tcn.sdk.springdemo.ButtonEditSelectD
+                android:id="@+id/menu_ys_query_param"
+                style="@style/background_lrmarginss"
+                android:layout_width="match_parent"
+                android:layout_height="100px">
+
+            </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+            <com.tcn.sdk.springdemo.ButtonEditSelectD
+                android:id="@+id/menu_ys_set_param_select"
+                style="@style/background_lrmarginss"
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:layout_marginRight="10px"
+                android:layout_marginBottom="10dp">
+
+            </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+            <TextView
+                android:id="@+id/tv_read_cmd"
+                android:layout_width="match_parent"
+                android:layout_height="60px"
+                android:background="@color/ui_base_ghostwhite" />
+
+            <TextView
+                android:id="@+id/tv_read_string"
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:background="@color/ui_base_ghostwhite" />
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>

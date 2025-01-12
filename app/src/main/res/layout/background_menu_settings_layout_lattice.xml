@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_main_background"
+    android:orientation="vertical">
+
+
+    <com.tcn.sdk.springdemo.Titlebar
+        android:id="@+id/menu_setttings_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+    </com.tcn.sdk.springdemo.Titlebar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_lat_query_addr"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100dp"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                    android:id="@+id/menu_lat_query_slot"
+                    style="@style/background_lrmarginss"
+                    android:layout_width="0px"
+                    android:layout_height="100dp"
+                    android:layout_weight="1">
+
+                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+            </LinearLayout>
+
+
+            <com.tcn.sdk.springdemo.ButtonEditSelectD
+                android:id="@+id/menu_lat_select_addr"
+                style="@style/background_lrmarginss"
+                android:layout_width="match_parent"
+                android:layout_height="100px">
+
+            </com.tcn.sdk.springdemo.ButtonEditSelectD>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="@string/background_lat_start_cabinetno"
+                    android:textColor="@color/background_black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/m_lattice_open_batch_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:numeric="integer"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:gravity="center"
+                    android:text="@string/background_lat_end_cabinetno"
+                    android:textColor="@color/background_black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/m_lattice_open_batch_end"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:numeric="integer"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/m_lattice_open_batch_btn"
+                    style="@style/background_menubutton_20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="10px"
+                    android:layout_weight="0.6"
+                    android:background="@drawable/ui_base_btn_selector"
+                    android:text="@string/background_lat_open_cabinetno" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/m_scan_light_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:layout_marginTop="30px"
+                android:layout_marginRight="30px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="@string/background_lat_start_row"
+                    android:textColor="@color/background_black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/m_scan_light_num_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:numeric="integer" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:gravity="center"
+                    android:text="@string/background_lat_end_row"
+                    android:textColor="@color/background_black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/m_scan_light_num_end"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:numeric="integer" />
+
+                <Button
+                    android:id="@+id/m_scan_light_btn"
+                    style="@style/background_menubutton_20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10px"
+                    android:layout_weight="0.6"
+                    android:background="@drawable/ui_base_btn_selector"
+                    android:text="@string/background_lat_set_scan_light" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/m_lattice_num_set_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:layout_marginTop="30px"
+                android:layout_marginRight="30px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="@string/background_lat_row"
+                    android:textColor="@color/background_black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/m_lattice_num_set_row"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:numeric="integer" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/background_lat_start_column"
+                    android:textColor="@color/background_black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/m_lattice_num_set_column_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:numeric="integer" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/background_lat_end_column"
+                    android:textColor="@color/background_black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/m_lattice_num_set_column_end"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:numeric="integer" />
+
+                <CheckBox
+                    android:id="@+id/m_lattice_num_set_checkbox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:text="@string/background_lat_invaild"
+                    android:textColor="@color/background_black" />
+
+                <Button
+                    android:id="@+id/m_lattice_num_set_btn"
+                    style="@style/background_menubutton_20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/ui_base_btn_selector"
+                    android:text="@string/background_lat_set_vaild" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
