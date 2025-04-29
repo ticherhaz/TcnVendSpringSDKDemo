@@ -3,10 +3,10 @@ package controller;
 import android.os.Message;
 import android.util.Log;
 
-import com.tcn.springboard.control.MsgTrade;
-import com.tcn.springboard.control.TcnComDef;
-import com.tcn.springboard.control.TcnComResultDef;
-import com.tcn.springboard.control.TcnVendIF;
+import com.ys.springboard.control.MsgTrade;
+import com.ys.springboard.control.TcnComDef;
+import com.ys.springboard.control.TcnComResultDef;
+import com.ys.springboard.control.TcnVendIF;
 
 
 /**

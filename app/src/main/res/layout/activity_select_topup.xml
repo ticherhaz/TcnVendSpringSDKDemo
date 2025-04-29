@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/topupbg"
+    tools:context=".SelectTopupActivity">
+
+    <ImageButton
+        android:id="@+id/backbtn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:background="#08FAFAF6"
+        android:src="@drawable/topupbackselector"
+        app:layout_constraintBottom_toTopOf="@+id/cardView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="250dp"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout18"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/amount">
+
+                <ImageButton
+                    android:id="@+id/redonebtn"
+                    android:layout_width="230dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/btnselectortopup"
+                    android:includeFontPadding="false"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/redone"
+                    android:textSize="36sp"
+                    app:layout_constraintEnd_toEndOf="@+id/xoxbtn"
+                    app:layout_constraintStart_toStartOf="@+id/xoxbtn"
+                    app:layout_constraintTop_toBottomOf="@+id/xoxbtn" />
+
+                <ImageButton
+                    android:id="@+id/tunetalkbtn"
+                    android:layout_width="230dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/btnselectortopup"
+                    android:includeFontPadding="false"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/tunetalk"
+                    android:textSize="36sp"
+                    app:layout_constraintEnd_toEndOf="@+id/umobprebtn"
+                    app:layout_constraintStart_toStartOf="@+id/umobprebtn"
+                    app:layout_constraintTop_toBottomOf="@+id/umobprebtn" />
+
+                <ImageButton
+                    android:id="@+id/merchantbtn"
+                    android:layout_width="230dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/btnselectortopup"
+                    android:includeFontPadding="false"
+                    android:padding="50dp"
+                    android:paddingStart="50dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/merchant"
+                    android:textSize="36sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tunetalkbtn"
+                    app:layout_constraintStart_toStartOf="@+id/tunetalkbtn"
+                    app:layout_constraintTop_toBottomOf="@+id/tunetalkbtn" />
+
+                <ImageButton
+                    android:id="@+id/altelbtn"
+                    android:layout_width="230dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/btnselectortopup"
+                    android:includeFontPadding="false"
+                    android:src="@drawable/altel"
+                    android:textSize="36sp"
+                    app:layout_constraintEnd_toEndOf="@+id/umobposbtn"
+                    app:layout_constraintStart_toStartOf="@+id/umobposbtn"
+                    app:layout_constraintTop_toBottomOf="@+id/umobposbtn" />
+
+                <ImageButton
+                    android:id="@+id/digibtn"
+                    android:layout_width="230dp"
+                    android:layout_height="180dp"
+                    android:layout_marginStart="150dp"
+                    android:background="@drawable/btnselectortopup"
+                    android:includeFontPadding="false"
+                    android:src="@drawable/digi"
+                    android:textSize="36sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/maxisbtn" />
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="your prepaid or postpaid mobile telecom"
+                    android:textSize="36sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+                <ImageButton
+                    android:id="@+id/maxisbtn"
+                    android:layout_width="230dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="60dp"
+                    android:background="@drawable/btnselectortopup"
+                    android:cropToPadding="true"
+                    android:padding="20dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/hotlink"
+                    android:text="Maxis"
+                    android:textSize="36sp"
+                    app:layout_constraintEnd_toStartOf="@+id/celcobtn"
+                    app:layout_constraintStart_toEndOf="@+id/digibtn"
+                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+                <ImageButton
+                    android:id="@+id/celcobtn"
+                    android:layout_width="230dp"
+                    android:layout_height="180dp"
+                    android:layout_marginEnd="150dp"
+                    android:background="@drawable/btnselectortopup"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/celcom"
+                    android:text="Celcom XPax"
+                    android:textSize="36sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/maxisbtn" />
+
+                <ImageButton
+                    android:id="@+id/xoxbtn"
+                    android:layout_width="230dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/btnselectortopup"
+                    android:src="@drawable/xox"
+                    android:text="XOX"
+                    android:textSize="36sp"
+                    app:layout_constraintEnd_toEndOf="@+id/digibtn"
+                    app:layout_constraintStart_toStartOf="@+id/digibtn"
+                    app:layout_constraintTop_toBottomOf="@+id/digibtn" />
+
+                <ImageButton
+                    android:id="@+id/umobprebtn"
+                    android:layout_width="230dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/btnselectortopup"
+                    android:src="@drawable/umobpre"
+                    android:text="Umobile"
+                    android:textSize="36sp"
+                    app:layout_constraintEnd_toEndOf="@+id/maxisbtn"
+                    app:layout_constraintStart_toStartOf="@+id/maxisbtn"
+                    app:layout_constraintTop_toBottomOf="@+id/maxisbtn" />
+
+                <ImageButton
+                    android:id="@+id/umobposbtn"
+                    android:layout_width="230dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/btnselectortopup"
+                    android:src="@drawable/umodpos"
+                    android:text="RedOne"
+                    android:textSize="36sp"
+                    app:layout_constraintEnd_toEndOf="@+id/celcobtn"
+                    app:layout_constraintStart_toStartOf="@+id/celcobtn"
+                    app:layout_constraintTop_toBottomOf="@+id/celcobtn" />
+
+                <TextView
+                    android:id="@+id/textView33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Please Select"
+                    android:textSize="50dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Spinner
+                android:id="@+id/amount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/inputbg"
+                android:gravity="center"
+                android:padding="20dp"
+                android:spinnerMode="dropdown"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="@+id/textView39"
+                app:layout_constraintStart_toStartOf="@+id/textView39"
+                app:layout_constraintTop_toBottomOf="@+id/textView39" />
+
+            <TextView
+                android:id="@+id/textView39"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Select Topup Amount (RM)"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="@+id/mobileno"
+                app:layout_constraintStart_toStartOf="@+id/mobileno"
+                app:layout_constraintTop_toBottomOf="@+id/mobileno" />
+
+            <EditText
+                android:id="@+id/mobileno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/inputbg"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="XXX-XXXXXXX-X"
+                android:inputType="phone"
+                android:padding="30dp"
+                android:phoneNumber="true"
+                android:textColor="#000"
+                android:textColorHint="#000"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView35"
+                app:layout_constraintStart_toStartOf="@+id/textView35"
+                app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+            <TextView
+                android:id="@+id/textView35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="Enter your 10 or 11 digit mobile number"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout17"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="#fff"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="TOP UP"
+        android:textColor="#fff"
+        android:textSize="80sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/backbtn2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="your account"
+        android:textColor="#fff"
+        android:textSize="50sp"
+        app:layout_constraintStart_toStartOf="@+id/textView40"
+        app:layout_constraintTop_toBottomOf="@+id/textView40" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

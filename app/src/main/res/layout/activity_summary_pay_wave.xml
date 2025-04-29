@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3C040404">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        app:cardCornerRadius="150dp"
+        app:cardElevation="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/header_curve">
+
+                <TextView
+                    android:id="@+id/tvpaywave"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Paywave Scan"
+                    android:textColor="@android:color/white"
+                    android:textSize="36sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/scantext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/iv_scan"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center_horizontal"
+                android:text="Please scan your QR"
+                android:textColor="#F44336"
+                android:textSize="36sp" />
+
+            <ImageView
+                android:id="@+id/iv_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/qricon" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:background="@drawable/bottom_curve"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:text="Total"
+                    android:textColor="@android:color/white"
+                    android:textSize="50sp" />
+
+                <Button
+                    android:id="@+id/backbtn"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/roundbtnselector"
+                    android:backgroundTint="#CCCCCC"
+                    android:paddingStart="50dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="50dp"
+                    android:paddingBottom="10dp"
+                    android:text="Back"
+                    android:textAllCaps="false"
+                    android:textColor="#000"
+                    android:textSize="36sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="24dp"
+        android:visibility="invisible" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:padding="20dp"
+        android:visibility="invisible">
+
+        <EditText
+            android:id="@+id/TxnType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="8"
+            android:hint="Txn Type"
+            android:inputType="text"
+            android:text="01"
+            android:textSize="35dp" />
+
+        <EditText
+            android:id="@+id/CartId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/TxnType"
+            android:ems="8"
+            android:hint="CartID"
+            android:inputType="text"
+            android:text="12345781"
+            android:textSize="35dp" />
+
+        <EditText
+            android:id="@+id/Currency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/TxnType"
+            android:ems="8"
+            android:hint="Currency"
+            android:inputType="text"
+            android:text="MYR"
+            android:textSize="35dp" />
+
+        <EditText
+            android:id="@+id/QRMethod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/CartId"
+            android:layout_toRightOf="@id/Currency"
+            android:ems="8"
+            android:hint="QRMethod"
+            android:inputType="textPersonName"
+            android:text="14"
+            android:textSize="35dp" />
+
+        <EditText
+            android:id="@+id/SettlementIndex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Currency"
+            android:ems="8"
+            android:hint="SettlementIndex"
+            android:inputType="textPersonName"
+            android:text="02"
+            android:textSize="35dp" />
+
+        <EditText
+            android:id="@+id/Phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/QRMethod"
+            android:layout_toRightOf="@id/SettlementIndex"
+            android:ems="8"
+            android:hint="phone Number"
+            android:inputType="phone"
+            android:text=""
+            android:textSize="35dp" />
+
+        <EditText
+            android:id="@+id/Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Phone"
+            android:ems="8"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:text=""
+            android:textSize="35dp" />
+
+        <EditText
+            android:id="@+id/Amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Phone"
+            android:layout_toRightOf="@id/Email"
+            android:ems="8"
+            android:hint="Amount"
+            android:inputType="numberDecimal"
+            android:text="0.1"
+            android:textSize="35dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="358dp"
+            android:layout_below="@id/Amount"
+            android:text=""
+            android:textSize="35dp"
+            tools:layout_editor_absoluteX="104dp"
+            tools:layout_editor_absoluteY="165dp" />
+
+        <Button
+            android:id="@+id/Submitbtn"
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:layout_below="@id/textView"
+            android:text="Submit"
+            android:textSize="20sp"
+            app:backgroundTint="#80788E"
+            tools:layout_editor_absoluteX="104dp"
+            tools:layout_editor_absoluteY="329dp" />
+
+        <Button
+            android:id="@+id/Readybtn"
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/textView"
+            android:layout_toRightOf="@id/Submitbtn"
+            android:text="Ready"
+            android:textSize="20sp"
+            app:backgroundTint="#80788E"
+            tools:layout_editor_absoluteX="104dp"
+            tools:layout_editor_absoluteY="377dp" />
+
+        <Button
+            android:id="@+id/cancelbtn"
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/textView"
+            android:layout_toRightOf="@id/Readybtn"
+            android:text="Cancel"
+            android:textSize="20sp"
+            app:backgroundTint="#80788E"
+            tools:layout_editor_absoluteX="104dp"
+            tools:layout_editor_absoluteY="377dp" />
+
+        <Button
+            android:id="@+id/Connectbtn"
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/textView"
+            android:layout_toRightOf="@id/cancelbtn"
+            android:text="Connect"
+            android:textSize="20sp"
+            app:backgroundTint="#80788E"
+            tools:layout_editor_absoluteX="104dp"
+            tools:layout_editor_absoluteY="377dp" />
+
+        <Button
+            android:id="@+id/Authbtn"
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/username"
+            android:text="GetAuth"
+            android:textSize="20sp"
+            app:backgroundTint="#80788E"
+            tools:layout_editor_absoluteX="104dp"
+            tools:layout_editor_absoluteY="377dp" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Submitbtn"
+            android:ems="8"
+            android:hint="Username"
+            android:inputType="textPersonName"
+            android:text="M161-TD-50552"
+            android:textSize="35dp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Readybtn"
+            android:layout_toRightOf="@id/username"
+            android:ems="8"
+            android:hint="password"
+            android:inputType="textPersonName"
+            android:text="Abc@1234"
+            android:textSize="35dp" />
+
+        <EditText
+            android:id="@+id/PORemID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Authbtn"
+            android:ems="8"
+            android:hint="PORemID"
+            android:inputType="textPersonName"
+            android:textSize="35dp" />
+
+        <Button
+            android:id="@+id/Txnbtn"
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/Authbtn"
+            android:layout_toRightOf="@id/PORemID"
+            android:text="GetTxn"
+            android:textSize="20sp"
+            app:backgroundTint="#80788E" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="150dp"
+        app:cardElevation="2dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="800dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/header_curve"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/pricetext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center"
+                    android:inputType="textMultiLine"
+                    android:padding="35dp"
+                    android:text="Please select your preferred payment method"
+                    android:textColor="#fff"
+                    android:textSize="48sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="Sj Raza"
+                android:textSize="24sp"
+                android:visibility="invisible" />
+
+            <LinearLayout
+                android:id="@+id/walletselector"
+                android:layout_width="642dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:text="Tap to select desire wallet"
+                    android:textColor="#412B3A"
+                    android:textSize="36sp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/iwallet"
+                    android:layout_width="642dp"
+                    android:layout_height="505dp"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="74dp"
+                        android:text="eWallet :"
+                        android:textColor="#F44336"
+                        android:textSize="40dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/touchngopay"
+                            android:layout_width="117dp"
+                            android:layout_height="120dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="50dp"
+                            android:background="#fff"
+                            android:scaleType="fitStart"
+                            app:srcCompat="@drawable/tngicon" />
+
+                        <ImageButton
+                            android:id="@+id/boost"
+                            android:layout_width="221dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="50dp"
+                            android:background="#fff"
+                            android:scaleType="centerInside"
+                            app:srcCompat="@drawable/boosticon" />
+
+                        <ImageButton
+                            android:id="@+id/grabpay"
+                            android:layout_width="170dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="20dp"
+                            android:background="#fff"
+                            android:scaleType="centerInside"
+                            app:srcCompat="@drawable/grabpayicon" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/maybank"
+                            android:layout_width="156dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="50dp"
+                            android:background="#fff"
+                            android:scaleType="centerInside"
+                            app:srcCompat="@drawable/maybankicon" />
+
+                        <ImageButton
+                            android:id="@+id/wechatpay"
+                            android:layout_width="182dp"
+                            android:layout_height="138dp"
+                            android:layout_marginRight="50dp"
+                            android:background="#fff"
+                            android:scaleType="centerInside"
+                            app:srcCompat="@drawable/wechaticon" />
+
+                        <ImageButton
+                            android:id="@+id/alipay"
+                            android:layout_width="176dp"
+                            android:layout_height="130dp"
+                            android:layout_marginEnd="32dp"
+                            android:background="#fff"
+                            android:scaleType="centerInside"
+                            app:srcCompat="@drawable/alipayicon" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/shopee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="50dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="#fff"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/shopeepaylogo" />
+
+                        <ImageButton
+                            android:id="@+id/duitnow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginBottom="12dp"
+                            android:background="#fff"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/duitnow"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_cash"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#412B3A" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Cash :"
+                        android:textColor="#412B3A"
+                        android:textSize="40dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/iv_cash"
+                        android:layout_width="300dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="-20dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/rm" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:text="Accept RM 1, 5 &amp; 10"
+                        android:textColor="#412B3A"
+                        android:textSize="40dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_token"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#412B3A" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Token:"
+                        android:textColor="#F44336"
+                        android:textSize="40dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/iv_token"
+                        android:layout_width="490dp"
+                        android:layout_height="310dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/cashncoin" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_cash_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#412B3A" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Note and coin:"
+                        android:textColor="#F44336"
+                        android:textSize="40dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/iv_cash_new"
+                        android:layout_width="490dp"
+                        android:layout_height="310dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/cashncoin" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:text="Accept RM 1, 5 &amp; 10"
+                        android:textColor="#412B3A"
+                        android:textSize="40dp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_fasspay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#412B3A" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="payWave :"
+                        android:textColor="#F44336"
+                        android:textSize="40dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/iv_fasspay"
+                        android:layout_width="600dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="-20dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/visa_master_mydebit" />
+
+                    <ImageView
+                        android:id="@+id/iv_fasspay1"
+                        android:layout_width="300dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="-20dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/paywaveicon"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_sarawakpay"
+                    android:layout_width="517dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="70dp"
+                    android:layout_marginBottom="40dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageButton
+                        android:id="@+id/sarawakpay"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginBottom="12dp"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/sarawakpay" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/gkash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-40dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/ll_paywave"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:text="PayWave"
+                            android:textColor="#412B3A"
+                            android:textSize="36sp" />
+
+                        <ImageButton
+                            android:id="@+id/paywave"
+                            android:layout_width="wrap_content"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="12dp"
+                            android:background="#fff"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/paywaveicon"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_ewallet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:text="e-Wallet"
+                            android:textColor="#412B3A"
+                            android:textSize="36sp" />
+
+                        <ImageButton
+                            android:id="@+id/wallet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="12dp"
+                            android:background="#fff"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/walleticon"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/backbtn3"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="@drawable/roundbtnselector"
+                    android:backgroundTint="#412B3A"
+                    android:paddingStart="80dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="80dp"
+                    android:paddingBottom="10dp"
+                    android:text="Back"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="36sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

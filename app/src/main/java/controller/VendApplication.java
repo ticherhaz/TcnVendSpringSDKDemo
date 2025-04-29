@@ -1,10 +1,10 @@
 package controller;
 
 
-import android.support.multidex.MultiDex;
+import androidx.multidex.MultiDex;
 
-import com.tcn.springboard.control.TcnShareUseData;
-import com.tcn.springboard.control.TcnVendApplication;
+import com.ys.springboard.control.TcnShareUseData;
+import com.ys.springboard.control.TcnVendApplication;
 
 /**
  * 描述 description：
@@ -16,6 +16,7 @@ public class VendApplication extends TcnVendApplication {
     public void onCreate() {
         super.onCreate();
         MultiDex.install(this);
+
         //此处主板串口接安卓哪个串口，就填哪个串口  Please fill in the serial port that the mother board is connected to the android board.
 //        TcnShareUseData.getInstance().setBoardSerPortFirst("/dev/ttyS1");    
 //        TcnShareUseData.getInstance().setBoardSerPortFirst("/dev/ttymxc1");
@@ -197,4 +198,5 @@ public class VendApplication extends TcnVendApplication {
 //        case TcnVendEventID.CMD_CARD_CONSUMED_FAIL: 刷卡消费失败
 //            break;
     }
+
 }

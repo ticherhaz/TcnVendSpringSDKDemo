@@ -1,0 +1,22 @@
+<Configuration status="WARN">
+    <Properties>
+        <Property name="LOG_DIR">${sys:LOG_DIR}</Property>
+    </Properties>
+
+    <Appenders>
+        <RollingFile name="FileAppender" fileName="${LOG_DIR}/VendingMachine_log.txt"
+            filePattern="${LOG_DIR}/VendingMachine_log-%d{yyyy-MM-dd-HH}.txt">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS a} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="240" fileSize="500 MB" totalSizeCap="512 MB"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="FileAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TcnVendSpringSDKDemo</string>
+    <string name="app_name">VendingMachine</string>
     <string name="ui_base_back">back</string>
     <string name="ui_base_exit">Exit system</string>
     <string name="background_menu_settings">Menu settings</string>

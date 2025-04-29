@@ -19,6 +19,6 @@
     <ListPreference
         android:key="DEVICEDGTDSP"
         android:persistent="true"
-        android:title="价格标签串口"></ListPreference>
+        android:title="Price Tag Serial Port"></ListPreference>
 
 </PreferenceScreen>

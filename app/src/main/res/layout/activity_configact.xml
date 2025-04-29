@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:scrollbars="vertical"
+    tools:context=".configact">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingBottom="64dp">
+
+        <LinearLayout
+            android:id="@+id/ll_top"
+            android:layout_width="300dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/ll_top_main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_title"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/roboto"
+            android:text="Config Panel"
+            android:textColor="@color/colorPrimary"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/ll_top_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginRight="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.15"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/button_general"
+                    style="@style/PrimaryButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="100sp"
+                    android:text="General" />
+
+                <Button
+                    android:id="@+id/button_payment"
+                    style="@style/PrimaryButtonOutlineStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="100sp"
+                    android:layout_marginTop="16dp"
+                    android:text="Payment" />
+
+                <Button
+                    android:id="@+id/button_others"
+                    style="@style/PrimaryButtonOutlineStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="100sp"
+                    android:layout_marginTop="16dp"
+                    android:text="Others" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_divider"
+                android:layout_width="1dp"
+                android:layout_height="500dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/colorPrimarySoft" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.85"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_general"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        style="@style/BlackTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Selected Vending Version:" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/tv_vending_version"
+                            style="@style/BlackTextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="M5"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/btn_change_vending_version"
+                            style="@style/PrimaryButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:paddingLeft="32dp"
+                            android:paddingRight="32dp"
+                            android:text="Change"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/BlackTextViewStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Franchise ID" />
+
+                            <EditText
+                                android:id="@+id/fid"
+                                style="@style/BlackEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:autofillHints="1"
+                                android:focusable="true"
+                                android:imeOptions="actionNext"
+                                android:importantForAutofill="yes"
+                                android:inputType="number" />
+
+                            <TextView
+                                style="@style/BlackTextViewStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:text="Machine ID" />
+
+                            <EditText
+                                android:id="@+id/mid"
+                                style="@style/BlackEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:autofillHints="1"
+                                android:imeOptions="actionNext"
+                                android:importantForAutofill="yes"
+                                android:inputType="number" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="@color/colorPrimarySoft" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/BlackTextViewStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="IP for Paywave" />
+
+                            <EditText
+                                android:id="@+id/etip"
+                                style="@style/BlackEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:autofillHints="1"
+                                android:imeOptions="actionNext"
+                                android:importantForAutofill="yes"
+                                android:inputType="number" />
+
+                            <TextView
+                                style="@style/BlackTextViewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:text="Click Timer in Second" />
+
+                            <EditText
+                                android:id="@+id/et_timer"
+                                style="@style/BlackEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:autofillHints="1"
+                                android:imeOptions="actionDone"
+                                android:importantForAutofill="yes"
+                                android:inputType="number" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:theme="@style/Theme.Xyshjdemo"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/btntestnote"
+                        style="@style/PrimaryButtonOutlineStyle"
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:paddingLeft="32dp"
+                        android:paddingRight="32dp"
+                        android:text="Note Float" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/BlackTextViewStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:text="Merchant Code Ipay88" />
+
+                            <TextView
+                                style="@style/BlackTextViewStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Eg. Code: M41288"
+                                android:textSize="16sp" />
+
+                            <EditText
+                                android:id="@+id/etmec"
+                                style="@style/BlackEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:autofillHints="1"
+                                android:imeOptions="actionNext"
+                                android:importantForAutofill="yes"
+                                android:inputType="text" />
+
+                            <TextView
+                                style="@style/BlackTextViewStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:text="Merchant Key Ipay88" />
+
+                            <TextView
+                                style="@style/BlackTextViewStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Eg. Key: m4d6TpUkUp"
+                                android:textSize="16sp" />
+
+                            <EditText
+                                android:id="@+id/etmk"
+                                style="@style/BlackEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:autofillHints="1"
+                                android:imeOptions="actionNext"
+                                android:importantForAutofill="yes"
+                                android:inputType="text" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="@color/colorPrimarySoft" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/BlackTextViewStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:text="SarawakPay Merchant Id" />
+
+                            <TextView
+                                style="@style/BlackTextViewStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textSize="16sp" />
+
+                            <EditText
+                                android:id="@+id/sarawakpay_mid"
+                                style="@style/BlackEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:autofillHints="1"
+                                android:imeOptions="actionNext"
+                                android:importantForAutofill="yes"
+                                android:inputType="number" />
+
+                            <TextView
+                                style="@style/BlackTextViewStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:text="Sarawak Merchant Name" />
+
+                            <TextView
+                                style="@style/BlackTextViewStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textSize="16sp" />
+
+                            <EditText
+                                android:id="@+id/sarawakpay_mname"
+                                style="@style/BlackEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:autofillHints="1"
+                                android:imeOptions="actionNext"
+                                android:importantForAutofill="yes"
+                                android:inputType="text" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="450dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="32dp"
+                        android:background="@color/colorPrimarySoft" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/chkMqtt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Mqtt" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/chkGPaywave"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Gkash Paywave Payment + Gkash Wallet Payment" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/chkGWallet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Gkash Paywave Payment + Ipay Wallet payment" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/chkSarawak"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sarawak Payment" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/chkSarawakOnly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sarawak Payment Only" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/chkCashOnly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cash + Ewallet" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/chkCashCoinOnly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Note + Coin" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/chkDuitNowOnly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="DuitNow + Ewallet" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/chkFasspayOnly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fasspay + Ewallet" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/chkIWallet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ipay Wallet Payment" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/chkToken"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Token" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/chkDuitnowonlyNew"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="DuitNow Only" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_others"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/ll_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnPassword"
+                            style="@style/PrimaryButtonOutlineStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/baseline_password_24"
+                            android:drawablePadding="8dp"
+                            android:drawableTint="@android:color/black"
+                            android:paddingLeft="32dp"
+                            android:paddingRight="32dp"
+                            android:text="Change Admin Password" />
+
+                        <Button
+                            android:id="@+id/btnmachinesettinginfo"
+                            style="@style/PrimaryButtonOutlineStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/baseline_info_outline_24"
+                            android:drawablePadding="8dp"
+                            android:drawableTint="@android:color/black"
+                            android:paddingLeft="32dp"
+                            android:paddingRight="32dp"
+                            android:text="Machine Setting Info" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_logo"
+                            style="@style/PrimaryButtonOutlineStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:paddingLeft="32dp"
+                            android:paddingRight="32dp"
+                            android:text="Change Logo" />
+
+                        <Button
+                            android:id="@+id/btn_dlogo"
+                            style="@style/PrimaryButtonOutlineStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:paddingLeft="32dp"
+                            android:paddingRight="32dp"
+                            android:text="Reset Default Logo" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_logo"
+                        android:layout_width="251dp"
+                        android:layout_height="215dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="25dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:visibility="gone" />
+
+                    <View
+                        android:id="@+id/view_test"
+                        android:layout_width="450dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="32dp"
+                        android:background="@color/colorPrimarySoft" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_test"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view_test">
+
+                        <Button
+                            android:id="@+id/btntestdispense"
+                            style="@style/PrimaryButtonOutlineStyle"
+                            android:layout_width="170dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:paddingLeft="32dp"
+                            android:paddingRight="32dp"
+                            android:text="Serial Tool"
+                            android:visibility="visible" />
+
+                        <Button
+                            android:id="@+id/btnqr"
+                            style="@style/PrimaryButtonOutlineStyle"
+                            android:layout_width="170dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:paddingLeft="32dp"
+                            android:paddingRight="32dp"
+                            android:text="Test QR"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_body1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <Button
+                            android:id="@+id/gkash"
+                            style="@style/PrimaryButtonOutlineStyle"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:paddingLeft="32dp"
+                            android:paddingRight="32dp"
+                            android:text="Gkash Test" />
+
+                        <Button
+                            android:id="@+id/sarawakpay"
+                            style="@style/PrimaryButtonOutlineStyle"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:paddingLeft="32dp"
+                            android:paddingRight="32dp"
+                            android:text="Sarawak Pay Test" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/view_checkbox"
+                        android:layout_width="450dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="32dp"
+                        android:background="@color/colorPrimarySoft" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_body4"
+                        android:layout_width="450dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:theme="@style/Theme.Xyshjdemo">
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/chkLdispense"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:text="Logs for dispense activity" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/chkLPayment"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:text="Logs for Payment activity" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/etText"
+                        android:layout_width="400dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/item_selector_black"
+                        android:gravity="top"
+                        android:imeOptions="actionDone"
+                        android:padding="10dp"
+                        android:text=""
+                        android:textSize="16dp" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/chkDispenseTest"
+                        android:layout_width="450dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:text="Dispense Test Scan"
+                        android:theme="@style/Theme.Xyshjdemo"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/et_password"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:hint="Test Dispense Password"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/btn_savetext"
+                        style="@style/GreenButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:drawableStart="@drawable/baseline_save_24"
+                        android:drawablePadding="8dp"
+                        android:drawableTint="@color/colorWhite"
+                        android:paddingLeft="32dp"
+                        android:paddingRight="32dp"
+                        android:text="Save Text"
+                        android:textSize="24sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_pay"
+            android:layout_width="900dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="32dp"
+            android:background="@color/colorPrimarySoft"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_top_main" />
+
+        <LinearLayout
+            android:id="@+id/ll_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_pay">
+
+            <Button
+                android:id="@+id/btnsav"
+                style="@style/GreenButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:drawableStart="@drawable/baseline_save_24"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/colorWhite"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:text="Save"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btnclose"
+                style="@style/RedButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:drawableStart="@drawable/baseline_close_24"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/colorWhite"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:text="Close"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/setting"
+                style="@style/PrimaryButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:drawableStart="@drawable/baseline_settings_24"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/colorWhite"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:text="Open Settings"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/test_tcn"
+                style="@style/PrimaryButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:drawableStart="@drawable/baseline_settings_24"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/colorWhite"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:text="TCN Config"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

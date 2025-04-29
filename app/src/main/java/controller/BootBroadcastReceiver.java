@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.tcn.springboard.control.TcnVendIF;
+import com.ys.springboard.control.TcnVendIF;
 
 
 /**

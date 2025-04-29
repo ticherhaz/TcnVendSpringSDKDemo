@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="返回（back）" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btShip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="出货测试(ship)" />
+
+            <Spinner
+                android:id="@+id/serport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/etSlot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="enterslot"
+                android:inputType="numberSigned"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btShip2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="副柜出货测试(ship)" />
+
+            <Spinner
+                android:id="@+id/serport2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/etSlot2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="enterslot"
+                android:inputType="numberSigned"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvLog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

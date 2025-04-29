@@ -6,12 +6,12 @@
     android:orientation="vertical">
 
 
-    <com.tcn.sdk.springdemo.Titlebar
+    <com.tcn.sdk.springdemo.tcnSpring.Titlebar
         android:id="@+id/menu_setttings_titlebar"
         android:layout_width="match_parent"
         android:layout_height="100dp">
 
-    </com.tcn.sdk.springdemo.Titlebar>
+    </com.tcn.sdk.springdemo.tcnSpring.Titlebar>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,33 +27,33 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                <com.tcn.sdk.springdemo.tcnSpring.ButtonEditSelectD
                     android:id="@+id/menu_lat_query_addr"
                     style="@style/background_lrmarginss"
                     android:layout_width="0px"
                     android:layout_height="100dp"
                     android:layout_weight="1">
 
-                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+                </com.tcn.sdk.springdemo.tcnSpring.ButtonEditSelectD>
 
-                <com.tcn.sdk.springdemo.ButtonEditSelectD
+                <com.tcn.sdk.springdemo.tcnSpring.ButtonEditSelectD
                     android:id="@+id/menu_lat_query_slot"
                     style="@style/background_lrmarginss"
                     android:layout_width="0px"
                     android:layout_height="100dp"
                     android:layout_weight="1">
 
-                </com.tcn.sdk.springdemo.ButtonEditSelectD>
+                </com.tcn.sdk.springdemo.tcnSpring.ButtonEditSelectD>
             </LinearLayout>
 
 
-            <com.tcn.sdk.springdemo.ButtonEditSelectD
+            <com.tcn.sdk.springdemo.tcnSpring.ButtonEditSelectD
                 android:id="@+id/menu_lat_select_addr"
                 style="@style/background_lrmarginss"
                 android:layout_width="match_parent"
                 android:layout_height="100px">
 
-            </com.tcn.sdk.springdemo.ButtonEditSelectD>
+            </com.tcn.sdk.springdemo.tcnSpring.ButtonEditSelectD>
 
             <LinearLayout
                 android:layout_width="match_parent"

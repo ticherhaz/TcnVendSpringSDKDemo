@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tcn.sdk.springdemo">
 
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -35,49 +38,207 @@
 
 
     <application
-        android:name="controller.VendApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/AppTheme">
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
         <activity
-            android:name=".MainAct"
-            android:exported="true">
+            android:name=".SelectPaymentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Transparent"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".configact"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".TopUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SummaryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Transparent"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".SelectionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Transparent" />
+        <activity
+            android:name=".loginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DownloadAppActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Transparent" />
+<!--        <activity-->
+<!--            android:name=".DispenseTesting.MainActivity_Dispense"-->
+<!--            android:screenOrientation="portrait" />-->
+        <activity
+            android:name=".TypeProfuctActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
+
+        </activity>
+        <activity
+            android:name=".SelectPaymentActivityNew"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme1" />
+
+        <activity
+            android:name=".PayWave.PayWaveSummaryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme1" />
+
+        <activity
+            android:name=".PayWave.PayWaveChooseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme1" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/SplashTheme"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".PasswordUnlock"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Xyshjdemo" />
+        <activity
+            android:name=".PasswordChange"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PayWave.PayWaveMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SarawakPay.SarawakMainActivity"
+            android:screenOrientation="portrait" />
+<!--        <activity-->
+<!--            android:name=".ComAssistant.ComAssistantActivity"-->
+<!--            android:screenOrientation="portrait" />-->
+<!--        <activity-->
+<!--            android:name=".MachineSettingInfo"-->
+<!--            android:screenOrientation="portrait" />-->
+        <activity
+            android:name=".QrActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tcnSpring.MainActM4New"
+            android:screenOrientation="portrait" />
+<!--        <activity-->
+<!--            android:name=".CheckPortActivitiy"-->
+<!--            android:screenOrientation="portrait" />-->
+        <activity
+            android:name=".TestDuitNowActivity"
+            android:screenOrientation="portrait" />
+<!--        <activity-->
+<!--            android:name=".TokenActivity"-->
+<!--            android:exported="true"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/Theme.Transparent"></activity>-->
+        <activity
+            android:name=".Note.MainNoteActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Note.CashNoteActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Transparent">
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+<!--        <activity-->
+<!--            android:name=".Note.CashNoteNewActivity"-->
+<!--            android:exported="true"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/Theme.Transparent">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />-->
+<!--            </intent-filter>-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity>-->
+        <activity android:name=".Note.ListFiles" />
+        <activity android:name=".Note.ListBills" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.linkitsoft.vendingmachine.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+<!--        <meta-data-->
+<!--            android:name="firebase_crashlytics_collection_enabled"-->
+<!--            android:value="${crashlyticsCollectionEnabled}" />-->
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".MenuSettingsLatticeActivity"
+            android:name="com.tcn.sdk.springdemo.tcnSpring.MenuSettingsLatticeActivity"
             android:configChanges="locale|keyboardHidden|orientation"
             android:launchMode="singleTask" />
 
         <activity
-            android:name=".MenuSettingsStandJsActivity"
+            android:name="com.tcn.sdk.springdemo.tcnSpring.MenuSettingsStandJsActivity"
             android:configChanges="locale|keyboardHidden|orientation"
             android:launchMode="singleTask" />
 
         <activity
-            android:name="SerialPortSetting"
+            android:name="com.tcn.sdk.springdemo.tcnSpring.SerialPortSetting"
             android:configChanges="locale|keyboardHidden|orientation"
             android:launchMode="singleTask" />
+
+        <activity android:name="com.tcn.sdk.springdemo.tcnSpring.MainAct"
+            android:configChanges="locale|keyboardHidden|orientation"/>
+
+        <activity android:name="com.tcn.sdk.springdemo.tcnSpring.MainActDispenseM4"
+            android:theme="@style/TransparentActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="locale|keyboardHidden|orientation"/>
 
         <activity
             android:name="com.tcn.sdk_auth_lib.floatwindow.FloatActivity"
             android:configChanges="locale|keyboardHidden|orientation"
             android:launchMode="singleTask" />
 
-        <receiver
-            android:name="controller.BootBroadcastReceiver"
-            android:exported="true">
-            <intent-filter android:priority="999">
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <service android:name="controller.VendService" />
+<!--        <receiver-->
+<!--            android:name="com.tcn.sdk.springdemo.tcnSpring.controller.BootBroadcastReceiver"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter android:priority="999">-->
+<!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+        <service android:name="com.tcn.sdk.springdemo.tcnSpring.controller.VendService" />
     </application>
 
 </manifest>

@@ -1,14 +1,17 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin:  'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     compileSdk 35
     defaultConfig {
         namespace "com.tcn.sdk.springdemo"
         applicationId "com.tcn.sdk.springdemo"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 35
         versionCode 1
-        versionName "1.0.1"
+        versionName "1.0.8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
@@ -23,6 +26,38 @@ android {
                 }
             }
         }
+    }
+    packagingOptions {
+        resources {
+            excludes +=
+                    ['META-INF/DEPENDENCIES',
+                     'META-INF/LICENSE',
+                     'META-INF/LICENSE.txt',
+                     'META-INF/license.txt',
+                     'META-INF/NOTICE',
+                     'META-INF/NOTICE.txt',
+                     'META-INF/notice.txt',
+                     'META-INF/ASL2.0',
+                     'META-INF/*.kotlin_module'
+                    ]
+        }
+    }
+    kotlinOptions {
+        jvmTarget = "21"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    lint {
+        abortOnError false
+        baseline file('lint-baseline.xml')
+        checkReleaseBuilds false
     }
     sourceSets {
         main {
@@ -39,14 +74,92 @@ repositories {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:28.0.0"
-    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
-    testImplementation 'junit:junit:4.13.2'
-    implementation "com.google.code.gson:gson:2.12.1"
-    api 'com.squareup.okhttp3:okhttp:4.12.0'
-    implementation 'com.android.support:multidex:1.0.3'
 
-    implementation "org.greenrobot:eventbus:$eventbusVersion"
-    implementation(name: 'tcn_springboard-release', ext: 'aar', version: '1.0.1' , group: 'com.tcn.springboard')
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    api 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    implementation 'com.google.firebase:firebase-crashlytics:19.4.0'
+    implementation 'com.google.firebase:firebase-analytics:22.2.0'
+
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+
+    implementation 'com.github.koai-dev:Android-Image-Slider:1.4.0'
+
+    implementation 'com.github.f0ris.sweetalert:library:1.6.2'
+    implementation 'com.google.code.ksoap2-android:ksoap2-android:3.6.4'
+    implementation 'org.xutils:xutils:3.8.12'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.alibaba:fastjson:1.2.61'
+    implementation 'com.google.code.gson:gson:2.12.1'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.14'
+    implementation 'org.apache.httpcomponents:httpcore:4.4.16'
+    implementation 'com.android.support:multidex:2.0.1'
+    implementation 'com.android.volley:volley:1.2.1'
+
+    implementation 'com.github.ticherhaz:MarqueeView:1.9.0'
+
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+//    implementation('com.github.tony19:logback-android:3.0.0')
+//    implementation 'org.slf4j:slf4j-api:2.0.16'
+    implementation files('libs/d2xx.jar')
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+
+    implementation 'com.github.felHR85:UsbSerial:6.0.6'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.11.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.11.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.11.0'
+    implementation 'androidx.room:room-runtime:2.6.1'
+    annotationProcessor 'androidx.room:room-compiler:2.6.1'
+    implementation 'com.github.lzyzsd:circleprogress:1.2.1'
+    implementation('io.socket:socket.io-client:2.1.1') {
+        exclude group: 'org.json', module: 'json'
+    }
+    implementation('com.microsoft.azure.sdk.iot:iot-device-client:2.5.0') {
+        exclude module: 'slf4j-api'
+        exclude module: 'log4j-slf4j-impl'
+    }
+    implementation('org.apache.commons:commons-lang3:3.17.0')
+    implementation('javax.xml.stream:stax-api:1.0-2')
+
+    implementation files('libs/fasspay.aar')
+    //Kotlin
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7'
+    implementation 'androidx.core:core-ktx:1.16.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.8.7'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.8.7'
+
+    //Kotlin Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.1'
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+
+    //Lifecycle
+    def lifecycle_version = '2.8.7'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    implementation 'com.github.ticherhaz:ComplexView:1.5.3'
+    implementation("com.github.ticherhaz:FireLog:1.1.5")
+    implementation "org.greenrobot:eventbus:3.3.1"
+//    implementation 'com.licheedev:android-serialport:2.1.2'
+    implementation(files("libs/tcn_springboard-debug.aar"))
+
+    // Exclude SLF4J globally (if it's pulled in transitively)
+    configurations.implementation {
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+    }
+    implementation 'com.licheedev:android-serialport:2.1.2'
+
+    implementation 'com.github.ticherhaz:VendingDuitNow:1.1.2'
 }
+

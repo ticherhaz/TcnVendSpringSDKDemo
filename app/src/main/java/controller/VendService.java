@@ -3,8 +3,8 @@ package controller;
 
 import android.content.res.Configuration;
 
-import com.tcn.springboard.TcnService;
-import com.tcn.springboard.control.TcnVendIF;
+import com.ys.springboard.TcnService;
+import com.ys.springboard.control.TcnVendIF;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
