@@ -227,6 +227,10 @@
             android:configChanges="locale|keyboardHidden|orientation"/>
 
         <activity
+            android:name=".IframeWebViewActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.tcn.sdk_auth_lib.floatwindow.FloatActivity"
             android:configChanges="locale|keyboardHidden|orientation"
             android:launchMode="singleTask" />

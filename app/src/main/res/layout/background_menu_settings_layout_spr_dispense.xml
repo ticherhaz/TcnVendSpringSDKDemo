@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_main_background">
+
+
+    <com.tcn.sdk.springdemo.tcnSpring.Titlebar
+        android:id="@+id/menu_setttings_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="100px">
+
+    </com.tcn.sdk.springdemo.tcnSpring.Titlebar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/menu_setttings_titlebar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.tcn.sdk.springdemo.tcnSpring.ButtonEditSelectD
+                android:id="@+id/menu_spr_ship_slot"
+                style="@style/background_lrmarginss"
+                android:layout_width="match_parent"
+                android:layout_height="100px">
+
+            </com.tcn.sdk.springdemo.tcnSpring.ButtonEditSelectD>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

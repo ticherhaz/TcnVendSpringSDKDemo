@@ -1,0 +1,127 @@
+{
+  "project_info": {
+    "project_number": "605293626872",
+    "firebase_url": "https://pesananmakanan-fdcbe-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "pesananmakanan-fdcbe",
+    "storage_bucket": "pesananmakanan-fdcbe.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605293626872:android:f3dab88120ff235452020d",
+        "android_client_info": {
+          "package_name": "com.dvends.dvendslog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "605293626872-1ospdp44povv0rhck806nc8pl7i2jqa5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAudwHLhiHtv9w-wpjk-9OpN65lxYX9plE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "605293626872-1ospdp44povv0rhck806nc8pl7i2jqa5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605293626872:android:8b365a849cf6348252020d",
+        "android_client_info": {
+          "package_name": "com.linkitsoft.vendingmachine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "605293626872-1ospdp44povv0rhck806nc8pl7i2jqa5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAudwHLhiHtv9w-wpjk-9OpN65lxYX9plE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "605293626872-1ospdp44povv0rhck806nc8pl7i2jqa5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605293626872:android:92da067b722aad2652020d",
+        "android_client_info": {
+          "package_name": "com.linkitsoft.vendingmachine.m5.dobi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "605293626872-1ospdp44povv0rhck806nc8pl7i2jqa5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAudwHLhiHtv9w-wpjk-9OpN65lxYX9plE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "605293626872-1ospdp44povv0rhck806nc8pl7i2jqa5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605293626872:android:d45bce79e903e6cf52020d",
+        "android_client_info": {
+          "package_name": "com.tcn.sdk.springdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "605293626872-1ospdp44povv0rhck806nc8pl7i2jqa5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAudwHLhiHtv9w-wpjk-9OpN65lxYX9plE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "605293626872-1ospdp44povv0rhck806nc8pl7i2jqa5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,23 @@
+<configuration>
+    <property name="LOG_DIR" value="/storage/emulated/0/VendingMachine/Logs" />
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- active log file -->
+        <file>${LOG_DIR}/VendingMachine_log.txt</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS a} [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover period -->
+            <fileNamePattern>${LOG_DIR}/VendingMachine_log-%d{yyyy-MM-dd-HH}.txt</fileNamePattern>
+            <maxHistory>240</maxHistory>
+            <maxFileSize>500MB</maxFileSize>
+            <totalSizeCap>512MB</totalSizeCap>
+            <cleanHistoryOnStart>false</cleanHistoryOnStart>
+        </rollingPolicy>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>

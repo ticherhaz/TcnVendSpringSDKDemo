@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -48,48 +49,63 @@ public class RollingLogger {
         String fileName = LOG_FILE_PREFIX + "-" +
                 new SimpleDateFormat("yyyy-MM-dd-HH", Locale.getDefault()).format(new Date()) + ".txt";
 
-        ContentResolver resolver = appContext.getContentResolver();
-        Uri downloadsUri = MediaStore.Downloads.EXTERNAL_CONTENT_URI;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+            // Android 10+ (Scoped Storage)
+            ContentResolver resolver = appContext.getContentResolver();
+            Uri downloadsUri = MediaStore.Downloads.EXTERNAL_CONTENT_URI;
 
-        // Query to find existing file
-        Uri fileUri = null;
-        try (android.database.Cursor cursor = resolver.query(
-                downloadsUri,
-                new String[]{MediaStore.Downloads._ID},
-                MediaStore.Downloads.DISPLAY_NAME + "=? AND " +
-                        MediaStore.Downloads.RELATIVE_PATH + "=?",
-                new String[]{fileName, Environment.DIRECTORY_DOWNLOADS + "/VendingMachine/Logs/"},
-                null
-        )) {
-            if (cursor != null && cursor.moveToFirst()) {
-                long id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Downloads._ID));
-                fileUri = Uri.withAppendedPath(downloadsUri, String.valueOf(id));
+            Uri fileUri = null;
+            try (Cursor cursor = resolver.query(
+                    downloadsUri,
+                    new String[]{MediaStore.Downloads._ID},
+                    MediaStore.Downloads.DISPLAY_NAME + "=? AND " +
+                            MediaStore.Downloads.RELATIVE_PATH + "=?",
+                    new String[]{fileName, Environment.DIRECTORY_DOWNLOADS + "/VendingMachine/Logs/"},
+                    null
+            )) {
+                if (cursor != null && cursor.moveToFirst()) {
+                    long id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Downloads._ID));
+                    fileUri = ContentUris.withAppendedId(downloadsUri, id);
+                }
             }
-        }
 
-        // If file not found, create it
-        if (fileUri == null) {
-            ContentValues values = new ContentValues();
-            values.put(MediaStore.Downloads.DISPLAY_NAME, fileName);
-            values.put(MediaStore.Downloads.MIME_TYPE, "text/plain");
-            values.put(MediaStore.Downloads.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS + "/VendingMachine/Logs");
+            if (fileUri == null) {
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Downloads.DISPLAY_NAME, fileName);
+                values.put(MediaStore.Downloads.MIME_TYPE, "text/plain");
+                values.put(MediaStore.Downloads.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS + "/VendingMachine/Logs");
+                fileUri = resolver.insert(downloadsUri, values);
+            }
 
-            fileUri = resolver.insert(downloadsUri, values);
-        }
-
-        if (fileUri != null) {
-            try (OutputStream out = resolver.openOutputStream(fileUri, "wa")) { // "wa" = write/append mode
-                out.write(content.getBytes());
-                out.flush();
-                Log.d(TAG, "Appended log to file: " + fileName);
-            } catch (IOException e) {
-                Log.e(TAG, "Failed to write log", e);
+            if (fileUri != null) {
+                try (OutputStream out = resolver.openOutputStream(fileUri, "wa")) {
+                    out.write(content.getBytes());
+                    out.flush();
+                    Log.d(TAG, "Appended log to file (MediaStore): " + fileName);
+                } catch (IOException e) {
+                    Log.e(TAG, "Failed to write log (MediaStore)", e);
+                }
+            } else {
+                Log.e(TAG, "File URI is null (MediaStore)");
             }
         } else {
-            Log.e(TAG, "File URI is null");
+            // Android 9 and below (Legacy file I/O)
+            File logDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "VendingMachine/Logs");
+            if (!logDir.exists() && !logDir.mkdirs()) {
+                Log.e(TAG, "Failed to create log directory");
+                return;
+            }
+
+            File logFile = new File(logDir, fileName);
+            try (OutputStream out = new java.io.FileOutputStream(logFile, true)) {
+                out.write(content.getBytes());
+                out.flush();
+                Log.d(TAG, "Appended log to file (Legacy): " + logFile.getAbsolutePath());
+            } catch (IOException e) {
+                Log.e(TAG, "Failed to write log (Legacy)", e);
+            }
         }
     }
-
 
     // Convenience methods
     public static void i(String tag, String msg) {
@@ -113,7 +129,9 @@ public class RollingLogger {
         if (logFiles == null || logFiles.length <= 3) return;
 
         // Sort by last modified (oldest first)
-        Arrays.sort(logFiles, Comparator.comparingLong(File::lastModified));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Arrays.sort(logFiles, Comparator.comparingLong(File::lastModified));
+        }
 
         long now = System.currentTimeMillis();
         long threeDaysMillis = 3 * 24 * 60 * 60 * 1000L;

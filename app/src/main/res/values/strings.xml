@@ -285,5 +285,11 @@
     <string name="background_lift_tips_select_floor_no">Please select a floor number!</string>
     <string name="background_lift_tips_select_group_no">Please select a group number!</string>
     <string name="background_please_choose">Please select...</string>
+    <string name="duitnow_pay_description">Kindly scan the QR code displayed using your preferred DuitNow app</string>
+    <string name="total_uppercase">TOTAL</string>
+    <string name="transaction_failed">Transaction Failed</string>
+    <string name="transaction_failed_description">The transaction failed, please try again.</string>
+    <string name="cancel_transaction">Cancel Transaction?</string>
+    <string name="cancel_transaction_description">You confirm want to cancel the transaction? If canceled, the product will not fall, and you will not get the product.</string>
 
 </resources>
