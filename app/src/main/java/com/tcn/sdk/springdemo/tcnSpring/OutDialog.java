@@ -67,6 +67,29 @@ public class OutDialog extends Dialog {
         initAnim();
         timeCount = 0;
         getWindow().setWindowAnimations(Resources.getAnimResourceID(R.anim.ui_base_alpha_in));
+    }
+
+    public void deInit() {
+        setShowTime(0);
+        setOnCancelListener(null);
+        setOnShowListener(null);
+        setOnDismissListener(null);
+        if (iv_route != null) {
+            iv_route.clearAnimation();
+            iv_route = null;
+        }
+        if (mAnim != null) {
+            mAnim.cancel();
+            mAnim = null;
+        }
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+            handler = null;
+        }
+        tv = null;
+        tv_point = null;
+        outnum = null;
+        m_Context = null;
     }    private Handler handler = new Handler() {
         private int num = 0;
 
@@ -127,29 +150,6 @@ public class OutDialog extends Dialog {
         }
 
     };
-
-    public void deInit() {
-        setShowTime(0);
-        setOnCancelListener(null);
-        setOnShowListener(null);
-        setOnDismissListener(null);
-        if (iv_route != null) {
-            iv_route.clearAnimation();
-            iv_route = null;
-        }
-        if (mAnim != null) {
-            mAnim.cancel();
-            mAnim = null;
-        }
-        if (handler != null) {
-            handler.removeCallbacksAndMessages(null);
-            handler = null;
-        }
-        tv = null;
-        tv_point = null;
-        outnum = null;
-        m_Context = null;
-    }
 
     private void initAnim() {
         mAnim = new RotateAnimation(0, 360, Animation.RESTART, 0.5f, Animation.RESTART, 0.5f);

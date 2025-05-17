@@ -31,8 +31,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.google.gson.Gson;
-//import com.tcn.sdk.springdemo.ComAssistant.DispensePopUpM5;
-import com.tcn.sdk.springdemo.Dispense.AppLogger;
 import com.tcn.sdk.springdemo.MainActivity;
 import com.tcn.sdk.springdemo.Model.CartListModel;
 import com.tcn.sdk.springdemo.Model.CongifModel;
@@ -262,7 +260,7 @@ public class SarawakPayPayment {
                         public void onCancel(DialogInterface dialog) {
                             pDialog.dismiss();
                             customDialogSarawak.dismiss();
-                            activity.totalcost(0);
+                            activity.totalCost(0);
                         }
                     }
             );

@@ -77,12 +77,10 @@ import com.tcn.sdk.springdemo.Utilities.SharedPref;
 import com.tcn.sdk.springdemo.Utilities.Tools;
 import com.tcn.sdk.springdemo.Utilities.UserInteractionAwareCallback;
 import com.tcn.sdk.springdemo.Utilities.Uti;
-import com.tcn.sdk.springdemo.duitnowkotlin.DuitNowKotlin;
 import com.tcn.sdk.springdemo.tcnSpring.MainActDispenseM4;
 
 import net.ticherhaz.vending_duitnow.DuitNow;
 
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -128,7 +126,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
     FassPayClass fassPayClass;
     String quantity;
     private Button pay, memberpay, cancel;
-    private double totalcost = 0;
+    private double totalCost = 0;
     private SweetAlertDialog pd, sweetAlertDialog, pDialog, pDialogPaywave;
     private TextView amount;
     private List<CartListModel> cartListModels;
@@ -146,7 +144,6 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
     private String barcodetext = "";
     private Boolean isuserpaying = false;
     private Boolean threadintrupt = false;
-    private Boolean oncreate = false;
     private TextView datee, monthtxt;
     private CountDownTimer[] ct;
     private RequestQueue requestQueue;
@@ -180,7 +177,6 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
     private boolean isCountDownCont = false;
     private boolean enableaddproduct = true;
     private double chargingprice = 0;
-    private double currenttotal = 0.0;
     private LinearLayout iwallet, gkash;
     private Dialog customDialog;
     private SarawakPayPayment sarawakPayClass;
@@ -360,19 +356,19 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
         return cartListModels;
     }
 
-    public void showprice() {
+    public void showPrice() {
         for (CartListModel cn : cartListModels) {
+            final String itemPrice = cn.getItemprice();
+            final String fixedItemPrice = itemPrice.replace(",", ".");
 
-            String log = cn.getItemprice();
-            totalcost = totalcost + Double.parseDouble(log);
-            RollingLogger.i(TAG, "show price total cost -" + totalcost);
+            totalCost = totalCost + Double.parseDouble(fixedItemPrice);
+            RollingLogger.i(TAG, "show price total cost -" + totalCost);
         }
 
-        currenttotal = Double.parseDouble(String.format("%.2f", totalcost));
-        amount.setText("Total : RM " + String.format("%.2f", totalcost));
-        totalcost = 0;
+        amount.setText("Total : RM " + String.format("%.2f", totalCost));
+        totalCost = 0;
 
-        if (cartListModels.size() > 0) {
+        if (!cartListModels.isEmpty()) {
 
             cartRecycler = new CartRecycler(cartListModels, this, productRecycler, productapiModelList);
             recyclerViewcart.setLayoutManager(new GridLayoutManager(this, 4));
@@ -408,6 +404,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_profuct);
+        RollingLogger.init(getApplicationContext());
 
         paymentInProgress = false;
         CountDownTimer();
@@ -486,8 +483,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
 
         }
 
-        cartListModels = new ArrayList<CartListModel>();
-        oncreate = true;
+        cartListModels = new ArrayList<>();
 
         try {
             RollingLogger.i(TAG, "oncreate getproduct api call");
@@ -558,7 +554,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
 //                                    }
 //                                    for (CartListModel cn : cartListModels) {
 //                                        String log = cn.getItemprice();
-//                                        totalcost = totalcost + Double.parseDouble(log);
+//                                        totalCost = totalCost + Double.parseDouble(log);
 //                                        int qty;
 //                                        qty = Integer.parseInt(cn.getItemqty());
 //                                        for (int x = 0; x < qty; x++) {
@@ -567,7 +563,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
 //                                        }
 //
 //                                    }
-//                                    chargingprice = totalcost;
+//                                    chargingprice = totalCost;
 //
 //                                    cartListModels = cartProQuantityMinus();
 //                                    UserObj userObj = new UserObj();
@@ -657,10 +653,10 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                             String duitnowonlynewStr = SharedPref.read(SharedPref.DuitNowOnlyNew, "");
                             if (duitnowonlynewStr.equalsIgnoreCase("true")) {
                                 productsids = "";
-                                totalcost = 0;
+                                totalCost = 0;
                                 for (CartListModel cn : cartListModels) {
                                     String log = cn.getItemprice();
-                                    totalcost = totalcost + Double.parseDouble(log);
+                                    totalCost = totalCost + Double.parseDouble(log);
                                     int qty;
                                     qty = Integer.parseInt(cn.getItemqty());
                                     for (int x = 0; x < qty; x++) {
@@ -669,7 +665,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                                     }
 
                                 }
-                                chargingprice = totalcost;
+                                chargingprice = totalCost;
 
                                 cartListModels = cartProQuantityMinus();
                                 final UserObj obj = new UserObj();
@@ -764,12 +760,20 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
             final String descriptionTransactionFailed = getString(R.string.transaction_failed_description);
 
 
+            final String merchantCode = SharedPref.read(SharedPref.MERCHANT_CODE, "");
+            final String merchantKey = SharedPref.read(SharedPref.MERCHANT_KEY, "");
+            final String franchiseId = SharedPref.read(SharedPref.FRANCHISE_ID, "");
+            final String machineId = SharedPref.read(SharedPref.MACHINE_ID, "");
+
             duitNow = new DuitNow(
                     TypeProfuctActivity.this,
+                    merchantCode,
+                    merchantKey,
+                    franchiseId,
+                    machineId,
                     chargingprice,
                     userObjClone,
                     productIds,
-                    congifModelClone,
                     title,
                     description,
                     totalMessage,
@@ -1224,27 +1228,15 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
         super.onPause();
         threadintrupt = true;
         isuserpaying = true;
-//        if(fasspayment){
-//            fassPayClass.onPause();
-//        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         pay.setEnabled(true);
-        totalcost = 0;
+        totalCost = 0;
         threadintrupt = false;
         isuserpaying = false;
-        if (!oncreate) {
-//            new wait30().start();
-        } else {
-            oncreate = false;
-        }
-//        if(fasspayment){
-//            fassPayClass.onResumeFilterUsb();
-//            fassPayClass.onResumeStartUsbService();
-//        }
     }
 
     private void popoutdialog() {
@@ -1254,10 +1246,10 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                 customDialog.show();
 
             productsids = "";
-            totalcost = 0;
+            totalCost = 0;
             for (CartListModel cn : cartListModels) {
                 String log = cn.getItemprice();
-                totalcost = totalcost + Double.parseDouble(log);
+                totalCost = totalCost + Double.parseDouble(log);
                 int qty;
                 qty = Integer.parseInt(cn.getItemqty());
                 for (int x = 0; x < qty; x++) {
@@ -1266,18 +1258,15 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                 }
 
             }
-            chargingprice = totalcost;
+            chargingprice = totalCost;
 
             backw = customDialog.findViewById(R.id.backbtn3);
-            backw.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    isPaymentinProgress(false);
-                    pay.setEnabled(true);
-                    totalcost = 0;
-                    customDialog.dismiss();
-                    enableaddproduct = true;
-                }
+            backw.setOnClickListener(view -> {
+                isPaymentinProgress(false);
+                pay.setEnabled(true);
+                totalCost = 0;
+                customDialog.dismiss();
+                enableaddproduct = true;
             });
             dialog_wallet(customDialog);
         } catch (Exception ex) {
@@ -1288,7 +1277,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
     public void enableSelectionProduct() {
         isPaymentinProgress(false);
         pay.setEnabled(true);
-        totalcost = 0;
+        totalCost = 0;
         enableaddproduct = true;
     }
 
@@ -1467,7 +1456,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                                 clearFassPayDialog();
                                 isPaymentinProgress(false);
                                 pay.setEnabled(true);
-                                totalcost = 0;
+                                totalCost = 0;
                                 enableaddproduct = true;
                                 fassPayClass.doCancel();
                                 unregisterReceiver(myReceiver);
@@ -1488,7 +1477,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                                 unregisterReceiver(myReceiver);
                                 isPaymentinProgress(false);
                                 pay.setEnabled(true);
-                                totalcost = 0;
+                                totalCost = 0;
                                 enableaddproduct = true;
                                 isCountDownCont = false;
                             }
@@ -1770,8 +1759,8 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    public void totalcost(double totalcostpay) {
-        totalcost = totalcostpay;
+    public void totalCost(double totalcostpay) {
+        totalCost = totalcostpay;
     }
 
     private List<CartListModel> cartProQuantityMinus() {

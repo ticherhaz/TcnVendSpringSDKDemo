@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VendingMachine</string>
+    <string name="app_name">VendMachine M4</string>
     <!--for General usage-->
     <string name="txt_0">0</string>
     <string name="txt_1">1</string>
@@ -291,5 +291,15 @@
     <string name="transaction_failed_description">The transaction failed, please try again.</string>
     <string name="cancel_transaction">Cancel Transaction?</string>
     <string name="cancel_transaction_description">You confirm want to cancel the transaction? If canceled, the product will not fall, and you will not get the product.</string>
+
+
+        
+    <string name="board_tip_off_closing"> Closed </string>
+        
+    <string name="board_tip_off_success"> Successful shutdown </string>
+        
+    <string name="board_tip_off_fail"> Failed to close </string>
+    <string name="background_drive_check_seriport">Please check the serial port</string>
+
 
 </resources>

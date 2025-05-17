@@ -1,7 +1,10 @@
 package com.tcn.sdk.springdemo
 
-import android.app.Application
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.os.Build
 import androidx.multidex.MultiDex
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.tcn.sdk.springdemo.DBUtils.configdata
 import com.tcn.sdk.springdemo.Utilities.SharedPref
 import com.ys.springboard.control.TcnShareUseData
@@ -21,9 +24,16 @@ class MyApplication : TcnVendApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        MultiDex.install(this);
+        MultiDex.install(this)
         SharedPref.init(this)
-        SharedPref.read(SharedPref.VENDING_VERSION, "M4")
+        initTcnVend()
+
+        // Launch FireLog initialization in background
+        initFireLog()
+        setupNotificationChannel()
+    }
+
+    private fun initTcnVend() {
         TcnVendIF.getInstance().run {
             init(this@MyApplication)
             setConfig()
@@ -31,8 +41,8 @@ class MyApplication : TcnVendApplication() {
         }
         val setBoardSerPortFirst = SharedPref.read(SharedPref.setBoardSerPortFirst, "/dev/ttyS1")
         val setBoardSerPortSecond = SharedPref.read(SharedPref.setBoardSerPortSecond, "/dev/ttyS3")
-        TcnShareUseData.getInstance().setBoardSerPortFirst(setBoardSerPortFirst);
-        TcnShareUseData.getInstance().setBoardSerPortSecond(setBoardSerPortSecond);
+        TcnShareUseData.getInstance().boardSerPortFirst = setBoardSerPortFirst
+        TcnShareUseData.getInstance().boardSerPortSecond = setBoardSerPortSecond
 
         TcnShareUseData.getInstance().serPortGroupMapFirst =
             "0"    //设置主柜组号，也可不设置，默认就是0. Set master machine group number, you can do not set it as well, the default is 0
@@ -40,10 +50,6 @@ class MyApplication : TcnVendApplication() {
             "0"   //设置副柜组号为0,副柜需要接安卓另外一个串口 Set the slave machine group number to 0.The slave machine needs to be connect to another serial port of Android.
         TcnShareUseData.getInstance().boardTypeSecond = "thj"
 //        TcnShareUseData.getInstance().setBoardSerPortMDB("/dev/ttyS2");
-
-
-        // Launch FireLog initialization in background
-        initFireLog()
     }
 
     private fun initFireLog() = applicationScope.launch {
@@ -56,8 +62,6 @@ class MyApplication : TcnVendApplication() {
             val databaseConfig = configdata(applicationContext)
             databaseConfig.getAllItems() // Ensure this is a suspend function or Room DAO call
         }
-
-        var hasValidConfig = false
 
         // Process configurations
         for (itemConfig in configModels) {
@@ -74,6 +78,11 @@ class MyApplication : TcnVendApplication() {
             FireLog.updateFranchiseId(franchiseId)
             FireLog.updateMachineId(machineId)
 
+            initFirebaseCrashlyticsCustomKey("merchantCode", merchantCode)
+            initFirebaseCrashlyticsCustomKey("merchantKey", merchantKey)
+            initFirebaseCrashlyticsCustomKey("franchiseId", franchiseId)
+            initFirebaseCrashlyticsCustomKey("machineId", machineId)
+
             // Persist values
             withContext(Dispatchers.IO) {
                 SharedPref.write(SharedPref.MERCHANT_CODE, merchantCode)
@@ -82,8 +91,26 @@ class MyApplication : TcnVendApplication() {
                 SharedPref.write(SharedPref.MACHINE_ID, machineId)
             }
 
-            hasValidConfig = true
             break // Stop after first valid configuration
+        }
+    }
+
+    private fun initFirebaseCrashlyticsCustomKey(key: String, value: String) {
+        FirebaseCrashlytics.getInstance().setCustomKey(key, value)
+    }
+
+    private fun setupNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                "restart_channel",
+                "App Restart Notifications",
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                description = "Notifications for app restart requests"
+            }
+
+            val manager = getSystemService(NotificationManager::class.java)
+            manager.createNotificationChannel(channel)
         }
     }
 

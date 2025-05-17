@@ -153,7 +153,7 @@
 //        dataDisplayThread.start();
 //        startOpenPort();
 //
-////        activity.getCountDownHandler().removeCallbacksAndMessages(null);
+/// /        activity.getCountDownHandler().removeCallbacksAndMessages(null);
 //        Log.d("Thread Active", "Thread Active-" + Thread.activeCount());
 //
 //        if (isloggedin) {

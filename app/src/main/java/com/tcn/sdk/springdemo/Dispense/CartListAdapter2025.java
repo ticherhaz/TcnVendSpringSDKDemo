@@ -16,9 +16,9 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
 import com.tcn.sdk.springdemo.Model.CartListModel;
 import com.tcn.sdk.springdemo.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 

@@ -55,15 +55,18 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class MainActDispenseM4 extends AppCompatActivity {
 
     private static final String TAG = "MainAct";
-    private OutDialog m_OutDialog = null;
-    private LoadingDialog m_LoadingDialog = null;
+    private final LoadingDialog m_LoadingDialog = null;
+    private final int userstatus = 0;
 //    private VendListener m_vendListener = new VendListener();
-
-    private int userid = 0, userstatus = 0, pid = 0, countItem = 0, productId = 0, countProduct = 1;
+private OutDialog m_OutDialog = null;
+    private int userid = 0;
+    private int pid = 0;
+    private int countItem = 0;
+    private int productId = 0;
+    private int countProduct = 1;
     private String productsids = "", paytype = "", fid = "", mid = "", mtd = "", payid = "", paystatus = "", allstatuses = "";
     private double chargingprice = 0.00, points = 0.00, newpoints = 0.00;
     private Boolean isloggedin = false, checkPopUp = false;
-    ;
     private List<CongifModel> congifModels;
     private ArrayList<CartListModel> cartListModels;
     private List<countObj> arr_count;
@@ -73,6 +76,7 @@ public class MainActDispenseM4 extends AppCompatActivity {
     private RequestQueue requestQueue;
     private Handler checkErrorHandler, handlerQuit;
     private String transactionNo;
+
     private TcnVendIF.VendEventListener listener = event -> {
         TcnVendIF.getInstance().LoggerInfoForce(TAG, "eventId : " + event.m_iEventID + " param1: " + event.m_lParam1 +
                 " param2: " + event.m_lParam2 + " param3: " + event.m_lParam3 + " param4: " + event.m_lParam5);
@@ -142,10 +146,10 @@ public class MainActDispenseM4 extends AppCompatActivity {
                     productId = Integer.valueOf(arr_count.get(countItem).getproduct());
                     if (cartListModels.get(i).getItemStatus().isEmpty()) {
                         ArrayList<String> arrListing = new ArrayList<>();
-                        arrListing.add(String.valueOf(countProduct) + ".Success");
+                        arrListing.add(countProduct + ".Success");
                         cartListModels.get(i).setItemStatus(arrListing);
                     } else {
-                        cartListModels.get(i).getItemStatus().add(String.valueOf(countProduct) + ".Success");
+                        cartListModels.get(i).getItemStatus().add(countProduct + ".Success");
                     }
                     break;
                 }
@@ -173,10 +177,10 @@ public class MainActDispenseM4 extends AppCompatActivity {
                     productId = Integer.valueOf(arr_count.get(countItem).getproduct());
                     if (cartListModels.get(i).getItemStatus().isEmpty()) {
                         ArrayList<String> arrListing = new ArrayList<>();
-                        arrListing.add(String.valueOf(countProduct) + ".Failed");
+                        arrListing.add(countProduct + ".Failed");
                         cartListModels.get(i).setItemStatus(arrListing);
                     } else {
-                        cartListModels.get(i).getItemStatus().add(String.valueOf(countProduct) + ".Failed");
+                        cartListModels.get(i).getItemStatus().add(countProduct + ".Failed");
                     }
                     break;
                 }
@@ -646,9 +650,9 @@ public class MainActDispenseM4 extends AppCompatActivity {
                         statusCheck = 2;
                     }
                     if (Integer.valueOf(arr_count.get(i).getqty()) == 1) {
-                        allstatuses += arr_count.get(i).getproduct() + "x" + arr_count.get(i).getqty() + ":" + String.valueOf(statusCheck) + ",";
+                        allstatuses += arr_count.get(i).getproduct() + "x" + arr_count.get(i).getqty() + ":" + statusCheck + ",";
                     } else {
-                        allstatuses += arr_count.get(i).getproduct() + "x" + "1" + ":" + String.valueOf(statusCheck) + ",";
+                        allstatuses += arr_count.get(i).getproduct() + "x" + "1" + ":" + statusCheck + ",";
                     }
                 }
 
@@ -724,7 +728,7 @@ public class MainActDispenseM4 extends AppCompatActivity {
                                 LayoutInflater inflater = LayoutInflater.from(MainActDispenseM4.this);
                                 View dialogView = inflater.inflate(R.layout.dialog_message, null);
                                 TextView messageTextView = dialogView.findViewById(R.id.dialogMessage);
-                                messageTextView.setText("Your order is dispensed.\n\nSuccess: " + String.valueOf(successInt) + "\nFail: " + String.valueOf(failInt));
+                                messageTextView.setText("Your order is dispensed.\n\nSuccess: " + successInt + "\nFail: " + failInt);
 
                                 sdthankyou = new SweetAlertDialog(MainActDispenseM4.this, SweetAlertDialog.SUCCESS_TYPE);
                                 sdthankyou.setTitleText("Thank you.");

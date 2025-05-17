@@ -21,7 +21,7 @@ import com.ys.springboard.control.TcnVendIF
 
 class MainActM4New : ComponentActivity() {
 
-    companion object{
+    companion object {
         private const val TAG = "MainActivity"
     }
 
@@ -29,10 +29,10 @@ class MainActM4New : ComponentActivity() {
     private lateinit var btShip: Button
     private lateinit var btBack: Button
     private lateinit var btShip2: Button
-    private lateinit var etSlot:EditText
-    private lateinit var etSlot2:EditText
-    private lateinit var serport:Spinner
-    private lateinit var serport2:Spinner
+    private lateinit var etSlot: EditText
+    private lateinit var etSlot2: EditText
+    private lateinit var serport: Spinner
+    private lateinit var serport2: Spinner
 
     private val list = mutableListOf<String>()
 
@@ -64,7 +64,8 @@ class MainActM4New : ComponentActivity() {
         }
 
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,
+        val adapter = ArrayAdapter(
+            this, android.R.layout.simple_list_item_1,
             list.apply {
                 add("/dev/ttyS0")
                 add("/dev/ttyS1")
@@ -77,35 +78,41 @@ class MainActM4New : ComponentActivity() {
         serport.adapter = adapter
         serport2.adapter = adapter
 
-        serport.onItemSelectedListener = object : OnItemSelectedListener{
+        serport.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                TcnVendIF.getInstance().LoggerInfoForce(TAG,"serport selected position : $position  value : ${list[position]}")
+                TcnVendIF.getInstance().LoggerInfoForce(
+                    TAG,
+                    "serport selected position : $position  value : ${list[position]}"
+                )
                 TcnShareUseData.getInstance().boardSerPortFirst = list[position]
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TcnVendIF.getInstance().LoggerInfoForce(TAG,"no item selected")
+                TcnVendIF.getInstance().LoggerInfoForce(TAG, "no item selected")
                 TcnShareUseData.getInstance().boardSerPortFirst = list[0]
             }
         }
 
-        serport2.onItemSelectedListener = object : OnItemSelectedListener{
+        serport2.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                TcnVendIF.getInstance().LoggerInfoForce(TAG,"serport selected position : $position  value : ${list[position]}")
+                TcnVendIF.getInstance().LoggerInfoForce(
+                    TAG,
+                    "serport selected position : $position  value : ${list[position]}"
+                )
                 TcnShareUseData.getInstance().boardSerPortSecond = list[position]
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TcnVendIF.getInstance().LoggerInfoForce(TAG,"no item selected")
+                TcnVendIF.getInstance().LoggerInfoForce(TAG, "no item selected")
                 TcnShareUseData.getInstance().boardSerPortSecond = list[0]
             }
         }
         val first = TcnShareUseData.getInstance().boardSerPortFirst
-        if(first.isNotEmpty()){
+        if (first.isNotEmpty()) {
             serport.setSelection(list.indexOf(first))
         }
         val second = TcnShareUseData.getInstance().boardSerPortSecond
-        if(second.isNotEmpty()){
+        if (second.isNotEmpty()) {
             serport2.setSelection(list.indexOf(second))
         }
 
@@ -114,7 +121,7 @@ class MainActM4New : ComponentActivity() {
 
     private fun testShip2() {
         val slot = etSlot2.text.toString().trim()
-        if(slot.isNotEmpty()){
+        if (slot.isNotEmpty()) {
             sb.append("testShip")
             sb.append("$slot(货道出货)\n")
             tvLog.text = sb.toString()
@@ -124,7 +131,7 @@ class MainActM4New : ComponentActivity() {
 
     private fun testShip() {
         val slot = etSlot.text.toString().trim()
-        if(slot.isNotEmpty()){
+        if (slot.isNotEmpty()) {
             sb.append("testShip")
             sb.append("$slot(货道出货)\n")
             tvLog.text = sb.toString()
@@ -138,14 +145,17 @@ class MainActM4New : ComponentActivity() {
     }
 
     private val listener = TcnVendIF.VendEventListener {
-        TcnVendIF.getInstance().LoggerInfoForce(TAG, "eventId : ${it.m_iEventID} param1: ${it.m_lParam1} param2: ${it.m_lParam2} param3: ${it.m_lParam3} param4: ${it.m_lParam5}")
-        if(it.m_lParam3.toInt() == TcnVendEventResultID.SHIP_SHIPING){
+        TcnVendIF.getInstance().LoggerInfoForce(
+            TAG,
+            "eventId : ${it.m_iEventID} param1: ${it.m_lParam1} param2: ${it.m_lParam2} param3: ${it.m_lParam3} param4: ${it.m_lParam5}"
+        )
+        if (it.m_lParam3.toInt() == TcnVendEventResultID.SHIP_SHIPING) {
             sb.append("出货中\n\n")
             myHandler.sendEmptyMessage(1)
-        }else if(it.m_lParam3.toInt() == TcnVendEventResultID.SHIP_SUCCESS) {
+        } else if (it.m_lParam3.toInt() == TcnVendEventResultID.SHIP_SUCCESS) {
             sb.append("出货成功\n\n")
             myHandler.sendEmptyMessage(1)
-        }else if(it.m_lParam3.toInt() == TcnVendEventResultID.SHIP_FAIL) {
+        } else if (it.m_lParam3.toInt() == TcnVendEventResultID.SHIP_FAIL) {
             sb.append("出货失败\n\n")
             myHandler.sendEmptyMessage(1)
         }

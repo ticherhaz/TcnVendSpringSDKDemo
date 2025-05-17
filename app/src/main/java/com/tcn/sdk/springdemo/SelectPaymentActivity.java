@@ -15,9 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-//import com.tcn.sdk.springdemo.ComAssistant.DispensePopUpM5;
 import com.tcn.sdk.springdemo.DBUtils.CartDBHandler;
-import com.tcn.sdk.springdemo.Dispense.AppLogger;
 import com.tcn.sdk.springdemo.Ipay.IpaySummaryMemberPopUp;
 import com.tcn.sdk.springdemo.Model.CartListModel;
 import com.tcn.sdk.springdemo.Model.CongifModel;

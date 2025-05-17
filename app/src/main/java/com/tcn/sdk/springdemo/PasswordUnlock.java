@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.tcn.sdk.springdemo.Dispense.AppLogger;
 import com.tcn.sdk.springdemo.Utilities.RollingLogger;
 import com.tcn.sdk.springdemo.Utilities.SharedPref;
 import com.tcn.sdk.springdemo.databinding.ActivityPasswordUnlockBinding;

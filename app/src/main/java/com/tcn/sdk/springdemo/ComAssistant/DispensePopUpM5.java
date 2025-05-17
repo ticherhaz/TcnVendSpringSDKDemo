@@ -122,9 +122,9 @@
 //    private static String convertToHexadecimalWithLeadingZero(int decimalValue) {
 //        // Convert decimal to hexadecimal string and add a leading zero if needed
 //        String hexString = Integer.toHexString(decimalValue).toUpperCase();
-////        if(hexString.length()==2){
-////            hexString="00"+hexString;
-////        }
+/// /        if(hexString.length()==2){
+/// /            hexString="00"+hexString;
+/// /        }
 //        return (hexString.length() == 1) ? "0" + hexString : hexString;
 //    }
 //

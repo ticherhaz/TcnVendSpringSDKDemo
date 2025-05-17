@@ -51,6 +51,24 @@ public class LoadingDialog extends Dialog {
         load_text.setText(load);
 //		initAnim();
         getWindow().setWindowAnimations(Resources.getAnimResourceID(R.anim.ui_base_alpha_in));
+    }
+
+    public void deInit() {
+        setShowTime(0);
+        setOnCancelListener(null);
+        setOnShowListener(null);
+        setOnDismissListener(null);
+        if (mAnim != null) {
+            mAnim.cancel();
+            mAnim = null;
+        }
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+            handler = null;
+        }
+        tv = null;
+        load_text = null;
+        m_Context = null;
     }    private Handler handler = new Handler() {
         private int num = 0;
 
@@ -82,24 +100,6 @@ public class LoadingDialog extends Dialog {
         }
 
     };
-
-    public void deInit() {
-        setShowTime(0);
-        setOnCancelListener(null);
-        setOnShowListener(null);
-        setOnDismissListener(null);
-        if (mAnim != null) {
-            mAnim.cancel();
-            mAnim = null;
-        }
-        if (handler != null) {
-            handler.removeCallbacksAndMessages(null);
-            handler = null;
-        }
-        tv = null;
-        load_text = null;
-        m_Context = null;
-    }
 
     private void initAnim() {
         mAnim = new RotateAnimation(360, 0, Animation.RESTART, 0.5f, Animation.RESTART, 0.5f);

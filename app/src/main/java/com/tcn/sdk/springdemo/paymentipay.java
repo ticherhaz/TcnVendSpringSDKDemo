@@ -10,7 +10,6 @@ import android.util.Log;
 
 import com.tcn.sdk.springdemo.DBUtils.configdata;
 import com.tcn.sdk.springdemo.DBUtils.dbutis;
-import com.tcn.sdk.springdemo.Dispense.AppLogger;
 import com.tcn.sdk.springdemo.Model.CongifModel;
 import com.tcn.sdk.springdemo.Utilities.RollingLogger;
 

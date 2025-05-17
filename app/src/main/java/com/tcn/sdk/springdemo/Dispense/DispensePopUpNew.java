@@ -434,7 +434,7 @@
 //            //update status here
 //            if (0x01 == (short) (cmd[5] & 0xff)) {
 //                //dispensing
-////                handler3.removeCallbacksAndMessages(null);
+/// /                handler3.removeCallbacksAndMessages(null);
 //
 //                int product = Integer.parseInt(String.format("%02X", cmd[7]), 16);
 //                if (LDispense.equalsIgnoreCase("true")) {

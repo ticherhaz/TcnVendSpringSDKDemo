@@ -31,7 +31,6 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.tcn.sdk.springdemo.DBUtils.CartDBHandler;
 import com.tcn.sdk.springdemo.DBUtils.configdata;
-import com.tcn.sdk.springdemo.Dispense.AppLogger;
 import com.tcn.sdk.springdemo.Model.CartListModel;
 import com.tcn.sdk.springdemo.Model.CongifModel;
 import com.tcn.sdk.springdemo.Model.TempTrans;

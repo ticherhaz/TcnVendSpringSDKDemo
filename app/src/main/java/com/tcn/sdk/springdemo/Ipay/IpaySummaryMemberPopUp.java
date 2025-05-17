@@ -29,8 +29,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-//import com.tcn.sdk.springdemo.ComAssistant.DispensePopUpNewMemberM5;
-import com.tcn.sdk.springdemo.Dispense.AppLogger;
 import com.tcn.sdk.springdemo.MainActivity;
 import com.tcn.sdk.springdemo.Model.CartListModel;
 import com.tcn.sdk.springdemo.Model.CongifModel;

@@ -111,7 +111,7 @@
 //        try {
 //            PackageInfo pinfo = getPackageManager().getPackageInfo("com.bjw.ComAssistant", PackageManager.GET_CONFIGURATIONS);
 //            String versionName = pinfo.versionName;
-////			String versionCode = String.valueOf(pinfo.versionCode);
+/// /			String versionCode = String.valueOf(pinfo.versionCode);
 //            setTitle(appName + " V" + versionName);
 //        } catch (NameNotFoundException e) {
 //            e.printStackTrace();

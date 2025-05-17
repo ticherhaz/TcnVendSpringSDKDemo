@@ -59,13 +59,13 @@
 //        tv_error = findViewById(R.id.tv_error);
 //        progress = findViewById(R.id.progress);
 //        et_set_degree = findViewById(R.id.et_set_degree);
-////        tv_set_degree = findViewById(R.id.tv_set_degree);
-////        tv_set_degree.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View view) {
-////                spinner_degree.performClick();
-////            }
-////        });
+/// /        tv_set_degree = findViewById(R.id.tv_set_degree);
+/// /        tv_set_degree.setOnClickListener(new View.OnClickListener() {
+/// /            @Override
+/// /            public void onClick(View view) {
+/// /                spinner_degree.performClick();
+/// /            }
+/// /        });
 //        radio_group = findViewById(R.id.radio_group);
 //        radio_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 //            @Override

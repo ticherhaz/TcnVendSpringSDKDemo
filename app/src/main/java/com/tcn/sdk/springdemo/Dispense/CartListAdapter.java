@@ -13,9 +13,9 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.squareup.picasso.Picasso;
 import com.tcn.sdk.springdemo.Model.CartListModel;
 import com.tcn.sdk.springdemo.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 

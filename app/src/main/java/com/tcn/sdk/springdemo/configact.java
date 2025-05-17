@@ -20,10 +20,8 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.widget.TextViewCompat;
 
 import com.google.android.material.materialswitch.MaterialSwitch;
-//import com.tcn.sdk.springdemo.ComAssistant.ComAssistantActivity;
 import com.tcn.sdk.springdemo.DBUtils.configdata;
 import com.tcn.sdk.springdemo.DBUtils.dbutis;
-import com.tcn.sdk.springdemo.Dispense.AppLogger;
 import com.tcn.sdk.springdemo.Model.CongifModel;
 import com.tcn.sdk.springdemo.Note.MainNoteActivity;
 import com.tcn.sdk.springdemo.PayWave.PayWaveMainActivity;
@@ -31,8 +29,8 @@ import com.tcn.sdk.springdemo.SarawakPay.SarawakMainActivity;
 import com.tcn.sdk.springdemo.Utilities.DialogUtils;
 import com.tcn.sdk.springdemo.Utilities.RollingLogger;
 import com.tcn.sdk.springdemo.Utilities.SharedPref;
+import com.tcn.sdk.springdemo.Utilities.Tools;
 import com.tcn.sdk.springdemo.tcnSpring.MainAct;
-import com.tcn.sdk.springdemo.tcnSpring.MainActM4New;
 
 import net.ticherhaz.firelog.FireLog;
 
@@ -634,20 +632,24 @@ public class configact extends AppCompatActivity {
                     db.setmerchantcode(etmec.getText().toString());
                     db.setmerchantkey(etmk.getText().toString());
 
-                    FireLog.INSTANCE.updateMerchantKey(etmk.getText().toString());
-                    FireLog.INSTANCE.updateMerchantCode(etmec.getText().toString());
-                    FireLog.INSTANCE.updateFranchiseId(fid.getText().toString());
-                    FireLog.INSTANCE.updateMachineId(mid.getText().toString());
+                    final String merchantCode = etmec.getText().toString();
+                    final String merchantKey = etmk.getText().toString();
+                    final String franchiseId = fid.getText().toString();
+                    final String machineId = mid.getText().toString();
+
+                    FireLog.INSTANCE.updateMerchantCode(merchantCode);
+                    FireLog.INSTANCE.updateMerchantKey(merchantKey);
+                    FireLog.INSTANCE.updateFranchiseId(franchiseId);
+                    FireLog.INSTANCE.updateMachineId(machineId);
+
+                    SharedPref.write(SharedPref.MERCHANT_CODE, merchantCode);
+                    SharedPref.write(SharedPref.MERCHANT_KEY, merchantKey);
+                    SharedPref.write(SharedPref.FRANCHISE_ID, franchiseId);
+                    SharedPref.write(SharedPref.MACHINE_ID, machineId);
 
                     RollingLogger.i(TAG, "Config Page End");
 
                     finish();
-//                    new SweetAlertDialog(configact.this,SweetAlertDialog.SUCCESS_TYPE).setTitleText("Saved!").setConfirmButton("Go Back", new SweetAlertDialog.OnSweetClickListener() {
-//                        @Override
-//                        public void onClick(SweetAlertDialog sweetAlertDialog) {
-//                            configact.this.finish();
-//                        }
-//                    }).show();
 
                 } else
                     new SweetAlertDialog(configact.this, SweetAlertDialog.ERROR_TYPE).setTitleText("Must fill all fields").show();
@@ -663,14 +665,18 @@ public class configact extends AppCompatActivity {
     }
 
     private void setButtonChangeVendingVersion() {
-        findViewById(R.id.btn_change_vending_version).setOnClickListener(view -> showDialogVendingVersion());
+        final String vendingVersion = SharedPref.read(SharedPref.VENDING_VERSION, "");
+        Tools.INSTANCE.logSimple("vendingVersion: " + vendingVersion);
+        final TextView tvVendingVersion = findViewById(R.id.tv_vending_version);
+        if (!vendingVersion.isEmpty()) {
+            tvVendingVersion.setText(vendingVersion);
+        }
+        findViewById(R.id.btn_change_vending_version).setOnClickListener(view -> showDialogVendingVersion(tvVendingVersion));
     }
 
-    private void showDialogVendingVersion() {
+    private void showDialogVendingVersion(@NonNull final TextView tvVendingVersion) {
         DialogUtils.INSTANCE.showDialogVendingVersion(this, version -> {
             SharedPref.write(SharedPref.VENDING_VERSION, version);
-
-            final TextView tvVendingVersion = findViewById(R.id.tv_vending_version);
             tvVendingVersion.setText(version);
         });
     }
@@ -803,7 +809,6 @@ public class configact extends AppCompatActivity {
                             showsweetalerttimeout(ct);
                             ct[0].start();
                         }
-
 
                     } catch (Exception e) {
                         e.printStackTrace();

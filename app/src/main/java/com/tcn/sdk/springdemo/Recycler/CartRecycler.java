@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
 import com.tcn.sdk.springdemo.DBUtils.CartDBHandler;
 import com.tcn.sdk.springdemo.DBUtils.PorductDBHandler;
 import com.tcn.sdk.springdemo.Model.CartListModel;
@@ -19,7 +20,6 @@ import com.tcn.sdk.springdemo.Model.ProductDbModel;
 import com.tcn.sdk.springdemo.Model.ProductModel;
 import com.tcn.sdk.springdemo.R;
 import com.tcn.sdk.springdemo.TypeProfuctActivity;
-import com.squareup.picasso.Picasso;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -88,7 +88,7 @@ public class CartRecycler extends RecyclerView.Adapter<CartRecycler.ViewHolder> 
                     cartListModels.set(position, n);
                     cartListModels.remove(position);
                     notifyDataSetChanged();
-                    profuctActivity.showprice();
+                    profuctActivity.showPrice();
                     for (int i = 0; i < productapiModelList.size(); i++) {
                         if (n.getItemnumber().equalsIgnoreCase(String.valueOf(productapiModelList.get(i).Item_Number))) {
                             productapiModelList.get(i).setPosition(0);
@@ -136,7 +136,7 @@ public class CartRecycler extends RecyclerView.Adapter<CartRecycler.ViewHolder> 
                     holder.iqty.setText(String.valueOf(count));
                     holder.iprice.setText((avalue.add(svalue)) + "");
                     cartListModels.set(position, n);
-                    profuctActivity.showprice();
+                    profuctActivity.showPrice();
                 } else {
                     final SweetAlertDialog sd = new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
                             .setTitleText("Not enough stock")
@@ -195,7 +195,7 @@ public class CartRecycler extends RecyclerView.Adapter<CartRecycler.ViewHolder> 
                     holder.iprice.setText((avalue.subtract(svalue)) + "");
 
                     cartListModels.set(position, n);
-                    profuctActivity.showprice();
+                    profuctActivity.showPrice();
                 }
 
             }

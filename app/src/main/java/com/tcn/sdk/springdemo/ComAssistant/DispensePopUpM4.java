@@ -296,15 +296,15 @@
 //                        RollingLogger.i(TAG, "End Dispensing Activity");
 //                        //}
 //
-////                        Temporary Disable
-////                        RollingLogger.i(TAG, "api call uptqty");
-////                        updateprodqty();
-////                        if(isloggedin) {
-////                            updatemobiletransactiondb();
-////                            newpoints  = points - chargingprice;
-////                            updatepointsmdb();
-////                        }
-////                        updatetransactiondb(allstatuses);
+/// /                        Temporary Disable
+/// /                        RollingLogger.i(TAG, "api call uptqty");
+/// /                        updateprodqty();
+/// /                        if(isloggedin) {
+/// /                            updatemobiletransactiondb();
+/// /                            newpoints  = points - chargingprice;
+/// /                            updatepointsmdb();
+/// /                        }
+/// /                        updatetransactiondb(allstatuses);
 //
 //                        sdthankyou = activity.getThankYouDispense().setTitleText("Thank you.")
 //                                .setContentText("Your order is dispensed please get ready to pickup.");

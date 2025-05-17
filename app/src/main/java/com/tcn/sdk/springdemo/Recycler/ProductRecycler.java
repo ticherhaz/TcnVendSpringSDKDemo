@@ -12,13 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
 import com.tcn.sdk.springdemo.DBUtils.CartDBHandler;
 import com.tcn.sdk.springdemo.DBUtils.PorductDBHandler;
 import com.tcn.sdk.springdemo.Model.CartListModel;
 import com.tcn.sdk.springdemo.Model.ProductModel;
 import com.tcn.sdk.springdemo.R;
 import com.tcn.sdk.springdemo.TypeProfuctActivity;
-import com.squareup.picasso.Picasso;
 import com.tcn.sdk.springdemo.Utilities.SharedPref;
 
 import java.util.List;
@@ -36,12 +36,9 @@ public class ProductRecycler extends RecyclerView.Adapter<ProductRecycler.ViewHo
     private List<CartListModel> cartListModels;
 
     public ProductRecycler(List<ProductModel> productDbModelList, TypeProfuctActivity hh) {
-
         this.productDbModelList = productDbModelList;
         this.profuctActivity = hh;
-
     }
-
 
     @NonNull
     @Override
@@ -166,7 +163,7 @@ public class ProductRecycler extends RecyclerView.Adapter<ProductRecycler.ViewHo
                                 obj.setVoucher(null);
                                 obj.setProdid(String.valueOf(itemid));
                                 cartListModels.add(obj);
-                                profuctActivity.showprice();
+                                profuctActivity.showPrice();
                                 productDbModelList.get(position).setPosition(1);
 
 
@@ -185,8 +182,6 @@ public class ProductRecycler extends RecyclerView.Adapter<ProductRecycler.ViewHo
                                     }
                                 });
                                 sd.show();
-
-
                             }
 
                         } else {
@@ -273,7 +268,6 @@ public class ProductRecycler extends RecyclerView.Adapter<ProductRecycler.ViewHo
         }
 
         public void setdata(String pprice, String name, String img, String itemnumber, String qty) {
-
             pname.setText(name);
             price.setText("RM " + pprice);
             Picasso.get().load(img).into(pimage);
@@ -281,10 +275,6 @@ public class ProductRecycler extends RecyclerView.Adapter<ProductRecycler.ViewHo
             if (Integer.parseInt(qty) < 1) {
                 sold.setVisibility(View.VISIBLE);
             }
-
-
         }
-
-
     }
 }

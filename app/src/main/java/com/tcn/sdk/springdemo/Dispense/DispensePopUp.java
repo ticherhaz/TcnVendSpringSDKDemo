@@ -208,7 +208,7 @@
 //
 //        adapter = new CartListAdapter(activity, cartListModels);
 //        list.setAdapter(adapter);
-////        mylayout.setVisibility(View.VISIBLE);
+/// /        mylayout.setVisibility(View.VISIBLE);
 //
 //        String text = "";
 //        handler.post(new RunableEx(text) {

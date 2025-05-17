@@ -305,19 +305,19 @@
 //                    //handler11.removeCallbacksAndMessages(null);
 //                    stopRepeatingTask();
 //
-////                    Intent it = new Intent(DispenseActivityNew.this, DispenseActivityNew.class);
-////
-////                    it.putExtra("mval", mtd);
-////                    it.putExtra("totalamt", chargingprice);
-////                    it.putExtra("paytype", paytype);
-////                    it.putExtra("isloggedin", isloggedin);
-////                    it.putExtra("points", points);
-////                    it.putExtra("userid", userid);
-////                    it.putExtra("pid", pid);
-////                    it.putExtra("exdate", exdate);
-////                    it.putExtra("ustatus", userstatus);
-////                    startActivity(it);
-////                    finish();
+/// /                    Intent it = new Intent(DispenseActivityNew.this, DispenseActivityNew.class);
+/// /
+/// /                    it.putExtra("mval", mtd);
+/// /                    it.putExtra("totalamt", chargingprice);
+/// /                    it.putExtra("paytype", paytype);
+/// /                    it.putExtra("isloggedin", isloggedin);
+/// /                    it.putExtra("points", points);
+/// /                    it.putExtra("userid", userid);
+/// /                    it.putExtra("pid", pid);
+/// /                    it.putExtra("exdate", exdate);
+/// /                    it.putExtra("ustatus", userstatus);
+/// /                    startActivity(it);
+/// /                    finish();
 //                }
 //            } finally {
 //                mHandler.postDelayed(mStatusChecker, mInterval);

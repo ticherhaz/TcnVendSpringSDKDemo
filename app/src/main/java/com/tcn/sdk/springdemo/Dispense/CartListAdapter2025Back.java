@@ -2,7 +2,6 @@ package com.tcn.sdk.springdemo.Dispense;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +28,7 @@ public class CartListAdapter2025Back extends RecyclerView.Adapter<CartListAdapte
 
     private final ArrayList<CartListModel> cartItems;
     private CartListAdapterCallback callback;
-    private boolean check=false;
+    private boolean check = false;
 
     public CartListAdapter2025Back(ArrayList<CartListModel> cartItems) {
         this.cartItems = cartItems;

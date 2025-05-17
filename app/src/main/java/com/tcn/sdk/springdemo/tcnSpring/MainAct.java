@@ -1527,8 +1527,8 @@ public class MainAct extends AppCompatActivity {
                 TcnVendIF.getInstance().LoggerError(TAG, "VendListener cEventInfo is null");
                 return;
             }
-            Log.d("testid", "testid-" + String.valueOf(cEventInfo.m_iEventID));
-            Log.d("testidparam", "testidparam-" + String.valueOf(cEventInfo.m_lParam4));
+            Log.d("testid", "testid-" + cEventInfo.m_iEventID);
+            Log.d("testidparam", "testidparam-" + cEventInfo.m_lParam4);
             switch (cEventInfo.m_iEventID) {
                 case TcnVendEventID.CMD_TEST_SLOT:
                     TcnVendIF.getInstance().LoggerDebug(TAG, "VendListener CMD_TEST_SLOT m_lParam3: " + cEventInfo.m_lParam3);

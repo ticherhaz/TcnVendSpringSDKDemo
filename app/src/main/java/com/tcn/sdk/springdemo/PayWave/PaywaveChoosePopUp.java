@@ -9,7 +9,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
-import com.tcn.sdk.springdemo.Dispense.AppLogger;
 import com.tcn.sdk.springdemo.Model.CartListModel;
 import com.tcn.sdk.springdemo.Model.ProductModel;
 import com.tcn.sdk.springdemo.Model.UserObj;

@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.ftdi.j2xx.D2xxManager;
 import com.ftdi.j2xx.FT_Device;
-import com.tcn.sdk.springdemo.Dispense.AppLogger;
 import com.tcn.sdk.springdemo.Model.CartListModel;
 import com.tcn.sdk.springdemo.Model.CongifModel;
 import com.tcn.sdk.springdemo.Model.UserObj;

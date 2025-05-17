@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.tcn.sdk.springdemo.Model.SliderItem;
-import com.tcn.sdk.springdemo.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 import com.squareup.picasso.Picasso;
+import com.tcn.sdk.springdemo.Model.SliderItem;
+import com.tcn.sdk.springdemo.R;
 
 import java.io.File;
 import java.util.ArrayList;
