@@ -6,6 +6,7 @@ import android.os.Build
 import androidx.multidex.MultiDex
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.tcn.sdk.springdemo.DBUtils.configdata
+import com.tcn.sdk.springdemo.Utilities.AppCrashHandler
 import com.tcn.sdk.springdemo.Utilities.SharedPref
 import com.ys.springboard.control.TcnShareUseData
 import com.ys.springboard.control.TcnVendApplication
@@ -31,6 +32,15 @@ class MyApplication : TcnVendApplication() {
         // Launch FireLog initialization in background
         initFireLog()
         setupNotificationChannel()
+
+        setupCrashHandler()
+    }
+
+    private fun setupCrashHandler() {
+        val defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
+        Thread.setDefaultUncaughtExceptionHandler(
+            AppCrashHandler(this, defaultHandler)
+        )
     }
 
     private fun initTcnVend() {
