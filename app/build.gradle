@@ -4,14 +4,14 @@ apply plugin:  'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdk 35
+    compileSdk 36
     defaultConfig {
         namespace "com.tcn.sdk.springdemo"
         applicationId "com.tcn.sdk.springdemo"
         minSdkVersion 21
-        targetSdkVersion 35
-        versionCode 1014
-        versionName "1.0.14"
+        targetSdkVersion 36
+        versionCode 1015
+        versionName "1.0.15"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
@@ -83,12 +83,12 @@ repositories {
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-    api 'com.squareup.okhttp3:okhttp:4.12.0'
+    api 'com.squareup.okhttp3:okhttp:5.1.0'
     implementation 'com.github.bumptech.glide:glide:4.16.0'
-    implementation 'com.google.firebase:firebase-crashlytics:19.4.3'
-    implementation 'com.google.firebase:firebase-analytics:22.4.0'
+    implementation 'com.google.firebase:firebase-crashlytics:19.4.4'
+    implementation 'com.google.firebase:firebase-analytics:22.5.0'
 
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
 
@@ -98,7 +98,7 @@ dependencies {
     implementation 'com.google.code.ksoap2-android:ksoap2-android:3.6.4'
     implementation 'org.xutils:xutils:3.8.12'
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'com.alibaba:fastjson:1.2.61'
+
     implementation 'com.google.code.gson:gson:2.13.1'
     implementation 'org.apache.httpcomponents:httpclient:4.5.14'
     implementation 'org.apache.httpcomponents:httpcore:4.4.16'
@@ -112,7 +112,7 @@ dependencies {
 //    implementation('com.github.tony19:logback-android:3.0.0')
 //    implementation 'org.slf4j:slf4j-api:2.0.16'
     implementation files('libs/d2xx.jar')
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
@@ -122,8 +122,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:3.0.0'
     implementation 'com.squareup.retrofit2:converter-gson:3.0.0'
     implementation 'com.squareup.retrofit2:converter-scalars:3.0.0'
-    implementation 'androidx.room:room-runtime:2.7.1'
-    annotationProcessor 'androidx.room:room-compiler:2.7.1'
+    implementation 'androidx.room:room-runtime:2.7.2'
+    annotationProcessor 'androidx.room:room-compiler:2.7.2'
     implementation 'com.github.lzyzsd:circleprogress:1.2.1'
     implementation('io.socket:socket.io-client:2.1.2') {
         exclude group: 'org.json', module: 'json'
@@ -137,10 +137,10 @@ dependencies {
 
     implementation files('libs/fasspay.aar')
     //Kotlin
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1'
     implementation 'androidx.core:core-ktx:1.16.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.9.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.9.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.9.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.9.1'
 
     //Kotlin Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2'
@@ -148,7 +148,7 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:1.1.1"
 
     //Lifecycle
-    def lifecycle_version = '2.9.0'
+    def lifecycle_version = '2.9.1'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
@@ -156,7 +156,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     implementation 'com.github.ticherhaz:ComplexView:1.5.3'
-    implementation("com.github.ticherhaz:FireLog:1.1.5")
+    implementation("com.github.ticherhaz:FireLog:1.1.6")
     implementation "org.greenrobot:eventbus:3.3.1"
 //    implementation 'com.licheedev:android-serialport:2.1.2'
     implementation(files("libs/tcn_springboard-debug.aar"))
@@ -165,7 +165,7 @@ dependencies {
     configurations.implementation {
         exclude group: 'org.slf4j', module: 'slf4j-api'
     }
-    implementation 'com.licheedev:android-serialport:2.1.2'
+    implementation 'com.licheedev:android-serialport:2.1.5'
 
     implementation 'com.github.ticherhaz:VendingDuitNow:1.3.4'
 }

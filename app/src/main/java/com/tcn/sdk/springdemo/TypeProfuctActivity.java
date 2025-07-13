@@ -796,7 +796,9 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                             clearCustomDialogDispense();
                             setEnableaddproduct(true);
 
-                            Uti.freeMemory();
+                            //Uti.freeMemory();
+                            Uti.optimizeMemory(TypeProfuctActivity.this);
+
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
