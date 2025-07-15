@@ -392,35 +392,21 @@ public class IpaySummaryMemberPopUp {
     }
 
     String ipayidtostring(int id) {
-        switch (id) {
-            case 234:
-                return "AliPay";
-            case 373:
-                return "AliPay Pre-auth";
-            case 320:
-                return "Boost";
-            case 354:
-                return "MaybankQR";
-            case 329:
-                return "MCash";
-            case 336:
-                return "TouchNGo";
-            case 338:
-                return "Unionpay";
-            case 343:
-                return "WeChatPay My";
-            case 305:
-                return "WeChatPay CN";
-            case 164:
-                return "PrestoPay";
-            case 379:
-                return "GrabPay";
-            case 19:
-                return "ShopeePay";
-            default:
-                return "na";
-        }
-
+        return switch (id) {
+            case 234 -> "AliPay";
+            case 373 -> "AliPay Pre-auth";
+            case 320 -> "Boost";
+            case 354 -> "MaybankQR";
+            case 329 -> "MCash";
+            case 336 -> "TouchNGo";
+            case 338 -> "Unionpay";
+            case 343 -> "WeChatPay My";
+            case 305 -> "WeChatPay CN";
+            case 164 -> "PrestoPay";
+            case 379 -> "GrabPay";
+            case 19 -> "ShopeePay";
+            default -> "na";
+        };
     }
 
     private void TempTrans(int Status) {
