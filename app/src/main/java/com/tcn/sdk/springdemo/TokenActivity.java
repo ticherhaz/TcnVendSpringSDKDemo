@@ -186,7 +186,7 @@
 //        } catch (IOException e) {
 /// /            ShowMessage("打开串口失败:未知错误!");
 //        } catch (InvalidParameterException e) {
-////            ShowMessage("打开串口失败:参数错误!");
+/// /            ShowMessage("打开串口失败:参数错误!");
 //        }
 //        byte[] hexString = new byte[]{(byte) 0xFE, (byte) 0xEF, (byte) 0x00, (byte) 0x00,
 //                (byte) ((byte) num), (byte) 0x00, (byte) 0x82, (byte) 0x00,

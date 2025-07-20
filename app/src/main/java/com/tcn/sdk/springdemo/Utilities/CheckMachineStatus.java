@@ -71,7 +71,7 @@
 //        } catch (IOException e) {
 /// /            ShowMessage("打开串口失败:未知错误!");
 //        } catch (InvalidParameterException e) {
-////            ShowMessage("打开串口失败:参数错误!");
+/// /            ShowMessage("打开串口失败:参数错误!");
 //        }
 //        startCommand("FE EF 00 00 03 00 10 00 05 00 03 00 00 0B 12");
 //    }

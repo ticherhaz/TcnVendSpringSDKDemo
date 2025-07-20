@@ -100,7 +100,7 @@
 //            public void onClick(View view) {
 //                disableAll();
 //                progress.setVisibility(View.VISIBLE);
-////                startCommand("FE EF 00 00 05 00 80 00 07 00 02 35 00 00 00 DC 93");
+/// /                startCommand("FE EF 00 00 05 00 80 00 07 00 02 35 00 00 00 DC 93");
 //                byte[] hexString = new byte[]{(byte) 0xFE, (byte) 0xEF, (byte) ((byte) isMain),
 //                        (byte) 0x00, (byte) ((byte) num), (byte) 0x00, (byte) 0x80, (byte) 0x00,
 //                        (byte) 0x07, (byte) 0x00, (byte) 0x02, (byte) 0x35, (byte) 0x00, (byte) 0x00, (byte) 0x00};

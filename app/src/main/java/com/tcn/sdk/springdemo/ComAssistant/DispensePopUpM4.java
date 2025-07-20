@@ -664,7 +664,7 @@
 //        try {
 //            ComPort.open();
 //        } catch (SecurityException e) {
-////            ShowMessage("打开串口失败:没有串口读/写权限!");
+/// /            ShowMessage("打开串口失败:没有串口读/写权限!");
 //        } catch (IOException e) {
 ////            ShowMessage("打开串口失败:未知错误!");
 //        } catch (InvalidParameterException e) {

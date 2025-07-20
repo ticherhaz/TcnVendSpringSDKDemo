@@ -435,7 +435,7 @@
 //        } else if (0x42 == (short) (cmd[2] & 0xff)) {
 //            // 收到ACK
 //            Log.d("TAG:", "ACK Received");
-////            handler11.removeCallbacksAndMessages(null);
+/// /            handler11.removeCallbacksAndMessages(null);
 //
 //            stopRepeatingTask();
 //            //writeCmd(ackBytes);

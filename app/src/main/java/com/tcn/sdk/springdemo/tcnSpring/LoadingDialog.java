@@ -69,6 +69,14 @@ public class LoadingDialog extends Dialog {
         tv = null;
         load_text = null;
         m_Context = null;
+    }
+
+    private void initAnim() {
+        mAnim = new RotateAnimation(360, 0, Animation.RESTART, 0.5f, Animation.RESTART, 0.5f);
+        mAnim.setDuration(2000);
+        mAnim.setRepeatCount(Animation.INFINITE);
+        mAnim.setRepeatMode(Animation.RESTART);
+        mAnim.setStartTime(Animation.START_ON_FIRST_FRAME);
     }    private Handler handler = new Handler() {
         private int num = 0;
 
@@ -100,14 +108,6 @@ public class LoadingDialog extends Dialog {
         }
 
     };
-
-    private void initAnim() {
-        mAnim = new RotateAnimation(360, 0, Animation.RESTART, 0.5f, Animation.RESTART, 0.5f);
-        mAnim.setDuration(2000);
-        mAnim.setRepeatCount(Animation.INFINITE);
-        mAnim.setRepeatMode(Animation.RESTART);
-        mAnim.setStartTime(Animation.START_ON_FIRST_FRAME);
-    }
 
     @Override
     public void show() {

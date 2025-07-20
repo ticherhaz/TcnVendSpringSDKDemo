@@ -7,7 +7,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +40,12 @@ public class TestDuitNowActivity extends AppCompatActivity {
                 ImageView ivQrcode = findViewById(R.id.ivQrcode);
                 TextView tvLogs = findViewById(R.id.tvLogs);
                 tvLogs.setText(QRValue);
-                Picasso.get().load(QRCode).resize(500, 500).into(ivQrcode);
+
+                Glide.with(this)
+                        .load(QRCode)
+                        .override(500, 500)  // Resize (similar to Picasso)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)  // Cache both original & resized
+                        .into(ivQrcode);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

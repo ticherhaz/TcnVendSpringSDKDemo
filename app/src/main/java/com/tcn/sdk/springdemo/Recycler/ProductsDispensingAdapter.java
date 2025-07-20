@@ -13,7 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.tcn.sdk.springdemo.Model.CartListModel;
 import com.tcn.sdk.springdemo.R;
 
@@ -103,7 +104,11 @@ public class ProductsDispensingAdapter extends RecyclerView.Adapter<ProductsDisp
         public void setdata(int dispensed, String name, String img, String itemnumber, String qty) {
 
             pname.setText(name);
-            Picasso.get().load(img).into(pimage);
+            Glide.with(context)
+                    .load(img)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)  // Cache both original & resized
+                    .into(pimage);
+
             number.setText("Product Number - " + itemnumber);
             if (dispensed == 8) {
                 loading.setVisibility(View.GONE);

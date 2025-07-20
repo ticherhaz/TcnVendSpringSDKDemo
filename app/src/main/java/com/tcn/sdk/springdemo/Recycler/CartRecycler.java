@@ -2,7 +2,6 @@ package com.tcn.sdk.springdemo.Recycler;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +9,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.tcn.sdk.springdemo.DBUtils.CartDBHandler;
 import com.tcn.sdk.springdemo.DBUtils.PorductDBHandler;
 import com.tcn.sdk.springdemo.Model.CartListModel;
@@ -29,14 +30,13 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class CartRecycler extends RecyclerView.Adapter<CartRecycler.ViewHolder> {
 
-
-    public List<CartListModel> cartListModels;
-    public Context context;
-    CartDBHandler db;
-    PorductDBHandler porductDBHandler;
-    TypeProfuctActivity profuctActivity;
-    ProductRecycler productRecycler;
-    List<ProductModel> productapiModelList;
+    private final List<CartListModel> cartListModels;
+    private final TypeProfuctActivity profuctActivity;
+    private final ProductRecycler productRecycler;
+    private final List<ProductModel> productapiModelList;
+    private Context context;
+    private CartDBHandler db;
+    private PorductDBHandler porductDBHandler;
     private List<ProductDbModel> productDbModelList;
 
     public CartRecycler(List<CartListModel> cartListModels, TypeProfuctActivity hh, ProductRecycler productRecycler1, List<ProductModel> productapiModelList1) {
@@ -47,9 +47,9 @@ public class CartRecycler extends RecyclerView.Adapter<CartRecycler.ViewHolder> 
         this.productapiModelList = productapiModelList1;
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.newcartlist, parent, false);
         context = parent.getContext();
         db = new CartDBHandler(context);
@@ -76,129 +76,110 @@ public class CartRecycler extends RecyclerView.Adapter<CartRecycler.ViewHolder> 
 
         holder.setdata(itemnumber, itemname, itemsize, itemqty, itemprice, itemserial, itemurl);
 
-        holder.remove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (profuctActivity.paymentInProgress) {
-                    return;
-                }
+        holder.remove.setOnClickListener(v -> {
+            if (profuctActivity.paymentInProgress) return;
 
-                if (cartListModels.size() > 0) {
-                    CartListModel n = cartListModels.get(position);
-                    cartListModels.set(position, n);
-                    cartListModels.remove(position);
-                    notifyDataSetChanged();
-                    profuctActivity.showPrice();
-                    for (int i = 0; i < productapiModelList.size(); i++) {
-                        if (n.getItemnumber().equalsIgnoreCase(String.valueOf(productapiModelList.get(i).Item_Number))) {
-                            productapiModelList.get(i).setPosition(0);
-                        }
-                    }
-                    productRecycler.update(productapiModelList);
+            int currentPosition = holder.getAdapterPosition();
+            if (currentPosition == RecyclerView.NO_POSITION) return;
+            if (cartListModels.isEmpty() || currentPosition >= cartListModels.size()) return;
+
+            CartListModel n = cartListModels.get(currentPosition);
+            cartListModels.remove(currentPosition);
+            notifyItemRemoved(currentPosition);
+            profuctActivity.showPrice();
+
+            for (int i = 0; i < productapiModelList.size(); i++) {
+                if (n.getItemnumber().equalsIgnoreCase(String.valueOf(productapiModelList.get(i).Item_Number))) {
+                    productapiModelList.get(i).setPosition(0);
                 }
+            }
+            productRecycler.update(productapiModelList);
+        });
+
+        holder.plus.setOnClickListener(v -> {
+            if (profuctActivity.paymentInProgress) return;
+
+            int currentPosition = holder.getAdapterPosition();
+            if (currentPosition == RecyclerView.NO_POSITION ||
+                    currentPosition < 0 ||
+                    currentPosition >= cartListModels.size()) return;
+
+            boolean available = false;
+            String singleitem = "0";
+            CartListModel n = cartListModels.get(currentPosition);
+            int count = Integer.parseInt(holder.iqty.getText().toString());
+
+            for (ProductModel product : productapiModelList) {
+                if (n.getItemnumber().equals(String.valueOf(product.getItem_Number()))) {
+                    singleitem = String.valueOf(product.getPrice());
+                    // Use compareTo for accurate BigDecimal comparison
+                    if (new BigDecimal(product.getQuantity()).compareTo(new BigDecimal(count)) > 0) {
+                        available = true;
+                        break;
+                    }
+                }
+            }
+
+            if (available) {
+                String amt = holder.iprice.getText().toString();
+                count++;
+
+                BigDecimal svalue = new BigDecimal(singleitem);
+                BigDecimal avalue = new BigDecimal(amt);
+                BigDecimal newValue = avalue.add(svalue);
+
+                n.setItemqty(String.valueOf(count));
+                n.setItemprice(newValue.toString());
+
+                holder.iqty.setText(String.valueOf(count));
+                holder.iprice.setText(newValue.toString());
+                cartListModels.set(currentPosition, n);
+                profuctActivity.showPrice();
+            } else {
+                new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Not enough stock")
+                        .setContentText("The selected item is not enough stock")
+                        .show();
             }
         });
 
-        holder.plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        holder.minus.setOnClickListener(v -> {
+            if (profuctActivity.paymentInProgress) return;
 
-                if (profuctActivity.paymentInProgress) {
-                    return;
+            int currentPosition = holder.getAdapterPosition();
+            if (currentPosition == RecyclerView.NO_POSITION ||
+                    currentPosition < 0 ||
+                    currentPosition >= cartListModels.size()) return;
+
+            CartListModel n = cartListModels.get(currentPosition);
+            int count = Integer.parseInt(holder.iqty.getText().toString());
+
+            if (count <= 1) return;  // Minimum quantity reached
+
+            String singleitem = "0";
+            for (ProductModel product : productapiModelList) {
+                if (n.getItemnumber().equals(String.valueOf(product.getItem_Number()))) {
+                    singleitem = String.format("%.2f", product.getPrice());
+                    break;
                 }
-
-                boolean avaible = false;
-                int count = 0;
-                String amt = "0";
-                String singleitem = "0";
-                count = Integer.parseInt(holder.iqty.getText().toString());
-                CartListModel n = cartListModels.get(position);
-
-                for (int i = 0; i < productapiModelList.size(); i++) {
-                    if (n.getItemnumber().equals(String.valueOf(productapiModelList.get(i).getItem_Number()))) {
-                        singleitem = String.valueOf(productapiModelList.get(i).getPrice());
-                        if (productapiModelList.get(i).getQuantity() > count) {
-                            avaible = true;
-                            break;
-                        }
-                    }
-                }
-
-                if (avaible) {
-
-                    amt = holder.iprice.getText().toString();
-                    count++;
-                    BigDecimal svalue = new BigDecimal(singleitem);
-                    BigDecimal avalue = new BigDecimal(amt);
-                    n.setItemqty(String.valueOf(count));
-                    n.setItemprice((avalue.add(svalue)) + "");
-
-                    holder.iqty.setText(String.valueOf(count));
-                    holder.iprice.setText((avalue.add(svalue)) + "");
-                    cartListModels.set(position, n);
-                    profuctActivity.showPrice();
-                } else {
-                    final SweetAlertDialog sd = new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText("Not enough stock")
-                            .setContentText("The selected item is not enough stock");
-                    sd.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
-
-                        }
-                    });
-                    sd.show();
-                }
-
-
             }
-        });
-        holder.minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (profuctActivity.paymentInProgress) {
-                    return;
-                }
 
-                int count;
-                String amt = "0";
-                String singleitem = "0";
+            String amt = holder.iprice.getText().toString();
+            BigDecimal svalue = new BigDecimal(singleitem);
+            BigDecimal avalue = new BigDecimal(amt);
+            BigDecimal newValue = avalue.subtract(svalue);
 
-                CartListModel n = cartListModels.get(position);
-                for (ProductModel cn : productapiModelList) {
+            count--;
+            n.setItemqty(String.valueOf(count));
+            n.setItemprice(newValue.toString());
 
-                    if (n.getItemnumber().equals(String.valueOf(cn.getItem_Number()))) {
+            // Update database without closing connection
+            db.updateitem(n);
 
-                        singleitem = String.format("%.2f", cn.getPrice());
-                    }
-                }
-                count = Integer.parseInt(holder.iqty.getText().toString());
-
-                if (count > 1) {
-
-                    amt = holder.iprice.getText().toString();
-                    BigDecimal svalue = new BigDecimal(singleitem);
-                    BigDecimal avalue = new BigDecimal(amt);
-//                    BigDecimal total = avalue.subtract(svalue);
-//                    if(total.compareTo(BigDecimal.ZERO)<0){
-//                        return;
-//                    }
-
-                    count--;
-
-                    n.setItemqty(String.valueOf(count));
-                    n.setItemprice((avalue.subtract(svalue)) + "");
-
-                    db.updateitem(n);
-                    db.close();
-                    holder.iqty.setText(String.valueOf(count));
-                    holder.iprice.setText((avalue.subtract(svalue)) + "");
-
-                    cartListModels.set(position, n);
-                    profuctActivity.showPrice();
-                }
-
-            }
+            holder.iqty.setText(String.valueOf(count));
+            holder.iprice.setText(newValue.toString());
+            cartListModels.set(currentPosition, n);
+            profuctActivity.showPrice();
         });
     }
 
@@ -241,7 +222,11 @@ public class CartRecycler extends RecyclerView.Adapter<CartRecycler.ViewHolder> 
             ipositionno.setText("Item no : " + itemnumber);
             iqty.setText(itemqty);
             iprice.setText(itemprice);
-            Picasso.get().load(url).into(innum);
+
+            Glide.with(context)
+                    .load(url)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)  // Cache both original & resized
+                    .into(innum);
         }
     }
 }

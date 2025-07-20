@@ -185,7 +185,7 @@
 //        list = customDialogDispense.findViewById(R.id.mrecyclr);
 //
 //        try {
-////            connectSerialPort();
+/// /            connectSerialPort();
 //            congifModels = userobj.configModel;
 //
 //            for (CongifModel cn : congifModels) {

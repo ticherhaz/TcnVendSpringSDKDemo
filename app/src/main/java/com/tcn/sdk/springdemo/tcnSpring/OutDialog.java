@@ -90,6 +90,16 @@ public class OutDialog extends Dialog {
         tv_point = null;
         outnum = null;
         m_Context = null;
+    }
+
+    private void initAnim() {
+        mAnim = new RotateAnimation(0, 360, Animation.RESTART, 0.5f, Animation.RESTART, 0.5f);
+        mAnim.setDuration(1500);
+        mAnim.setRepeatCount(Animation.INFINITE);
+        mAnim.setRepeatMode(Animation.RESTART);
+        mAnim.setStartTime(Animation.START_ON_FIRST_FRAME);
+        LinearInterpolator lir = new LinearInterpolator();
+        mAnim.setInterpolator(lir);
     }    private Handler handler = new Handler() {
         private int num = 0;
 
@@ -150,16 +160,6 @@ public class OutDialog extends Dialog {
         }
 
     };
-
-    private void initAnim() {
-        mAnim = new RotateAnimation(0, 360, Animation.RESTART, 0.5f, Animation.RESTART, 0.5f);
-        mAnim.setDuration(1500);
-        mAnim.setRepeatCount(Animation.INFINITE);
-        mAnim.setRepeatMode(Animation.RESTART);
-        mAnim.setStartTime(Animation.START_ON_FIRST_FRAME);
-        LinearInterpolator lir = new LinearInterpolator();
-        mAnim.setInterpolator(lir);
-    }
 
     @Override
     public void show() {

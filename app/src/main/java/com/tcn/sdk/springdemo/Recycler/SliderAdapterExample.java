@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.smarteist.autoimageslider.SliderViewAdapter;
-import com.squareup.picasso.Picasso;
 import com.tcn.sdk.springdemo.Model.SliderItem;
 import com.tcn.sdk.springdemo.R;
 
@@ -16,12 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample.SliderAdapterVH> {
-    private final Context context;
-    int count = 0;
+
     private List<SliderItem> mSliderItems = new ArrayList<>();
 
     public SliderAdapterExample(Context context) {
-        this.context = context;
     }
 
     public void renewItems(List<SliderItem> sliderItems) {
@@ -31,45 +31,22 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
 
     @Override
     public SliderAdapterVH onCreateViewHolder(ViewGroup parent) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.sliderlist, null);
+        final View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.sliderlist, parent);
         return new SliderAdapterVH(inflate);
     }
 
     @Override
     public void onBindViewHolder(SliderAdapterVH viewHolder, final int position) {
-
-        String itemurl = mSliderItems.get(position).getImg();
-        viewHolder.setdata(itemurl);
-
-
-       /* viewHolder.imageViewBackground.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(count ==7)
-                {
-                    Intent cart = new Intent(context, configact.class);
-                    context.startActivity(cart);
-                    count =0;
-                }
-                else
-                {
-                    count++;
-                }
-            }
-        });*/
-
-
+        final String itemUrl = mSliderItems.get(position).getImg();
+        viewHolder.setData(itemUrl);
     }
-
 
     @Override
     public int getCount() {
         return mSliderItems.size();
     }
 
-
-    public class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
+    public static class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
 
         View mView;
         ImageView imageViewBackground;
@@ -82,12 +59,15 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
             imageViewBackground = mView.findViewById(R.id.imageView7);
         }
 
-        public void setdata(String url) {
-
+        public void setData(String url) {
             File f = new File(url);
-            Picasso.get().load(f).resize(500, 500).into(imageViewBackground);
-
+            Glide.with(imageViewBackground.getContext())
+                    .load(f)
+                    .override(500, 500)  // Resize (similar to Picasso)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)  // Cache both original & resized
+                    .format(DecodeFormat.PREFER_RGB_565)  // Use less memory (like Bitmap.Config.RGB_565)
+                    .skipMemoryCache(false)  // Optional: Set to true if memory pressure is high
+                    .into(imageViewBackground);
         }
     }
-
 }

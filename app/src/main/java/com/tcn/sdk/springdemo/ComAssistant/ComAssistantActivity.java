@@ -599,7 +599,7 @@
 //                        ShowMessage("串口" + SpinnerCOMA.getSelectedItem().toString() + "已打开");
 //                        buttonView.setChecked(false);
 //                    } else {
-////						ComA=new SerialControl("/dev/s3c2410_serial0", "9600");
+/// /						ComA=new SerialControl("/dev/s3c2410_serial0", "9600");
 //                        ComA.setPort(SpinnerCOMA.getSelectedItem().toString());
 //                        ComA.setBaudRate(SpinnerBaudRateCOMA.getSelectedItem().toString());
 //                        OpenComPort(ComA);

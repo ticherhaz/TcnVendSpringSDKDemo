@@ -938,7 +938,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                                     for (int i = 0; i < productapiModelList.size(); i++) {
                                         productapiModelList.get(i).setPosition(0);
                                     }
-                                    TypeProfuctActivity.this.productRecycler = new ProductRecycler(productapiModelList, TypeProfuctActivity.this);
+                                    TypeProfuctActivity.this.productRecycler = new ProductRecycler(TypeProfuctActivity.this, productapiModelList, TypeProfuctActivity.this);
                                     TypeProfuctActivity.this.recyclerView.setLayoutManager(new GridLayoutManager(TypeProfuctActivity.this, 4));
                                     TypeProfuctActivity.this.recyclerView.setAdapter(productRecycler);
                                     TypeProfuctActivity.this.recyclerView.setHasFixedSize(true);

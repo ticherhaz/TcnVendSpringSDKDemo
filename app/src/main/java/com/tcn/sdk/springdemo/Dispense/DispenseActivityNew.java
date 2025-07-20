@@ -382,15 +382,15 @@
 //
 //                    try {
 //                        serialPort = new SerialPort(serialFile, baudrate, 0);
-////                        if(LDispense.equalsIgnoreCase("true")) {
-////                            RollingLogger.i(TAG, "Serial port started");
-////                        }
-////                        handler.post(new Runnable() {
-////                            @Override
-////                            public void run() {
-////                                onSerialPortConnectStateChanged(true);
-////                            }
-////                        });
+/// /                        if(LDispense.equalsIgnoreCase("true")) {
+/// /                            RollingLogger.i(TAG, "Serial port started");
+/// /                        }
+/// /                        handler.post(new Runnable() {
+/// /                            @Override
+/// /                            public void run() {
+/// /                                onSerialPortConnectStateChanged(true);
+/// /                            }
+/// /                        });
 //                        readSerialPortData();
 //                    } catch (Exception e) {
 //                        e.printStackTrace();

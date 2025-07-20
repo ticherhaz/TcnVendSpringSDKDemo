@@ -15,7 +15,8 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.tcn.sdk.springdemo.Model.CartListModel;
 import com.tcn.sdk.springdemo.R;
 
@@ -87,8 +88,11 @@ public class CartListAdapter2025Back extends RecyclerView.Adapter<CartListAdapte
 
         final String productNumber = item.getItemnumber();
         holder.getNumber().setText(productNumber);
-        Picasso.get().load(item.getImg()).into(holder.pimage);
 
+        Glide.with(context)
+                .load(cartItems.get(position).getImg())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)  // Cache both original & resized
+                .into(holder.pimage);
 
         switch (item.getPosition()) {
             case STATUS_SOLD:

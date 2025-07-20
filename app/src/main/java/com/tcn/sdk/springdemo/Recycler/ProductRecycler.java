@@ -1,7 +1,6 @@
 package com.tcn.sdk.springdemo.Recycler;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.tcn.sdk.springdemo.DBUtils.CartDBHandler;
 import com.tcn.sdk.springdemo.DBUtils.PorductDBHandler;
 import com.tcn.sdk.springdemo.Model.CartListModel;
@@ -26,212 +26,33 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class ProductRecycler extends RecyclerView.Adapter<ProductRecycler.ViewHolder> {
-
-    public Context context;
-    //CartDBHandler db;
-    PorductDBHandler porductDBHandler;
-    CartDBHandler db;
-    TypeProfuctActivity profuctActivity;
+    private final Context context;
+    private final PorductDBHandler porductDBHandler;
+    private final CartDBHandler db;
+    private final TypeProfuctActivity profuctActivity;
     private List<ProductModel> productDbModelList;
-    private List<CartListModel> cartListModels;
+    private final List<CartListModel> cartListModels;
 
-    public ProductRecycler(List<ProductModel> productDbModelList, TypeProfuctActivity hh) {
+    public ProductRecycler(Context context, List<ProductModel> productDbModelList, TypeProfuctActivity activity) {
+        this.context = context;
         this.productDbModelList = productDbModelList;
-        this.profuctActivity = hh;
+        this.profuctActivity = activity;
+        this.porductDBHandler = new PorductDBHandler(context);
+        this.db = new CartDBHandler(context);
+        this.cartListModels = activity.getCartListModels();
     }
 
     @NonNull
     @Override
-    public ProductRecycler.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.productlist, parent, false);
-        context = parent.getContext();
-        // db = new CartDBHandler(context);
-        porductDBHandler = new PorductDBHandler(context);
-        cartListModels = profuctActivity.getCartListModels();
-        db = new CartDBHandler(context);
         return new ViewHolder(view);
     }
 
-    public void update(List<ProductModel> porductDBHandler1) {
-        productDbModelList = porductDBHandler1;
-        notifyDataSetChanged();
-    }
-
     @Override
-    public void onBindViewHolder(@NonNull final ProductRecycler.ViewHolder holder, final int position) {
-
-
-        holder.setIsRecyclable(false);
-
-        final String itemnumber = String.valueOf(productDbModelList.get(position).Item_Number);
-        final String itemname = productDbModelList.get(position).Name;
-        final String itemsize = productDbModelList.get(position).Size;
-        final String itemqty = String.valueOf(productDbModelList.get(position).Quantity);
-        final String itemprice = String.format("%.2f", productDbModelList.get(position).Price);
-        final String itemserial = productDbModelList.get(position).Serial_Port;
-        final String itemserialcom = productDbModelList.get(position).Serial_Port_Code;
-        final String itemrrp = String.valueOf(productDbModelList.get(position).RRP_Percent);
-        final String itemurl = productDbModelList.get(position).Image;
-        final int itemid = productDbModelList.get(position).PID;
-        final int itemfpid = productDbModelList.get(position).getId();
-        final int temp = productDbModelList.get(position).Temperature;
-
-        holder.setdata(itemprice, itemname, itemurl, itemnumber, itemqty);
-
-        if (productDbModelList.get(position).getPosition() == 0) {
-            holder.bottomview.setVisibility(View.INVISIBLE);
-        } else {
-            holder.bottomview.setVisibility(View.VISIBLE);
-        }
-
-        View.OnClickListener oc = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (profuctActivity.getEnableDisableAddProduct()) {
-                    if (profuctActivity.paymentInProgress) {
-                        //profuctActivity.displayDialogUnableAddProduct();
-                        return;
-                    }
-                    boolean avaible = false;
-                    boolean alreadyexist = false;
-                    int itemcount = 0;
-                    String quantity = itemqty;
-                    //cartListModels = db.getAllItems();
-
-                    if (cartListModels.isEmpty()) {
-
-                        if (Integer.parseInt(quantity) >= 1) {
-                            avaible = true;
-                        }
-                    } else {
-                        for (CartListModel cn : cartListModels) {
-
-                            if (itemnumber.equals(cn.getItemnumber())) {
-
-                                alreadyexist = true;
-
-                                break;
-                            }
-                        }
-                    }
-
-                    SharedPref.init(context);
-                    String LcartEnable = SharedPref.read(SharedPref.LcartEnable, "true");
-                    if (!alreadyexist) {
-                        int quantityAllow = 0;
-                        if (LcartEnable.equalsIgnoreCase("true")) {
-                            quantityAllow = 3;
-                        }
-                        if (Integer.parseInt(quantity) >= 1) {
-                            avaible = true;
-                        }
-
-                        if (avaible) {
-                            if (cartListModels.size() <= quantityAllow) {
-
-                                //  holder.bottomview.setBackgroundColor(Color.parseColor("#422B3B"));
-                                // holder.border.setBackgroundColor(Color.parseColor("#ECECEC"));
-                                holder.bottomview.setVisibility(View.VISIBLE);
-
-//                                db.addItem(new CartListModel(
-//                                        itemfpid,
-//                                        temp,
-//                                        itemnumber,
-//                                        itemname,
-//                                        itemsize,
-//                                        "1",
-//                                        itemprice,
-//                                        itemserial,
-//                                        itemserialcom,
-//                                        itemrrp,
-//                                        itemurl,
-//                                        null,
-//                                        String.valueOf(itemid)));
-                                CartListModel obj = new CartListModel();
-                                obj.setFprodid(itemfpid);
-                                obj.setTemp(temp);
-                                obj.setItemnumber(itemnumber);
-                                obj.setItemname(itemname);
-                                obj.setItemsize(itemsize);
-                                obj.setItemqty("1");
-                                obj.setItemprice(itemprice);
-                                obj.setSerial_port(itemserial);
-                                obj.setSerial_port_com(itemserialcom);
-                                obj.setRrp_percent(itemrrp);
-                                obj.setImg(itemurl);
-                                obj.setVoucher(null);
-                                obj.setProdid(String.valueOf(itemid));
-                                cartListModels.add(obj);
-                                profuctActivity.showPrice();
-                                productDbModelList.get(position).setPosition(1);
-
-
-                            } else {
-                                String textQuantity = "Only 1 items are allowed, remove any item from cart to add new item";
-                                if (LcartEnable.equalsIgnoreCase("true")) {
-                                    textQuantity = "Only 4 items are allowed, remove any item from cart to add new item";
-                                }
-                                final SweetAlertDialog sd = new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
-                                        .setTitleText("Cart is Full")
-                                        .setContentText(textQuantity);
-                                sd.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                    @Override
-                                    public void onDismiss(DialogInterface dialog) {
-
-                                    }
-                                });
-                                sd.show();
-                            }
-
-                        } else {
-
-                            final SweetAlertDialog sd = new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
-                                    .setTitleText("Not enough stock")
-                                    .setContentText("The selected item is not enough stock");
-                            sd.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                @Override
-                                public void onDismiss(DialogInterface dialog) {
-
-                                }
-                            });
-                            sd.show();
-
-
-                        }
-                    } else {
-
-                        final SweetAlertDialog sd = new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
-                                .setTitleText("Already Added")
-                                .setContentText("Quantity can be increase from cart");
-                        sd.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-
-                            }
-                        });
-                        sd.show();
-
-
-                    }
-                }
-            }
-        };
-        holder.pname.setOnClickListener(oc);
-        holder.price.setOnClickListener(oc);
-        holder.mView.setOnClickListener(oc);
-
-        /*holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-        };
-
-    });*/
-
-
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        ProductModel product = productDbModelList.get(position);
+        holder.bind(product, cartListModels, profuctActivity);
     }
 
     @Override
@@ -239,42 +60,134 @@ public class ProductRecycler extends RecyclerView.Adapter<ProductRecycler.ViewHo
         return productDbModelList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public void update(List<ProductModel> products) {
+        productDbModelList = products;
+        notifyDataSetChanged();
+    }
 
-
-        private final View mView;
-
-        private final TextView price;
-        private final TextView number;
-        private final TextView pname;
-        private final ImageView pimage;
-        private final ImageView sold;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private final TextView price, number, pname;
+        private final ImageView pimage, sold;
         private final View bottomview;
         private final ConstraintLayout border;
 
         public ViewHolder(@NonNull View itemView) {
-
             super(itemView);
-            mView = itemView;
-
-            number = mView.findViewById(R.id.textView);
-            price = mView.findViewById(R.id.textView37);
-            pname = mView.findViewById(R.id.textView38);
-            pimage = mView.findViewById(R.id.imageView25);
-            sold = mView.findViewById(R.id.imageView22);
-            bottomview = mView.findViewById(R.id.view2);
-            border = mView.findViewById(R.id.constraintLayout15);
-
+            pname = itemView.findViewById(R.id.textView38);
+            price = itemView.findViewById(R.id.textView37);
+            pimage = itemView.findViewById(R.id.imageView25);
+            sold = itemView.findViewById(R.id.imageView22);
+            number = itemView.findViewById(R.id.textView);
+            bottomview = itemView.findViewById(R.id.view2);
+            border = itemView.findViewById(R.id.constraintLayout15);
         }
 
-        public void setdata(String pprice, String name, String img, String itemnumber, String qty) {
-            pname.setText(name);
-            price.setText("RM " + pprice);
-            Picasso.get().load(img).into(pimage);
-            number.setText(itemnumber);
-            if (Integer.parseInt(qty) < 1) {
-                sold.setVisibility(View.VISIBLE);
+        public void bind(ProductModel product, List<CartListModel> cartList, TypeProfuctActivity activity) {
+            // Format data once
+            String formattedPrice = String.format("RM %.2f", product.Price);
+
+            pname.setText(product.Name);
+            price.setText(formattedPrice);
+            number.setText(String.valueOf(product.Item_Number));
+
+            // Load image with Glide
+            Glide.with(itemView.getContext())
+                    .load(product.Image)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(pimage);
+
+            // Update visibility
+            sold.setVisibility(product.Quantity < 1 ? View.VISIBLE : View.GONE);
+            bottomview.setVisibility(product.getPosition() == 0 ? View.INVISIBLE : View.VISIBLE);
+
+            // Set click listener
+            View.OnClickListener clickListener = v -> handleItemClick(product, cartList, activity);
+            pname.setOnClickListener(clickListener);
+            price.setOnClickListener(clickListener);
+            itemView.setOnClickListener(clickListener);
+        }
+
+        private void handleItemClick(ProductModel product, List<CartListModel> cartList, TypeProfuctActivity activity) {
+            if (!activity.getEnableDisableAddProduct() || activity.paymentInProgress) {
+                return;
             }
+
+            boolean alreadyExists = false;
+            for (CartListModel item : cartList) {
+                if (String.valueOf(product.Item_Number).equals(item.getItemnumber())) {
+                    alreadyExists = true;
+                    break;
+                }
+            }
+
+            if (alreadyExists) {
+                showAlreadyAddedDialog(itemView.getContext());
+                return;
+            }
+
+            SharedPref.init(itemView.getContext());
+            String cartEnable = SharedPref.read(SharedPref.LcartEnable, "true");
+            int quantityAllow = cartEnable.equalsIgnoreCase("true") ? 3 : 0;
+
+            if (product.Quantity < 1) {
+                showNotEnoughStockDialog(itemView.getContext());
+                return;
+            }
+
+            if (cartList.size() > quantityAllow) {
+                showCartFullDialog(itemView.getContext(), cartEnable);
+                return;
+            }
+
+            // Add to cart
+            CartListModel newItem = createCartItem(product);
+            cartList.add(newItem);
+            product.setPosition(1);
+            bottomview.setVisibility(View.VISIBLE);
+            activity.showPrice();
+        }
+
+        private CartListModel createCartItem(ProductModel product) {
+            CartListModel item = new CartListModel();
+            item.setFprodid(product.getId());
+            item.setTemp(product.Temperature);
+            item.setItemnumber(String.valueOf(product.Item_Number));
+            item.setItemname(product.Name);
+            item.setItemsize(product.Size);
+            item.setItemqty("1");
+            item.setItemprice(String.format("%.2f", product.Price));
+            item.setSerial_port(product.Serial_Port);
+            item.setSerial_port_com(product.Serial_Port_Code);
+            item.setRrp_percent(String.valueOf(product.RRP_Percent));
+            item.setImg(product.Image);
+            item.setVoucher(null);
+            item.setProdid(String.valueOf(product.PID));
+            return item;
+        }
+
+        private void showAlreadyAddedDialog(Context context) {
+            new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Already Added")
+                    .setContentText("Quantity can be increased from cart")
+                    .show();
+        }
+
+        private void showNotEnoughStockDialog(Context context) {
+            new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Not enough stock")
+                    .setContentText("The selected item is not in stock")
+                    .show();
+        }
+
+        private void showCartFullDialog(Context context, String cartEnable) {
+            String message = cartEnable.equalsIgnoreCase("true")
+                    ? "Only 4 items are allowed, remove any item from cart to add new item"
+                    : "Only 1 item is allowed, remove any item from cart to add new item";
+
+            new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Cart is Full")
+                    .setContentText(message)
+                    .show();
         }
     }
 }

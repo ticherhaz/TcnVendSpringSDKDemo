@@ -181,7 +181,7 @@
 //        final ArrayList<CartListModel> cartListModelList = listToArrayList(userobj.getCartModel());
 //
 //        try {
-////            connectSerialPort();
+/// /            connectSerialPort();
 //            congifModels = userobj.configModel;
 //
 //            for (CongifModel cn : congifModels) {

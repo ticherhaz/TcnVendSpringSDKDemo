@@ -163,8 +163,8 @@
 //            newpoints = userobj.getPoints();
 //        }
 //
-////        activity.clearCustomDialogDispense();
-////        customDialogDispense = activity.getCustomDialogDispense("dispense");
+/// /        activity.clearCustomDialogDispense();
+/// /        customDialogDispense = activity.getCustomDialogDispense("dispense");
 //
 //        if (customDialogDispense == null) {
 //            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();

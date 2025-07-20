@@ -19,4 +19,6 @@ object Tools {
             imm!!.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
+
+
 }

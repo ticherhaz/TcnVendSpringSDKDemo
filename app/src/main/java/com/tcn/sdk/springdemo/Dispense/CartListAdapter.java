@@ -13,7 +13,8 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.tcn.sdk.springdemo.Model.CartListModel;
 import com.tcn.sdk.springdemo.R;
 
@@ -67,12 +68,14 @@ public class CartListAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        // Hide loading indicator based on isLoading flag
-        //holder.loading.setVisibility(isLoading ? View.VISIBLE : View.GONE);
-        Log.d("???", "cartItems.get(position).getPosition():: " + cartItems.get(position).getPosition());
+
         holder.pname.setText(cartItems.get(position).getItemname());
-        Picasso.get().load(cartItems.get(position).getImg()).into(holder.pimage);
         holder.number.setText("Product Number - " + cartItems.get(position).getItemnumber());
+
+        Glide.with(context)
+                .load(cartItems.get(position).getImg())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)  // Cache both original & resized
+                .into(holder.pimage);
 
         switch (cartItems.get(position).getPosition()) {
             case STATUS_SOLD:
