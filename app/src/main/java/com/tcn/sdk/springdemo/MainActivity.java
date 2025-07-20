@@ -245,6 +245,7 @@ public class MainActivity extends AppCompatActivity implements DesiredProperties
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         textView34.setText("M4 v" + version + " -- DVENDS TECH SDN BHD ©" + year + ". All rights reserved");
+        textView34.setOnClickListener(view -> handleOnStartButtonClicked());
 
         try {
             RollingLogger.i(TAG, "version name-" + version);
@@ -285,14 +286,12 @@ public class MainActivity extends AppCompatActivity implements DesiredProperties
 
 
         slideCheck();
-        CustomLongClickListener.OnLongClickListener longClickListener = new CustomLongClickListener.OnLongClickListener() {
-            @Override
-            public void onLongClick(View v) {
-                RollingLogger.i(TAG, "logo clicked");
-                Intent intent = new Intent(MainActivity.this, PasswordUnlock.class);
-                intent.putExtra("type", "1");
-                startActivity(intent);
-            }
+
+        CustomLongClickListener.OnLongClickListener longClickListener = v -> {
+            RollingLogger.i(TAG, "logo clicked");
+            Intent intent = new Intent(MainActivity.this, PasswordUnlock.class);
+            intent.putExtra("type", "1");
+            startActivity(intent);
         };
 
         String timerStr = SharedPref.read(SharedPref.TIMER, "5");
@@ -307,26 +306,30 @@ public class MainActivity extends AppCompatActivity implements DesiredProperties
         startbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RollingLogger.i(TAG, "start button clicked");
-                if (!Uti.chkinternet(MainActivity.this)) {
-                    new SweetAlertDialog(MainActivity.this, SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText("No internet")
-                            .setContentText("Please contact careline")
-                            .show();
-                } else {
-                    if (!congifModels.isEmpty()) {
-
-                        startbutton.setEnabled(false);
-                        Intent typepage = new Intent(MainActivity.this, TypeProfuctActivity.class);
-                        startActivity(typepage);
-                        finish();
-
-                    } else {
-                        new SweetAlertDialog(MainActivity.this, SweetAlertDialog.WARNING_TYPE).setTitleText("Register the device").show();
-                    }
-                }
+                handleOnStartButtonClicked();
             }
         });
+    }
+
+    private void handleOnStartButtonClicked() {
+        RollingLogger.i(TAG, "start button clicked");
+        if (!Uti.chkinternet(MainActivity.this)) {
+            new SweetAlertDialog(MainActivity.this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("No internet")
+                    .setContentText("Please contact careline")
+                    .show();
+        } else {
+            if (!congifModels.isEmpty()) {
+
+                startbutton.setEnabled(false);
+                Intent typepage = new Intent(MainActivity.this, TypeProfuctActivity.class);
+                startActivity(typepage);
+                finish();
+
+            } else {
+                new SweetAlertDialog(MainActivity.this, SweetAlertDialog.WARNING_TYPE).setTitleText("Register the device").show();
+            }
+        }
     }
 
     private void slideCheck() {

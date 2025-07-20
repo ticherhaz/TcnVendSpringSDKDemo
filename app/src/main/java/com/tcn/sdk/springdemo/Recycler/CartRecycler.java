@@ -23,6 +23,8 @@ import com.tcn.sdk.springdemo.R;
 import com.tcn.sdk.springdemo.TypeProfuctActivity;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,64 +78,98 @@ public class CartRecycler extends RecyclerView.Adapter<CartRecycler.ViewHolder> 
 
         holder.setdata(itemnumber, itemname, itemsize, itemqty, itemprice, itemserial, itemurl);
 
+        // Remove button click listener
         holder.remove.setOnClickListener(v -> {
-            if (profuctActivity.paymentInProgress) return;
+            if (profuctActivity.paymentInProgress) {
+                return;
+            }
 
-            int currentPosition = holder.getAdapterPosition();
-            if (currentPosition == RecyclerView.NO_POSITION) return;
-            if (cartListModels.isEmpty() || currentPosition >= cartListModels.size()) return;
+            // Get current position fresh each time
+            int adapterPosition = holder.getAdapterPosition();
+            if (adapterPosition == RecyclerView.NO_POSITION) {
+                return;
+            }
 
-            CartListModel n = cartListModels.get(currentPosition);
-            cartListModels.remove(currentPosition);
-            notifyItemRemoved(currentPosition);
+            // Verify we have items to remove
+            if (cartListModels.isEmpty() || adapterPosition >= cartListModels.size()) {
+                return;
+            }
+
+            // Get the item to be removed
+            CartListModel removedItem = cartListModels.get(adapterPosition);
+
+            // Remove from data source
+            cartListModels.remove(adapterPosition);
+
+            // Update the adapter
+            notifyItemRemoved(adapterPosition);
+
+            // Notify about remaining items
+            notifyItemRangeChanged(adapterPosition, cartListModels.size() - adapterPosition);
+
+            // Update total price
             profuctActivity.showPrice();
 
-            for (int i = 0; i < productapiModelList.size(); i++) {
-                if (n.getItemnumber().equalsIgnoreCase(String.valueOf(productapiModelList.get(i).Item_Number))) {
-                    productapiModelList.get(i).setPosition(0);
+            // Reset position in product list
+            for (ProductModel product : productapiModelList) {
+                if (removedItem.getItemnumber().equalsIgnoreCase(String.valueOf(product.Item_Number))) {
+                    product.setPosition(0);
+                    break; // Exit loop once found
                 }
             }
-            productRecycler.update(productapiModelList);
+
+            // Update product recycler
+            productRecycler.notifyDataSetChanged();
+
+            // If list is now empty, show empty state
+            if (cartListModels.isEmpty()) {
+                notifyDataSetChanged(); // Full refresh to show empty view
+            }
         });
 
         holder.plus.setOnClickListener(v -> {
             if (profuctActivity.paymentInProgress) return;
 
-            int currentPosition = holder.getAdapterPosition();
+            int currentPosition = holder.getAbsoluteAdapterPosition();
             if (currentPosition == RecyclerView.NO_POSITION ||
                     currentPosition < 0 ||
                     currentPosition >= cartListModels.size()) return;
 
-            boolean available = false;
-            String singleitem = "0";
-            CartListModel n = cartListModels.get(currentPosition);
-            int count = Integer.parseInt(holder.iqty.getText().toString());
+            CartListModel item = cartListModels.get(currentPosition);
+            int currentQty = Integer.parseInt(holder.iqty.getText().toString());
+            BigDecimal currentPrice = new BigDecimal(holder.iprice.getText().toString());
 
-            for (ProductModel product : productapiModelList) {
-                if (n.getItemnumber().equals(String.valueOf(product.getItem_Number()))) {
-                    singleitem = String.valueOf(product.getPrice());
-                    // Use compareTo for accurate BigDecimal comparison
-                    if (new BigDecimal(product.getQuantity()).compareTo(new BigDecimal(count)) > 0) {
-                        available = true;
-                        break;
-                    }
+            // Find matching product
+            ProductModel product = null;
+            for (ProductModel p : productapiModelList) {
+                if (item.getItemnumber().equals(String.valueOf(p.getItem_Number()))) {
+                    product = p;
+                    break;
                 }
             }
 
-            if (available) {
-                String amt = holder.iprice.getText().toString();
-                count++;
+            if (product == null) return;
 
-                BigDecimal svalue = new BigDecimal(singleitem);
-                BigDecimal avalue = new BigDecimal(amt);
-                BigDecimal newValue = avalue.add(svalue);
+            // Check stock availability
+            if (product.getQuantity() > currentQty) {
+                currentQty++;
+                BigDecimal singlePrice = BigDecimal.valueOf(product.getPrice());
+                BigDecimal newPrice = currentPrice.add(singlePrice);
 
-                n.setItemqty(String.valueOf(count));
-                n.setItemprice(newValue.toString());
+                // Update item
+                item.setItemqty(String.valueOf(currentQty));
+                item.setItemprice(newPrice.setScale(2, RoundingMode.HALF_UP).toString());
 
-                holder.iqty.setText(String.valueOf(count));
-                holder.iprice.setText(newValue.toString());
-                cartListModels.set(currentPosition, n);
+                // Format price for display
+                DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+                String formattedPrice = decimalFormat.format(newPrice);
+
+                // Update views
+                holder.iqty.setText(String.valueOf(currentQty));
+                holder.iprice.setText(formattedPrice);
+
+                // Notify changes
+                notifyItemChanged(currentPosition);
                 profuctActivity.showPrice();
             } else {
                 new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
@@ -146,39 +182,51 @@ public class CartRecycler extends RecyclerView.Adapter<CartRecycler.ViewHolder> 
         holder.minus.setOnClickListener(v -> {
             if (profuctActivity.paymentInProgress) return;
 
-            int currentPosition = holder.getAdapterPosition();
+            int currentPosition = holder.getAbsoluteAdapterPosition();
             if (currentPosition == RecyclerView.NO_POSITION ||
                     currentPosition < 0 ||
                     currentPosition >= cartListModels.size()) return;
 
-            CartListModel n = cartListModels.get(currentPosition);
-            int count = Integer.parseInt(holder.iqty.getText().toString());
+            CartListModel item = cartListModels.get(currentPosition);
+            int currentQty = Integer.parseInt(holder.iqty.getText().toString());
 
-            if (count <= 1) return;  // Minimum quantity reached
+            if (currentQty <= 1) return;  // Minimum quantity reached
 
-            String singleitem = "0";
-            for (ProductModel product : productapiModelList) {
-                if (n.getItemnumber().equals(String.valueOf(product.getItem_Number()))) {
-                    singleitem = String.format("%.2f", product.getPrice());
+            // Find matching product
+            ProductModel product = null;
+            for (ProductModel p : productapiModelList) {
+                if (item.getItemnumber().equals(String.valueOf(p.getItem_Number()))) {
+                    product = p;
                     break;
                 }
             }
 
-            String amt = holder.iprice.getText().toString();
-            BigDecimal svalue = new BigDecimal(singleitem);
-            BigDecimal avalue = new BigDecimal(amt);
-            BigDecimal newValue = avalue.subtract(svalue);
+            if (product == null) return;
 
-            count--;
-            n.setItemqty(String.valueOf(count));
-            n.setItemprice(newValue.toString());
+            // Calculate new values
+            currentQty--;
+            BigDecimal currentPrice = new BigDecimal(holder.iprice.getText().toString());
+            BigDecimal singlePrice = BigDecimal.valueOf(product.getPrice());
+            BigDecimal newPrice = currentPrice.subtract(singlePrice);
 
-            // Update database without closing connection
-            db.updateitem(n);
+            // Ensure price doesn't go negative
+            if (newPrice.compareTo(BigDecimal.ZERO) < 0) {
+                newPrice = BigDecimal.ZERO;
+            }
 
-            holder.iqty.setText(String.valueOf(count));
-            holder.iprice.setText(newValue.toString());
-            cartListModels.set(currentPosition, n);
+            // Update item
+            item.setItemqty(String.valueOf(currentQty));
+            item.setItemprice(newPrice.toString());
+
+            // Update database
+            db.updateitem(item);
+
+            // Update views
+            holder.iqty.setText(String.valueOf(currentQty));
+            holder.iprice.setText(newPrice.toString());
+
+            // Notify changes
+            notifyItemChanged(currentPosition);
             profuctActivity.showPrice();
         });
     }
