@@ -704,6 +704,38 @@
                     </LinearLayout>
 
                     <EditText
+                        android:id="@+id/etTextIFrame"
+                        android:layout_width="400dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/item_selector_black"
+                        android:gravity="top"
+                        android:imeOptions="actionDone"
+                        android:padding="10dp"
+                        android:text=""
+                        android:textSize="16dp"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/btn_saveiframe"
+                        style="@style/GreenButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:drawableStart="@drawable/baseline_save_24"
+                        android:drawablePadding="8dp"
+                        android:drawableTint="@color/colorWhite"
+                        android:paddingLeft="32dp"
+                        android:paddingRight="32dp"
+                        android:text="Save Iframe"
+                        android:textSize="24sp"
+                        android:visibility="gone" />
+
+                    <EditText
                         android:id="@+id/etText"
                         android:layout_width="400dp"
                         android:layout_height="100dp"

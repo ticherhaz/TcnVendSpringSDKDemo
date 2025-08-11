@@ -155,6 +155,7 @@ public class configact extends AppCompatActivity {
         final EditText etmec = findViewById(R.id.etmec);
         final EditText etmk = findViewById(R.id.etmk);
         final EditText et_timer = findViewById(R.id.et_timer);
+        final EditText etTextIFrame = findViewById(R.id.etTextIFrame);
         test_tcn = findViewById(R.id.test_tcn);
         test_tcn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -429,6 +430,14 @@ public class configact extends AppCompatActivity {
             }
             return true;
         });
+        Button btn_saveiframe = findViewById(R.id.btn_saveiframe);
+        btn_saveiframe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPref.write(SharedPref.webviewURL, etTextIFrame.getText().toString());
+            }
+        });
+        etTextIFrame.setText(SharedPref.read(SharedPref.webviewURL, ""));
         String dispensetest = SharedPref.read(SharedPref.dispensetest, "");
         chkDispenseTest.setChecked(!dispensetest.equalsIgnoreCase(""));
         chkDispenseTest.setOnCheckedChangeListener((compoundButton, b) -> {
@@ -444,9 +453,13 @@ public class configact extends AppCompatActivity {
             if (b) {
                 RollingLogger.i(TAG, "iFrame Enable Ticked");
                 SharedPref.write(SharedPref.LiframeEnable, "true");
+                etTextIFrame.setVisibility(View.VISIBLE);
+                btn_saveiframe.setVisibility(View.VISIBLE);
             } else {
                 RollingLogger.i(TAG, "Iframe Disable UnTicked");
                 SharedPref.write(SharedPref.LiframeEnable, "");
+                etTextIFrame.setVisibility(View.GONE);
+                btn_saveiframe.setVisibility(View.GONE);
             }
         });
         String LiframeEnable = SharedPref.read(SharedPref.LiframeEnable, "");
