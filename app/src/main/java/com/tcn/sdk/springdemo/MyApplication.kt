@@ -41,6 +41,7 @@ class MyApplication : TcnVendApplication() {
         Thread.setDefaultUncaughtExceptionHandler(
             AppCrashHandler(this, defaultHandler)
         )
+
     }
 
     private fun initTcnVend() {
