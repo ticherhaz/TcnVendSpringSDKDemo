@@ -494,9 +494,23 @@ public class MainActivity extends AppCompatActivity implements DesiredProperties
         congifModels = dbconfig.getAllItems();
 
         String LiframeEnable = SharedPref.read(SharedPref.LiframeEnable, "");
-        ImageButton button4 = findViewById(R.id.button4);
+        ImageView button4 = findViewById(R.id.button4);
         if (LiframeEnable.equalsIgnoreCase("true")) {
             button4.setVisibility(View.VISIBLE);
+            String iframe_path = SharedPref.read(SharedPref.logoiframepath, "");
+            if(!iframe_path.equalsIgnoreCase("")){
+                InputStream is = null;
+                try {
+                    is = getContentResolver().openInputStream(Uri.parse(iframe_path));
+                    Bitmap bitmap = BitmapFactory.decodeStream(is);
+                    is.close();
+                    button4.setImageBitmap(bitmap);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             button4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

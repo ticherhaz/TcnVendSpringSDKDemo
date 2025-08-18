@@ -60,6 +60,7 @@ public class configact extends AppCompatActivity {
 
     private Button buttonGeneral, buttonPayment, buttonOthers, test_tcn;
     private LinearLayout llGeneral, llPayment, llOthers;
+    private int logoInt=0;
 
     private void showsweetalerttimeout(final CountDownTimer[] ct) {
         sweetAlertDialog = new SweetAlertDialog(configact.this, SweetAlertDialog.WARNING_TYPE);
@@ -128,10 +129,17 @@ public class configact extends AppCompatActivity {
                     is = getContentResolver().openInputStream(Uri.parse(path));
                     Bitmap bitmap = BitmapFactory.decodeStream(is);
                     is.close();
-                    ImageView iv_logo = findViewById(R.id.iv_logo);
-                    iv_logo.setImageBitmap(bitmap);
-                    iv_logo.setVisibility(View.VISIBLE);
-                    SharedPref.write(SharedPref.logopath, path);
+                    if(logoInt==0) {
+                        ImageView iv_logo = findViewById(R.id.iv_logo);
+                        iv_logo.setImageBitmap(bitmap);
+                        iv_logo.setVisibility(View.VISIBLE);
+                        SharedPref.write(SharedPref.logopath, path);
+                    }else{
+                        ImageView iv_iframe_logo = findViewById(R.id.iv_iframe_logo);
+                        iv_iframe_logo.setImageBitmap(bitmap);
+                        iv_iframe_logo.setVisibility(View.VISIBLE);
+                        SharedPref.write(SharedPref.logoiframepath, path);
+                    }
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -246,6 +254,17 @@ public class configact extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 RollingLogger.i(TAG, "logo button clicked");
+                logoInt=0;
+                imageChooser();
+            }
+        });
+
+        Button btn_iframe_logo = findViewById(R.id.btn_iframe_logo);
+        btn_iframe_logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RollingLogger.i(TAG, "iframe logo button clicked");
+                logoInt=1;
                 imageChooser();
             }
         });

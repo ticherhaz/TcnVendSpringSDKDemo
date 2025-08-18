@@ -35,6 +35,7 @@ public class SharedPref {
     public static final String notefifty = "notefifty";
     public static final String nitehundred = "nitehundred";
     public static final String logopath = "logopath";
+    public static final String logoiframepath = "logoiframepath";
     public static final String martext = "martext";
     public static final String ADMIN_PASSWORD = "adminpassword";
     public static final String VENDING_VERSION = "VENDING_VERSION";

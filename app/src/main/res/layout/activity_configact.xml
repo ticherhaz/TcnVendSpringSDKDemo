@@ -717,6 +717,40 @@
                         android:textSize="16dp"
                         android:visibility="gone" />
 
+                    <LinearLayout
+                        android:layout_marginLeft="200dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_iframe_logo"
+                            style="@style/PrimaryButtonOutlineStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:paddingLeft="32dp"
+                            android:paddingRight="32dp"
+                            android:text="Change Iframe Logo" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_iframe_logo"
+                        android:layout_width="251dp"
+                        android:layout_height="215dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="25dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:visibility="gone" />
+
                     <Button
                         android:id="@+id/btn_saveiframe"
                         style="@style/GreenButtonStyle"
