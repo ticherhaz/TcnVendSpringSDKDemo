@@ -29,7 +29,6 @@ import com.tcn.sdk.springdemo.SarawakPay.SarawakMainActivity;
 import com.tcn.sdk.springdemo.Utilities.DialogUtils;
 import com.tcn.sdk.springdemo.Utilities.RollingLogger;
 import com.tcn.sdk.springdemo.Utilities.SharedPref;
-import com.tcn.sdk.springdemo.Utilities.Tools;
 import com.tcn.sdk.springdemo.tcnSpring.MainAct;
 
 import net.ticherhaz.firelog.FireLog;
@@ -666,7 +665,7 @@ public class configact extends AppCompatActivity {
 
     private void setButtonChangeVendingVersion() {
         final String vendingVersion = SharedPref.read(SharedPref.VENDING_VERSION, "");
-        Tools.INSTANCE.logSimple("vendingVersion: " + vendingVersion);
+
         final TextView tvVendingVersion = findViewById(R.id.tv_vending_version);
         if (!vendingVersion.isEmpty()) {
             tvVendingVersion.setText(vendingVersion);

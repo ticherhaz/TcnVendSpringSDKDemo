@@ -77,10 +77,12 @@ import com.tcn.sdk.springdemo.Utilities.SharedPref;
 import com.tcn.sdk.springdemo.Utilities.Tools;
 import com.tcn.sdk.springdemo.Utilities.UserInteractionAwareCallback;
 import com.tcn.sdk.springdemo.Utilities.Uti;
+import com.tcn.sdk.springdemo.publicbank.implementation.PublicBankQrCodeImplementation;
 import com.tcn.sdk.springdemo.tcnSpring.MainActDispenseM4;
 
 import net.ticherhaz.vending_duitnow.DuitNow;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -239,6 +241,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
     private TextView tvscantext;
     private DuitNow duitNow;
     private DuitnowClass duitnowClass;
+    private PublicBankQrCodeImplementation publicBankQrCodeImplementation;
 
     public static void copyObject(Object src, Object dest)
             throws IllegalArgumentException, IllegalAccessException,
@@ -397,7 +400,11 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
             duitNow.dismissDialogDuitNow();
         }
 
-        RollingLogger.i(TAG, "ondestroy");
+        if (publicBankQrCodeImplementation != null) {
+            publicBankQrCodeImplementation.dismissDialogDuitNow();
+        }
+
+        RollingLogger.i(TAG, "onDestroy");
     }
 
     @Override
@@ -695,6 +702,8 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                                 isCountDownCont = true;
 
                                 initDuitNow(obj);
+                                //initPublicBankGenerateQr(obj);
+
                             } else {
                                 popoutdialog();
                             }
@@ -721,17 +730,73 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
         });
     }
 
-    private void initDuitNow(final UserObj obj) {
+    private void initPublicBankGenerateQr(final UserObj userObj) {
+        final String merchantCode = SharedPref.read(SharedPref.MERCHANT_CODE, "");
+        final String merchantKey = SharedPref.read(SharedPref.MERCHANT_KEY, "");
+        final String franchiseId = SharedPref.read(SharedPref.FRANCHISE_ID, "");
+        final String machineId = SharedPref.read(SharedPref.MACHINE_ID, "");
 
+        final String productIds = CartListModel.getProductIds(cartListModels);
 
-        /*new DuitnowClass(
+        double totalTransaction = 0.0;
+        for (CartListModel cn : cartListModels) {
+            String log = cn.getItemprice();
+            totalTransaction = totalTransaction + Double.parseDouble(log);
+        }
+
+        publicBankQrCodeImplementation = new PublicBankQrCodeImplementation(
                 TypeProfuctActivity.this,
-                requestQueue,
-                chargingprice,
-                obj,
-                customDialogDispense,
-                cartListModels);*/
+                userObj,
+                machineId,
+                merchantCode,
+                franchiseId,
+                productIds,
+                "PBBQR DuitNow",
+                totalTransaction,
+                new PublicBankQrCodeImplementation.DuitNowCallback() {
+                    @Override
+                    public void onPrepareStartDispensePopup(@NotNull String transactionId) {
+                        Gson gson = new Gson();
+                        String jsonString = gson.toJson(userObj);
+                        Intent intent = new Intent(TypeProfuctActivity.this, MainActDispenseM4.class);
+                        intent.putExtra("userObjStr", jsonString);
+                        intent.putExtra("transactionNo", transactionId);
+                        startActivity(intent);
+                    }
 
+                    @Override
+                    public void enableAllUiAtTypeProductActivity() {
+                        paymentInProgress = false;
+                        getpaybuttonenable().setEnabled(true);
+                        clearCustomDialogDispense();
+                        setEnableaddproduct(true);
+
+                        //Uti.freeMemory();
+                        Uti.optimizeMemory(TypeProfuctActivity.this);
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onLoggingEverything(@NotNull String message) {
+                        RollingLogger.d("PBB QR DuitNow: " + message);
+                        Tools.INSTANCE.logSimple("PBB QR DuitNow: " + message);
+                    }
+                }
+        );
+    }
+
+    private void showSweetAlertDialogError(final String errorMessage) {
+        final SweetAlertDialog sd = new SweetAlertDialog(TypeProfuctActivity.this, SweetAlertDialog.ERROR_TYPE)
+                .setTitleText("Error!")
+                .setContentText(errorMessage);
+        sd.setCancelButton("Cancel", SweetAlertDialog::dismissWithAnimation);
+        sd.show();
+    }
+
+    private void initDuitNow(final UserObj obj) {
 
         try {
             // Remove the countdown once the DuitNow dialog shows.
@@ -1573,34 +1638,10 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                     }
 
                     initDuitNow(obj);
-
-                    /*new DuitnowClass(
-                            TypeProfuctActivity.this,
-                            requestQueue,
-                            chargingprice,
-                            obj,
-                            customDialogDispense,
-                            cartListModels);*/
-
-//                    new DuitNowKotlin(
-//                            TypeProfuctActivity.this,
-//                            chargingprice,
-//                            obj,
-//                            cartListModels);
+                    //initPublicBankGenerateQr(obj);
 
                 });
-//                paymentipay ipay88ewallet = new paymentipay();
-//                JSONObject result = ipay88ewallet.Merchant_Scan_Duitnow(chargingprice, "", 0,
-//                        TypeProfuctActivity.this, "M41288", "m4d6TpUkUp", "49");
-//                JSONObject jsonObject = result;
-//                try {
-//                    String QRCode = jsonObject.getString("QRCode");
-//                    String QRValue = jsonObject.getString("QRValue");
-//                    ImageView ivQrcode = customDialog.findViewById(R.id.ivQrcode);
-//                    Picasso.get().load(QRCode).resize(500,500).into(ivQrcode);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
+
             }
             if (sarawakPayOnly.equalsIgnoreCase("true")) {
                 ll_sarawakpay.setVisibility(View.VISIBLE);
