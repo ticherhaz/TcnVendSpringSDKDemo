@@ -11,6 +11,8 @@ import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.tcn.sdk.springdemo.Utilities.SharedPref;
+
 public class IframeWebViewActivity extends AppCompatActivity {
     private Button btnBack;
     private WebView webView;
@@ -48,7 +50,8 @@ public class IframeWebViewActivity extends AppCompatActivity {
             }
         });
 
-        webView.loadUrl("https://staging.kiosk.afa-sports.com/?machineUUID=VE000001");
+        SharedPref.init(this);
+        webView.loadUrl(SharedPref.read(SharedPref.webviewURL, ""));
 
     }
 }

@@ -45,6 +45,7 @@ public class SharedPref {
     public static final String MACHINE_ID = "machineId";
     public static final String setBoardSerPortFirst = "setBoardSerPortFirst";
     public static final String setBoardSerPortSecond = "setBoardSerPortSecond";
+    public static final String webviewURL = "webviewURL";
 
     private static SharedPreferences mSharedPref;
 
