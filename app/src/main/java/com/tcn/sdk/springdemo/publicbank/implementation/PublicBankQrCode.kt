@@ -3,6 +3,7 @@ package com.tcn.sdk.springdemo.publicbank.implementation
 import com.tcn.sdk.springdemo.publicbank.model.GenerateQr
 import com.tcn.sdk.springdemo.publicbank.model.GenerateQrResponse
 import com.tcn.sdk.springdemo.publicbank.model.QrPaymentStatus
+import com.tcn.sdk.springdemo.publicbank.model.QrPaymentStatusResponse
 import com.tcn.sdk.springdemo.publicbank.repository.PublicBankRepository
 import com.tcn.sdk.springdemo.publicbank.tools.Constant
 import kotlinx.coroutines.CoroutineScope
@@ -93,6 +94,7 @@ object PublicBankQrCode {
                         } else {
                             if (response.code() == 404) {
                                 // No payment yet, so not found
+                                // we continue
                             } else {
 
                                 stopQrPaymentStatusPolling()
@@ -123,7 +125,7 @@ object PublicBankQrCode {
     }
 
     interface QrPaymentStatusCallback {
-        fun onSuccess(response: String)
+        fun onSuccess(response: QrPaymentStatusResponse)
         fun onError(errorMessage: String)
     }
 }

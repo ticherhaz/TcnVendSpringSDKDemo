@@ -10,8 +10,8 @@ android {
         applicationId "com.tcn.sdk.springdemo"
         minSdkVersion 21
         targetSdkVersion 36
-        versionCode 1030
-        versionName "1.0.30"
+        versionCode 1031
+        versionName "1.0.31"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true

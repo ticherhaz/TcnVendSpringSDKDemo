@@ -702,7 +702,6 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                                 isCountDownCont = true;
 
                                 initDuitNow(obj);
-                                //initPublicBankGenerateQr(obj);
 
                             } else {
                                 popoutdialog();
@@ -751,7 +750,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                 merchantCode,
                 franchiseId,
                 productIds,
-                "PBBQR DuitNow",
+                "PBB QR DuitNow",
                 totalTransaction,
                 new PublicBankQrCodeImplementation.DuitNowCallback() {
                     @Override
@@ -1638,11 +1637,44 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                     }
 
                     initDuitNow(obj);
-                    //initPublicBankGenerateQr(obj);
 
                 });
 
             }
+
+            final String sharedPrefPbbQrDuitNow = SharedPref.read(SharedPref.PUBLIC_BANK_QR_DUITNOW, "");
+            if (sharedPrefPbbQrDuitNow.equalsIgnoreCase("true")) {
+                final ImageButton imageButtonPbbQrDuitNow = findViewById(R.id.ib_pbb_qr_duitnow);
+                imageButtonPbbQrDuitNow.setVisibility(View.VISIBLE);
+
+                imageButtonPbbQrDuitNow.setOnClickListener(view -> {
+
+                    cartListModels = cartProQuantityMinus();
+                    final UserObj obj = new UserObj();
+                    obj.setConfigModel(congifModels);
+                    obj.setCartModel(cartListModels);
+                    obj.setIpaytype("duitnow");
+                    obj.setIsloggedin(isloggedin);
+                    obj.setUserid(UserID);
+                    obj.setPoints(Points);
+                    obj.setPid(pid);
+                    obj.setExpiredate(ExpireDate);
+                    obj.setUserstatus(UserStatus);
+                    obj.setImage(0);
+                    obj.setMtd("PBB QR DuitNow payment");
+                    obj.setChargingprice(chargingprice);
+
+                    if (customDialog != null) {
+                        if (customDialog.isShowing()) {
+                            customDialog.dismiss();
+                        }
+                    }
+
+                    initPublicBankGenerateQr(obj);
+                });
+            }
+
+
             if (sarawakPayOnly.equalsIgnoreCase("true")) {
                 ll_sarawakpay.setVisibility(View.VISIBLE);
                 iwallet.setVisibility(View.GONE);

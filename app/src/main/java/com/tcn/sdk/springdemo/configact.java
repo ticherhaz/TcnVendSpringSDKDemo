@@ -377,6 +377,23 @@ public class configact extends AppCompatActivity {
         chkGWallet = findViewById(R.id.chkGWallet);
         chkIWallet = findViewById(R.id.chkIWallet);
         chkSarawak = findViewById(R.id.chkSarawak);
+
+
+        // PBB QR DuitNow Switch
+        final MaterialSwitch materialSwitchPbbQrDuitNow = findViewById(R.id.material_switch_pbb_qr_duitnow);
+        materialSwitchPbbQrDuitNow.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (b) {
+                SharedPref.write(SharedPref.PUBLIC_BANK_QR_DUITNOW, "true");
+                RollingLogger.i(TAG, "PBB QR DuitNow new Ticked");
+            } else {
+                SharedPref.write(SharedPref.PUBLIC_BANK_QR_DUITNOW, "");
+                RollingLogger.i(TAG, "PBB QR DuitNow new UnTicked");
+            }
+        });
+        final String sharedPrefPbbQrDuitNow = SharedPref.read(SharedPref.PUBLIC_BANK_QR_DUITNOW, "");
+        materialSwitchPbbQrDuitNow.setChecked(!sharedPrefPbbQrDuitNow.equalsIgnoreCase(""));
+
+
         chkDuitnowonlyNew = findViewById(R.id.chkDuitnowonlyNew);
         chkDuitnowonlyNew.setOnCheckedChangeListener((compoundButton, b) -> {
             if (b) {

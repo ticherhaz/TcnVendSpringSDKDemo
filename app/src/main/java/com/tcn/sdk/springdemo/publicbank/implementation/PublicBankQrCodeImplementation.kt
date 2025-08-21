@@ -25,6 +25,7 @@ import com.google.gson.Gson
 import com.tcn.sdk.springdemo.Model.UserObj
 import com.tcn.sdk.springdemo.R
 import com.tcn.sdk.springdemo.publicbank.model.GenerateQrResponse
+import com.tcn.sdk.springdemo.publicbank.model.QrPaymentStatusResponse
 import com.tcn.sdk.springdemo.publicbank.retrofit.RetrofitClient
 import com.tcn.sdk.springdemo.publicbank.tools.QrCodeGenerator
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -204,7 +205,7 @@ class PublicBankQrCodeImplementation(
                                 val refNo = response.refNo
                                 val qrCode = response.qrCode
 
-                                val bitmapQrCode = QrCodeGenerator.generateQrCode(qrCode, 512, 512)
+                                val bitmapQrCode = QrCodeGenerator.generateQrCode(qrCode, 256, 256)
                                 if (bitmapQrCode != null) {
 
                                     // Get the QR code container and image view
@@ -250,6 +251,10 @@ class PublicBankQrCodeImplementation(
 
             override fun onFinish() {
                 if (!paymentAlreadyMadeAndSuccess) {
+
+                    // We need to cancel the polling.
+                    PublicBankQrCode.cleanUpQrPaymentStatus()
+
                     logTempTransaction(0, "Transaction failed, exceeded 120 seconds", 0.0)
 
                     // Delay 10 seconds and then exit
@@ -488,8 +493,10 @@ class PublicBankQrCodeImplementation(
         PublicBankQrCode.getQrPaymentStatus(
             refNo,
             object : PublicBankQrCode.QrPaymentStatusCallback {
-                override fun onSuccess(response: String) {
-                    handlePaymentSuccess(response)
+                override fun onSuccess(response: QrPaymentStatusResponse) {
+                    if (response.status) {
+                        handlePaymentSuccess(response.refNo)
+                    }
                 }
 
                 override fun onError(errorMessage: String) {

@@ -468,6 +468,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="DuitNow Only" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/material_switch_pbb_qr_duitnow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Public Bank QR DuitNow" />
                 </LinearLayout>
 
                 <LinearLayout
