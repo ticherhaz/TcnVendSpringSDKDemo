@@ -627,8 +627,11 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
 
                     RollingLogger.i(TAG, "pay button clicked");
                     if (!cartListModels.isEmpty() || valid) {
+
                         if (cartListModels.isEmpty()) {
                             if (Integer.parseInt(quantity) >= 1) {
+
+                                Tools.INSTANCE.logSimple("onCreate pay go to SelectPaymentActivityNew");
                                 pay.setEnabled(false);
                                 RollingLogger.i(TAG, "Select Payment Activity New Class called");
                                 Intent pay = new Intent(TypeProfuctActivity.this, SelectPaymentActivityNew.class);
@@ -652,6 +655,8 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
 
                             }
                         } else {
+
+
                             if (countDownHandler != null) {
                                 countDownHandler.removeCallbacksAndMessages(null);
                             }
@@ -704,6 +709,8 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                                 initDuitNow(obj);
 
                             } else {
+
+                                Tools.INSTANCE.logSimple("onCreate pay go to popoutdialog");
                                 popoutdialog();
                             }
 
@@ -771,7 +778,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                         setEnableaddproduct(true);
 
                         //Uti.freeMemory();
-                        Uti.optimizeMemory(TypeProfuctActivity.this);
+                        Uti.optimizeMemory(TypeProfuctActivity.this.getApplication());
 
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -1401,14 +1408,6 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                 checkCash = true;
                 countDownHandler.removeCallbacksAndMessages(null);
                 String formattedString = String.format("%.2f", chargingprice);
-
-//                Intent intent = new Intent(TypeProfuctActivity.this, TokenActivity.class);
-//                intent.putExtra("price", formattedString);
-//
-//                Gson gson = new Gson();
-//                String json = gson.toJson(obj);
-//                intent.putExtra("obj", json);
-//                startActivity(intent);
             });
 
             String cashCoinOnly = SharedPref.read(SharedPref.CashCoinPay, "");
@@ -1645,9 +1644,8 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
 
             final String sharedPrefPbbQrDuitNow = SharedPref.read(SharedPref.PUBLIC_BANK_QR_DUITNOW, "");
             if (sharedPrefPbbQrDuitNow.equalsIgnoreCase("true")) {
-                final ImageButton imageButtonPbbQrDuitNow = findViewById(R.id.ib_pbb_qr_duitnow);
+                final ImageButton imageButtonPbbQrDuitNow = dialog.findViewById(R.id.ib_pbb_qr_duitnow);
                 imageButtonPbbQrDuitNow.setVisibility(View.VISIBLE);
-
                 imageButtonPbbQrDuitNow.setOnClickListener(view -> {
 
                     cartListModels = cartProQuantityMinus();

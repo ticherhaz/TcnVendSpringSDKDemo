@@ -2,11 +2,10 @@ package com.tcn.sdk.springdemo.Utilities;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Handler;
-import android.os.Looper;
 
 import androidx.annotation.NonNull;
 
@@ -26,22 +25,14 @@ public class Uti {
         }).start();
     }
 
-    public static void optimizeMemory(@NonNull final Context context) {
-        new Handler(Looper.getMainLooper()).post(() -> {
-            // Trim UI-related memory on main thread
-            ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-            if (activityManager != null) {
-                activityManager.clearApplicationUserData();  // For extreme cases
-            }
-        });
-
+    public static void optimizeMemory(@NonNull final Application application) {
         new Thread(() -> {
             // Trim memory in background
             Runtime.getRuntime().gc();
             System.runFinalizersOnExit(true);
 
             // Suggest VM to release memory
-            ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE))
+            ((ActivityManager) application.getSystemService(Context.ACTIVITY_SERVICE))
                     .getMemoryClass();
         }).start();
     }

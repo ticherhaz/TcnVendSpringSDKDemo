@@ -92,11 +92,11 @@ class PublicBankQrCodeImplementation(
                     setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
 
                     // Set dialog dimensions (90% width, 50% height)
-                    val displayMetrics = context.resources.displayMetrics
-                    val width = (displayMetrics.widthPixels * 0.70).toInt()
-                    val height = (displayMetrics.heightPixels * 0.50).toInt()
+                    //val displayMetrics = context.resources.displayMetrics
+                    //val width = (displayMetrics.widthPixels * 0.70).toInt()
+                    //val height = (displayMetrics.heightPixels * 0.50).toInt()
 
-                    setLayout(width, height)
+                    //setLayout(width, height)
 
                     // Set window attributes
                     attributes = attributes.apply {
@@ -205,11 +205,10 @@ class PublicBankQrCodeImplementation(
                                 val refNo = response.refNo
                                 val qrCode = response.qrCode
 
-                                val bitmapQrCode = QrCodeGenerator.generateQrCode(qrCode, 256, 256)
+                                val bitmapQrCode = QrCodeGenerator.generateQrCode(qrCode, 300, 300)
                                 if (bitmapQrCode != null) {
 
                                     // Get the QR code container and image view
-                                    customDialog?.findViewById<View>(R.id.qr_code_container)
                                     val qrCodeView =
                                         customDialog?.findViewById<ImageView>(R.id.iv_qr_code)!!
                                     qrCodeView.setImageBitmap(bitmapQrCode)
