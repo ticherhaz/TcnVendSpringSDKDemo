@@ -10,8 +10,8 @@ android {
         applicationId "com.tcn.sdk.springdemo"
         minSdkVersion 21
         targetSdkVersion 36
-        versionCode 1019
-        versionName "1.0.19"
+        versionCode 1031
+        versionName "1.0.31"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
@@ -109,8 +109,8 @@ dependencies {
 
     implementation files('libs/d2xx.jar')
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
 
     implementation 'com.github.felHR85:UsbSerial:6.0.6'
 
@@ -134,7 +134,7 @@ dependencies {
 
 
     //Kotlin
-    implementation 'androidx.core:core-ktx:1.16.0'
+    implementation 'androidx.core:core-ktx:1.17.0'
 
     //Kotlin Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2'
@@ -165,8 +165,12 @@ dependencies {
     implementation("com.github.ticherhaz:FireLog:1.1.6")
     implementation("com.github.ticherhaz:VendingDuitNow:1.3.4")
 
+    implementation("com.squareup.okhttp3:logging-interceptor:5.1.0")
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+
+    // Generate QR Code
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 }
 

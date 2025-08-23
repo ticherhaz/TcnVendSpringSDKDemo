@@ -29,7 +29,6 @@ import com.tcn.sdk.springdemo.SarawakPay.SarawakMainActivity;
 import com.tcn.sdk.springdemo.Utilities.DialogUtils;
 import com.tcn.sdk.springdemo.Utilities.RollingLogger;
 import com.tcn.sdk.springdemo.Utilities.SharedPref;
-import com.tcn.sdk.springdemo.Utilities.Tools;
 import com.tcn.sdk.springdemo.tcnSpring.MainAct;
 
 import net.ticherhaz.firelog.FireLog;
@@ -397,6 +396,23 @@ public class configact extends AppCompatActivity {
         chkGWallet = findViewById(R.id.chkGWallet);
         chkIWallet = findViewById(R.id.chkIWallet);
         chkSarawak = findViewById(R.id.chkSarawak);
+
+
+        // PBB QR DuitNow Switch
+        final MaterialSwitch materialSwitchPbbQrDuitNow = findViewById(R.id.material_switch_pbb_qr_duitnow);
+        materialSwitchPbbQrDuitNow.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (b) {
+                SharedPref.write(SharedPref.PUBLIC_BANK_QR_DUITNOW, "true");
+                RollingLogger.i(TAG, "PBB QR DuitNow new Ticked");
+            } else {
+                SharedPref.write(SharedPref.PUBLIC_BANK_QR_DUITNOW, "");
+                RollingLogger.i(TAG, "PBB QR DuitNow new UnTicked");
+            }
+        });
+        final String sharedPrefPbbQrDuitNow = SharedPref.read(SharedPref.PUBLIC_BANK_QR_DUITNOW, "");
+        materialSwitchPbbQrDuitNow.setChecked(!sharedPrefPbbQrDuitNow.equalsIgnoreCase(""));
+
+
         chkDuitnowonlyNew = findViewById(R.id.chkDuitnowonlyNew);
         chkDuitnowonlyNew.setOnCheckedChangeListener((compoundButton, b) -> {
             if (b) {
@@ -698,7 +714,7 @@ public class configact extends AppCompatActivity {
 
     private void setButtonChangeVendingVersion() {
         final String vendingVersion = SharedPref.read(SharedPref.VENDING_VERSION, "");
-        Tools.INSTANCE.logSimple("vendingVersion: " + vendingVersion);
+
         final TextView tvVendingVersion = findViewById(R.id.tv_vending_version);
         if (!vendingVersion.isEmpty()) {
             tvVendingVersion.setText(vendingVersion);
