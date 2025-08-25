@@ -50,8 +50,16 @@ public class configact extends AppCompatActivity {
     private Boolean oncreate = false;
     private SweetAlertDialog sweetAlertDialog;
     private wait30 w30;
-    private MaterialSwitch chkGPaywave, chkGWallet, chkIWallet, chkLdispense, chkLPayment, chkDispenseTest, chkSarawak, chkToken, chkDuitnowonlyNew,
-            chkLcart, chkIframe;
+    private MaterialSwitch chkGPaywave;
+    private MaterialSwitch chkGWallet;
+    private MaterialSwitch chkIWallet;
+    private MaterialSwitch chkLdispense;
+    private MaterialSwitch chkLPayment;
+    private MaterialSwitch chkDispenseTest;
+    private MaterialSwitch chkSarawak;
+    private MaterialSwitch chkToken;
+    private MaterialSwitch chkLcart;
+    private MaterialSwitch chkIframe;
     private List<CongifModel> congifModels;
     private Uri selectedImageUri;
     private EditText etText;
@@ -59,7 +67,7 @@ public class configact extends AppCompatActivity {
 
     private Button buttonGeneral, buttonPayment, buttonOthers, test_tcn;
     private LinearLayout llGeneral, llPayment, llOthers;
-    private int logoInt=0;
+    private int logoInt = 0;
 
     private void showsweetalerttimeout(final CountDownTimer[] ct) {
         sweetAlertDialog = new SweetAlertDialog(configact.this, SweetAlertDialog.WARNING_TYPE);
@@ -128,12 +136,12 @@ public class configact extends AppCompatActivity {
                     is = getContentResolver().openInputStream(Uri.parse(path));
                     Bitmap bitmap = BitmapFactory.decodeStream(is);
                     is.close();
-                    if(logoInt==0) {
+                    if (logoInt == 0) {
                         ImageView iv_logo = findViewById(R.id.iv_logo);
                         iv_logo.setImageBitmap(bitmap);
                         iv_logo.setVisibility(View.VISIBLE);
                         SharedPref.write(SharedPref.logopath, path);
-                    }else{
+                    } else {
                         ImageView iv_iframe_logo = findViewById(R.id.iv_iframe_logo);
                         iv_iframe_logo.setImageBitmap(bitmap);
                         iv_iframe_logo.setVisibility(View.VISIBLE);
@@ -253,7 +261,7 @@ public class configact extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 RollingLogger.i(TAG, "logo button clicked");
-                logoInt=0;
+                logoInt = 0;
                 imageChooser();
             }
         });
@@ -263,7 +271,7 @@ public class configact extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 RollingLogger.i(TAG, "iframe logo button clicked");
-                logoInt=1;
+                logoInt = 1;
                 imageChooser();
             }
         });
@@ -363,18 +371,6 @@ public class configact extends AppCompatActivity {
             }
         });
 
-        MaterialSwitch chkDuitNowOnly = findViewById(R.id.chkDuitNowOnly);
-        String DuitNowOnly = SharedPref.read(SharedPref.DuitNowOnly, "");
-        chkDuitNowOnly.setChecked(!DuitNowOnly.equalsIgnoreCase(""));
-        chkDuitNowOnly.setOnCheckedChangeListener((compoundButton, b) -> {
-            if (b) {
-                SharedPref.write(SharedPref.DuitNowOnly, "true");
-                RollingLogger.i(TAG, "Duitnow + Ewallet Ticked");
-            } else {
-                SharedPref.write(SharedPref.DuitNowOnly, "");
-                RollingLogger.i(TAG, "Duitnow + Ewallet UnTicked");
-            }
-        });
 
         MaterialSwitch chkSarawakOnly = findViewById(R.id.chkSarawakOnly);
         chkSarawakOnly.setOnCheckedChangeListener((compoundButton, b) -> {
@@ -388,6 +384,8 @@ public class configact extends AppCompatActivity {
         });
         String sarawakStrOnly = SharedPref.read(SharedPref.SarawakPayOnly, "");
         chkSarawakOnly.setChecked(!sarawakStrOnly.equalsIgnoreCase(""));
+
+
         chkGPaywave = findViewById(R.id.chkGPaywave);
         chkLdispense = findViewById(R.id.chkLdispense);
         chkLcart = findViewById(R.id.chkLcart);
@@ -398,33 +396,80 @@ public class configact extends AppCompatActivity {
         chkSarawak = findViewById(R.id.chkSarawak);
 
 
-        // PBB QR DuitNow Switch
-        final MaterialSwitch materialSwitchPbbQrDuitNow = findViewById(R.id.material_switch_pbb_qr_duitnow);
-        materialSwitchPbbQrDuitNow.setOnCheckedChangeListener((compoundButton, b) -> {
+        // -------------------- ipay88 and PBB with eWallet Switch ------------------------
+        // Only 1 item can enable at time
+        final MaterialSwitch materialSwitchDuitNowAndEWalletIPay88 = findViewById(R.id.material_switch_duitnow_ipay88_and_e_wallet);
+        final MaterialSwitch materialSwitchDuitNowAndEWalletPublicBank = findViewById(R.id.material_switch_duitnow_public_bank_and_e_wallet);
+
+        materialSwitchDuitNowAndEWalletIPay88.setOnCheckedChangeListener((compoundButton, b) -> {
             if (b) {
-                SharedPref.write(SharedPref.PUBLIC_BANK_QR_DUITNOW, "true");
-                RollingLogger.i(TAG, "PBB QR DuitNow new Ticked");
+                SharedPref.write(SharedPref.DUITNOW_IPAY88_AND_E_WALLET, "true");
+
+                materialSwitchDuitNowAndEWalletPublicBank.setChecked(false);
+                SharedPref.write(SharedPref.DUITNOW_PUBLIC_BANK_AND_E_WALLET, "");
             } else {
-                SharedPref.write(SharedPref.PUBLIC_BANK_QR_DUITNOW, "");
-                RollingLogger.i(TAG, "PBB QR DuitNow new UnTicked");
+                SharedPref.write(SharedPref.DUITNOW_IPAY88_AND_E_WALLET, "");
             }
         });
-        final String sharedPrefPbbQrDuitNow = SharedPref.read(SharedPref.PUBLIC_BANK_QR_DUITNOW, "");
-        materialSwitchPbbQrDuitNow.setChecked(!sharedPrefPbbQrDuitNow.equalsIgnoreCase(""));
 
-
-        chkDuitnowonlyNew = findViewById(R.id.chkDuitnowonlyNew);
-        chkDuitnowonlyNew.setOnCheckedChangeListener((compoundButton, b) -> {
+        materialSwitchDuitNowAndEWalletPublicBank.setOnCheckedChangeListener((compoundButton, b) -> {
             if (b) {
-                SharedPref.write(SharedPref.DuitNowOnlyNew, "true");
-                RollingLogger.i(TAG, "Duitnow only new Ticked");
+                SharedPref.write(SharedPref.DUITNOW_PUBLIC_BANK_AND_E_WALLET, "true");
+
+                materialSwitchDuitNowAndEWalletIPay88.setChecked(false);
+                SharedPref.write(SharedPref.DUITNOW_IPAY88_AND_E_WALLET, "");
             } else {
-                SharedPref.write(SharedPref.DuitNowOnlyNew, "");
-                RollingLogger.i(TAG, "Duitnow only new UnTicked");
+                SharedPref.write(SharedPref.DUITNOW_PUBLIC_BANK_AND_E_WALLET, "");
             }
         });
-        String duitnowonlynewStr = SharedPref.read(SharedPref.DuitNowOnlyNew, "");
-        chkDuitnowonlyNew.setChecked(!duitnowonlynewStr.equalsIgnoreCase(""));
+
+
+        final String sharedPrefDuitNowIPay88AndEWallet = SharedPref.read(SharedPref.DUITNOW_IPAY88_AND_E_WALLET, "");
+        materialSwitchDuitNowAndEWalletIPay88.setChecked(!sharedPrefDuitNowIPay88AndEWallet.equalsIgnoreCase(""));
+
+        final String sharedPrefDuitNowPublicBankAndEWallet = SharedPref.read(SharedPref.DUITNOW_PUBLIC_BANK_AND_E_WALLET, "");
+        materialSwitchDuitNowAndEWalletPublicBank.setChecked(!sharedPrefDuitNowPublicBankAndEWallet.equalsIgnoreCase(""));
+
+        // -------------------- ipay88 and PBB with eWallet Switch ------------------------
+
+
+        // ---------------------- ipay88 and PBB Switch Only -------------------------------
+        // Only 1 item can enable at time
+        final MaterialSwitch materialSwitchDuitNowIPay88 = findViewById(R.id.material_switch_duitnow_ipay88);
+        final MaterialSwitch materialSwitchDuitNowPublicBank = findViewById(R.id.material_switch_duitnow_public_bank);
+
+        materialSwitchDuitNowIPay88.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (b) {
+                SharedPref.write(SharedPref.DUITNOW_IPAY88_ONLY, "true");
+
+                materialSwitchDuitNowPublicBank.setChecked(false);
+                SharedPref.write(SharedPref.DUITNOW_PUBLIC_BANK_ONLY, "");
+            } else {
+                SharedPref.write(SharedPref.DUITNOW_IPAY88_ONLY, "");
+            }
+        });
+
+        materialSwitchDuitNowPublicBank.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (b) {
+                SharedPref.write(SharedPref.DUITNOW_PUBLIC_BANK_ONLY, "true");
+
+                materialSwitchDuitNowIPay88.setChecked(false);
+                SharedPref.write(SharedPref.DUITNOW_IPAY88_ONLY, "");
+            } else {
+                SharedPref.write(SharedPref.DUITNOW_PUBLIC_BANK_ONLY, "");
+            }
+        });
+
+        final String sharedPrefDuitNowIPay88 = SharedPref.read(SharedPref.DUITNOW_IPAY88_ONLY, "");
+        materialSwitchDuitNowIPay88.setChecked(!sharedPrefDuitNowIPay88.equalsIgnoreCase(""));
+
+        final String sharedPrefDuitNowPublicBank = SharedPref.read(SharedPref.DUITNOW_PUBLIC_BANK_ONLY, "");
+        materialSwitchDuitNowPublicBank.setChecked(!sharedPrefDuitNowPublicBank.equalsIgnoreCase(""));
+
+
+        // ---------------------- ipay88 and PBB Switch Only -------------------------------
+
+
         chkToken = findViewById(R.id.chkToken);
         chkToken.setOnCheckedChangeListener((compoundButton, b) -> {
             if (b) {

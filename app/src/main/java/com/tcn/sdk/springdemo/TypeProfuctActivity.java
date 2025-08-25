@@ -662,56 +662,28 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                             }
                             isPaymentinProgress(true);
                             pay.setEnabled(false);
-                            String duitnowonlynewStr = SharedPref.read(SharedPref.DuitNowOnlyNew, "");
-                            if (duitnowonlynewStr.equalsIgnoreCase("true")) {
-                                productsids = "";
-                                totalCost = 0;
-                                for (CartListModel cn : cartListModels) {
-                                    String log = cn.getItemprice();
-                                    totalCost = totalCost + Double.parseDouble(log);
-                                    int qty;
-                                    qty = Integer.parseInt(cn.getItemqty());
-                                    for (int x = 0; x < qty; x++) {
 
-                                        productsids += cn.getProdid() + ",";
-                                    }
 
-                                }
-                                chargingprice = totalCost;
+                            // Check if the DuitNow only is enable or not
+                            // for the iPay88 and Public Bank
 
-                                cartListModels = cartProQuantityMinus();
-                                final UserObj obj = new UserObj();
-                                obj.setConfigModel(congifModels);
-                                obj.setCartModel(cartListModels);
-                                obj.setIpaytype("duitnow");
-                                obj.setIsloggedin(isloggedin);
-                                obj.setUserid(UserID);
-                                obj.setPoints(Points);
-                                obj.setPid(pid);
-                                obj.setExpiredate(ExpireDate);
-                                obj.setUserstatus(UserStatus);
-                                obj.setImage(0);
-                                obj.setMtd("Duitnow payment");
-                                obj.setChargingprice(chargingprice);
+                            final String sharedPrefDuitNowIPay88Only = SharedPref.read(SharedPref.DUITNOW_IPAY88_ONLY, "");
+                            final String sharedPrefDuitNowPublicBankOnly = SharedPref.read(SharedPref.DUITNOW_PUBLIC_BANK_ONLY, "");
 
-                                if (customDialog != null) {
-                                    if (customDialog.isShowing()) {
-                                        customDialog.dismiss();
-                                    }
-                                }
+                            if (sharedPrefDuitNowIPay88Only.equalsIgnoreCase("true")) {
 
-                                if (cdt != null) {
-                                    cdt.cancel();
-                                    cdt.cancel();
-                                }
-                                isCountDownCont = true;
+                                final UserObj userObj = initPrepareUserObjToProceedPayment();
+                                initDuitNow(userObj);
 
-                                initDuitNow(obj);
+                            } else if (sharedPrefDuitNowPublicBankOnly.equalsIgnoreCase("true")) {
+
+                                final UserObj userObj = initPrepareUserObjToProceedPayment();
+                                initPublicBankGenerateQr(userObj);
 
                             } else {
 
-                                Tools.INSTANCE.logSimple("onCreate pay go to popoutdialog");
-                                popoutdialog();
+                                Tools.INSTANCE.logSimple("onCreate pay go to popOutDialogMain");
+                                popOutDialogMain();
                             }
 
                         }
@@ -734,6 +706,50 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                 }
             }
         });
+    }
+
+    private UserObj initPrepareUserObjToProceedPayment() {
+        productsids = "";
+        totalCost = 0;
+        for (CartListModel cn : cartListModels) {
+            String log = cn.getItemprice();
+            totalCost = totalCost + Double.parseDouble(log);
+            int qty;
+            qty = Integer.parseInt(cn.getItemqty());
+            for (int x = 0; x < qty; x++) {
+                productsids += cn.getProdid() + ",";
+            }
+        }
+        chargingprice = totalCost;
+
+        cartListModels = cartProQuantityMinus();
+        final UserObj obj = new UserObj();
+        obj.setConfigModel(congifModels);
+        obj.setCartModel(cartListModels);
+        obj.setIpaytype("duitnow");
+        obj.setIsloggedin(isloggedin);
+        obj.setUserid(UserID);
+        obj.setPoints(Points);
+        obj.setPid(pid);
+        obj.setExpiredate(ExpireDate);
+        obj.setUserstatus(UserStatus);
+        obj.setImage(0);
+        obj.setMtd("DuitNow Payment");
+        obj.setChargingprice(chargingprice);
+
+        if (customDialog != null) {
+            if (customDialog.isShowing()) {
+                customDialog.dismiss();
+            }
+        }
+
+        if (cdt != null) {
+            cdt.cancel();
+            cdt.cancel();
+        }
+        isCountDownCont = true;
+
+        return obj;
     }
 
     private void initPublicBankGenerateQr(final UserObj userObj) {
@@ -777,8 +793,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                         clearCustomDialogDispense();
                         setEnableaddproduct(true);
 
-                        //Uti.freeMemory();
-                        Uti.optimizeMemory(TypeProfuctActivity.this.getApplication());
+                        Uti.freeMemory();
 
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -1199,8 +1214,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
             });
             requestQueue.add(stringRequest);
 
-        } catch (Exception ex) {
-
+        } catch (Exception ignored) {
         }
     }
 
@@ -1313,7 +1327,7 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
         isuserpaying = false;
     }
 
-    private void popoutdialog() {
+    private void popOutDialogMain() {
         try {
             customDialog = getCustomDialogProduct();
             if (!isFinishing())
@@ -1447,13 +1461,8 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
                     countDownHandler.removeCallbacksAndMessages(null);
                     String formattedString = String.format("%.2f", chargingprice);
 
-//                    Intent intent = new Intent(TypeProfuctActivity.this, CashNoteNewActivity.class);
-//                    intent.putExtra("price", formattedString);
-
                     Gson gson = new Gson();
                     String json = gson.toJson(obj);
-//                    intent.putExtra("obj", json);
-//                    startForResult.launch(intent);
                 }
             });
 
@@ -1607,69 +1616,31 @@ public class TypeProfuctActivity extends AppCompatActivity implements View.OnCli
             String gtypewallet = SharedPref.read(SharedPref.gtypewallet, "");
             String sarawakPayOnly = SharedPref.read(SharedPref.SarawakPayOnly, "");
             String sarawakStr = SharedPref.read(SharedPref.SarawakPay, "");
-            String DuitNowOnlyStr = SharedPref.read(SharedPref.DuitNowOnly, "");
             LinearLayout ll_sarawakpay = dialog.findViewById(R.id.ll_sarawakpay);
 
-            if (DuitNowOnlyStr.equalsIgnoreCase("true")) {
+
+            final String sharedPrefDuitNowIPay88AndEWallet = SharedPref.read(SharedPref.DUITNOW_IPAY88_AND_E_WALLET, "");
+            if (sharedPrefDuitNowIPay88AndEWallet.equalsIgnoreCase("true")) {
 
                 final ImageButton llduitnow = dialog.findViewById(R.id.duitnow);
                 llduitnow.setVisibility(View.VISIBLE);
                 llduitnow.setOnClickListener(view -> {
-                    cartListModels = cartProQuantityMinus();
-                    final UserObj obj = new UserObj();
-                    obj.setConfigModel(congifModels);
-                    obj.setCartModel(cartListModels);
-                    obj.setIpaytype("duitnow");
-                    obj.setIsloggedin(isloggedin);
-                    obj.setUserid(UserID);
-                    obj.setPoints(Points);
-                    obj.setPid(pid);
-                    obj.setExpiredate(ExpireDate);
-                    obj.setUserstatus(UserStatus);
-                    obj.setImage(0);
-                    obj.setMtd("Duitnow payment");
-                    obj.setChargingprice(chargingprice);
 
-                    if (customDialog != null) {
-                        if (customDialog.isShowing()) {
-                            customDialog.dismiss();
-                        }
-                    }
-
-                    initDuitNow(obj);
+                    final UserObj userObj = initPrepareUserObjToProceedPayment();
+                    initDuitNow(userObj);
 
                 });
-
             }
 
-            final String sharedPrefPbbQrDuitNow = SharedPref.read(SharedPref.PUBLIC_BANK_QR_DUITNOW, "");
-            if (sharedPrefPbbQrDuitNow.equalsIgnoreCase("true")) {
+            final String sharedPrefDuitNowPublicBankAndEWallet = SharedPref.read(SharedPref.DUITNOW_PUBLIC_BANK_AND_E_WALLET, "");
+            if (sharedPrefDuitNowPublicBankAndEWallet.equalsIgnoreCase("true")) {
+
                 final ImageButton imageButtonPbbQrDuitNow = dialog.findViewById(R.id.ib_pbb_qr_duitnow);
                 imageButtonPbbQrDuitNow.setVisibility(View.VISIBLE);
                 imageButtonPbbQrDuitNow.setOnClickListener(view -> {
 
-                    cartListModels = cartProQuantityMinus();
-                    final UserObj obj = new UserObj();
-                    obj.setConfigModel(congifModels);
-                    obj.setCartModel(cartListModels);
-                    obj.setIpaytype("duitnow");
-                    obj.setIsloggedin(isloggedin);
-                    obj.setUserid(UserID);
-                    obj.setPoints(Points);
-                    obj.setPid(pid);
-                    obj.setExpiredate(ExpireDate);
-                    obj.setUserstatus(UserStatus);
-                    obj.setImage(0);
-                    obj.setMtd("PBB QR DuitNow payment");
-                    obj.setChargingprice(chargingprice);
-
-                    if (customDialog != null) {
-                        if (customDialog.isShowing()) {
-                            customDialog.dismiss();
-                        }
-                    }
-
-                    initPublicBankGenerateQr(obj);
+                    final UserObj userObj = initPrepareUserObjToProceedPayment();
+                    initPublicBankGenerateQr(userObj);
                 });
             }
 

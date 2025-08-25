@@ -17,9 +17,17 @@ public class SharedPref {
     public static final String TestDispensePassword = "TestDispensePassword";
     public static final String SarawakPayOnly = "SarawakPayOnly";
     public static final String CashOnly = "CashOnly";
-    public static final String DuitNowOnly = "DuitNowOnly";
-    public static final String DuitNowOnlyNew = "DuitNowOnlyNew";
-    public static final String PUBLIC_BANK_QR_DUITNOW = "PUBLIC_BANK_QR_DUITNOW";
+
+
+    public static final String DUITNOW_IPAY88_AND_E_WALLET = "DUITNOW_IPAY88_AND_E_WALLET";
+    public static final String DUITNOW_PUBLIC_BANK_AND_E_WALLET = "DUITNOW_PUBLIC_BANK_AND_E_WALLET";
+
+
+
+    public static final String DUITNOW_IPAY88_ONLY = "DUITNOW_IPAY88_ONLY";
+    public static final String DUITNOW_PUBLIC_BANK_ONLY = "DUITNOW_PUBLIC_BANK_ONLY";
+
+
     public static final String MQTT = "MQTT";
     public static final String TIMER = "TIMER";
     public static final String FasspayOnly = "FasspayOnly";

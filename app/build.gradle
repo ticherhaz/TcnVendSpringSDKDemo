@@ -8,10 +8,12 @@ android {
     defaultConfig {
         namespace "com.tcn.sdk.springdemo"
         applicationId "com.tcn.sdk.springdemo"
+
         minSdkVersion 21
         targetSdkVersion 36
-        versionCode 1032
-        versionName "1.0.32"
+
+        versionCode 1033
+        versionName "1.0.33"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true

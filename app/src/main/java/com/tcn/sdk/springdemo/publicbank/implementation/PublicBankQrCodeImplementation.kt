@@ -84,7 +84,7 @@ class PublicBankQrCodeImplementation(
         weakActivity.get()?.let { activity ->
             customDialog = Dialog(activity).apply {
                 requestWindowFeature(Window.FEATURE_NO_TITLE)
-                setContentView(R.layout.dialog_duitnow)
+                setContentView(R.layout.dialog_public_bank_duitnow)
 
 
                 // Set transparent background and rounded corners

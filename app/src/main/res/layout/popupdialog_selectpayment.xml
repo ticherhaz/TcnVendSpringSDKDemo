@@ -33,7 +33,6 @@
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:gravity="center"
-                    android:inputType="textMultiLine"
                     android:padding="35dp"
                     android:text="Please select your preferred payment method"
                     android:textColor="#fff"
@@ -52,9 +51,10 @@
 
             <LinearLayout
                 android:id="@+id/walletselector"
-                android:layout_width="642dp"
+                android:layout_width="800dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
@@ -70,50 +70,53 @@
 
                 <LinearLayout
                     android:id="@+id/iwallet"
-                    android:layout_width="642dp"
-                    android:layout_height="505dp"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_width="800dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="74dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="eWallet :"
                         android:textColor="#F44336"
-                        android:textSize="40dp"
+                        android:textSize="40sp"
                         android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <ImageButton
                             android:id="@+id/touchngopay"
-                            android:layout_width="117dp"
+                            android:layout_width="120dp"
                             android:layout_height="120dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="50dp"
-                            android:background="#fff"
-                            android:scaleType="fitStart"
+                            android:layout_marginEnd="32dp"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerInside"
                             app:srcCompat="@drawable/tngicon" />
 
                         <ImageButton
                             android:id="@+id/boost"
-                            android:layout_width="221dp"
+                            android:layout_width="220dp"
                             android:layout_height="match_parent"
-                            android:layout_marginRight="50dp"
-                            android:background="#fff"
+                            android:layout_marginEnd="32dp"
+                            android:background="@android:color/transparent"
                             android:scaleType="centerInside"
                             app:srcCompat="@drawable/boosticon" />
 
                         <ImageButton
                             android:id="@+id/grabpay"
-                            android:layout_width="170dp"
+                            android:layout_width="220dp"
                             android:layout_height="match_parent"
-                            android:layout_marginRight="20dp"
-                            android:background="#fff"
+                            android:background="@android:color/transparent"
                             android:scaleType="centerInside"
                             app:srcCompat="@drawable/grabpayicon" />
                     </LinearLayout>
@@ -121,79 +124,75 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <ImageButton
                             android:id="@+id/maybank"
-                            android:layout_width="156dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="50dp"
-                            android:background="#fff"
+                            android:layout_width="220dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="32dp"
+                            android:background="@android:color/transparent"
+                            android:padding="8dp"
                             android:scaleType="centerInside"
                             app:srcCompat="@drawable/maybankicon" />
 
                         <ImageButton
                             android:id="@+id/wechatpay"
-                            android:layout_width="182dp"
-                            android:layout_height="138dp"
-                            android:layout_marginRight="50dp"
-                            android:background="#fff"
+                            android:layout_width="220dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="32dp"
+                            android:background="@android:color/transparent"
+                            android:padding="8dp"
                             android:scaleType="centerInside"
                             app:srcCompat="@drawable/wechaticon" />
 
                         <ImageButton
                             android:id="@+id/alipay"
-                            android:layout_width="176dp"
-                            android:layout_height="130dp"
-                            android:layout_marginEnd="32dp"
-                            android:background="#fff"
+                            android:layout_width="220dp"
+                            android:layout_height="120dp"
+                            android:background="@android:color/transparent"
+                            android:padding="8dp"
                             android:scaleType="centerInside"
                             app:srcCompat="@drawable/alipayicon" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_horizontal"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:orientation="horizontal">
-
-                        <ImageButton
-                            android:id="@+id/ib_pbb_qr_duitnow"
-                            android:layout_width="wrap_content"
-                            android:layout_height="120dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginBottom="12dp"
-                            android:background="#fff"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/duitnow"
-                            android:visibility="gone" />
 
                         <ImageButton
                             android:id="@+id/shopee"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="50dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="#fff"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="32dp"
+                            android:background="@android:color/transparent"
+                            android:padding="8dp"
                             android:scaleType="centerInside"
                             android:src="@drawable/shopeepaylogo" />
 
                         <ImageButton
                             android:id="@+id/duitnow"
-                            android:layout_width="wrap_content"
+                            android:layout_width="120dp"
                             android:layout_height="120dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginBottom="12dp"
-                            android:background="#fff"
+                            android:background="@android:color/transparent"
                             android:scaleType="centerInside"
                             android:src="@drawable/duitnow"
-                            android:visibility="gone" />
+                            android:visibility="visible" />
+
+                        <ImageButton
+                            android:id="@+id/ib_pbb_qr_duitnow"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/duitnow"
+                            android:visibility="visible" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -386,7 +385,6 @@
                     android:id="@+id/gkash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-40dp"
                     android:orientation="horizontal"
                     android:visibility="gone">
 

@@ -102,7 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/BlackTextViewStyle"
@@ -245,7 +245,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:theme="@style/Theme.Xyshjdemo"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <Button
                         android:id="@+id/btntestnote"
@@ -439,11 +439,6 @@
                         android:layout_height="wrap_content"
                         android:text="Note + Coin" />
 
-                    <com.google.android.material.materialswitch.MaterialSwitch
-                        android:id="@+id/chkDuitNowOnly"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="DuitNow + Ewallet" />
 
                     <com.google.android.material.materialswitch.MaterialSwitch
                         android:id="@+id/chkFasspayOnly"
@@ -463,17 +458,49 @@
                         android:layout_height="wrap_content"
                         android:text="Token" />
 
-                    <com.google.android.material.materialswitch.MaterialSwitch
-                        android:id="@+id/chkDuitnowonlyNew"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="DuitNow Only" />
+                    <View
+                        android:layout_width="450dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="2dp"
+                        android:background="@color/colorPrimarySoft" />
 
                     <com.google.android.material.materialswitch.MaterialSwitch
-                        android:id="@+id/material_switch_pbb_qr_duitnow"
+                        android:id="@+id/material_switch_duitnow_ipay88_and_e_wallet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Public Bank QR DuitNow" />
+                        android:text="iPay88 DuitNow + Ewallet" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/material_switch_duitnow_public_bank_and_e_wallet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bank DuitNow + Ewallet" />
+
+                    <View
+                        android:layout_width="450dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="2dp"
+                        android:background="@color/colorPrimarySoft" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/material_switch_duitnow_ipay88"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="iPay88 DuitNow Only" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/material_switch_duitnow_public_bank"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bank DuitNow Only" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -724,9 +751,9 @@
                         android:visibility="gone" />
 
                     <LinearLayout
-                        android:layout_marginLeft="200dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="200dp"
                         android:clipChildren="false"
                         android:clipToPadding="false"
                         android:gravity="center_horizontal"
