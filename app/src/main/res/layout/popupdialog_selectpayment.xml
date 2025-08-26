@@ -183,7 +183,7 @@
                             android:background="@android:color/transparent"
                             android:scaleType="centerInside"
                             android:src="@drawable/duitnow"
-                            android:visibility="visible" />
+                            android:visibility="gone" />
 
                         <ImageButton
                             android:id="@+id/ib_pbb_qr_duitnow"
@@ -192,7 +192,7 @@
                             android:background="@android:color/transparent"
                             android:scaleType="centerInside"
                             android:src="@drawable/duitnow"
-                            android:visibility="visible" />
+                            android:visibility="gone" />
                     </LinearLayout>
                 </LinearLayout>
 
