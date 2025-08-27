@@ -545,8 +545,8 @@ public class MainActDispenseM4 extends AppCompatActivity {
             final String requestBody = String.valueOf(cart.getQuantityMinus());
 
             StringRequest stringRequest = new StringRequest(Request.Method.PUT, url,
-                    response -> Log.i("VOLLEY", response),
-                    error -> Log.e("VOLLEY", error.toString())
+                    response -> Log.i("VOLLEY", response != null ? response : "empty response"),
+                    error -> Log.e("VOLLEY", error != null ? error.toString() : "unknown error")
             ) {
                 @Override
                 public String getBodyContentType() {
@@ -560,13 +560,16 @@ public class MainActDispenseM4 extends AppCompatActivity {
 
                 @Override
                 protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                    return Response.success(null, HttpHeaderParser.parseCacheHeaders(response));
+                    // Return a safe string instead of null to avoid NPEs
+                    String responseString = response != null ? String.valueOf(response.statusCode) : "no response";
+                    return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
                 }
             };
 
             requestQueue.add(stringRequest);
         }
     }
+
 
     private void updatemobiletransactiondb() {
         Date currentTime = Calendar.getInstance().getTime();
