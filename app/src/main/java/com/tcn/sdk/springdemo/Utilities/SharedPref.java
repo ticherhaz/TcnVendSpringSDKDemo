@@ -56,6 +56,7 @@ public class SharedPref {
     public static final String setBoardSerPortFirst = "setBoardSerPortFirst";
     public static final String setBoardSerPortSecond = "setBoardSerPortSecond";
     public static final String webviewURL = "webviewURL";
+    public static final String APP_AUTO_RESTART_ENABLE = "APP_AUTO_RESTART_ENABLE";
 
     private static SharedPreferences mSharedPref;
 

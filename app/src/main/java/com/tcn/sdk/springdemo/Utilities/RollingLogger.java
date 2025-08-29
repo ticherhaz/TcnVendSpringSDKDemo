@@ -40,7 +40,9 @@ public class RollingLogger {
         String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS a", Locale.getDefault()).format(new Date());
         String logLine = timestamp + " [" + Thread.currentThread().getName() + "] " + level + " - " + message + "\n";
 
-        writeLogToDownloads(logLine);
+        try {
+            writeLogToDownloads(logLine);
+        }catch (Exception ex){}
     }
 
     private static void writeLogToDownloads(String content) {

@@ -3,8 +3,10 @@ package com.tcn.sdk.springdemo
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
+import android.util.Log
 import androidx.multidex.MultiDex
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.proembed.service.MyService
 import com.tcn.sdk.springdemo.DBUtils.configdata
 import com.tcn.sdk.springdemo.Utilities.AppCrashHandler
 import com.tcn.sdk.springdemo.Utilities.SharedPref
@@ -31,9 +33,10 @@ class MyApplication : TcnVendApplication() {
 
         // Launch FireLog initialization in background
         initFireLog()
-        setupNotificationChannel()
+//        setupNotificationChannel()
 
-        setupCrashHandler()
+//        setupCrashHandler()
+        setupCrashServiceHandle()
     }
 
     private fun setupCrashHandler() {
@@ -42,6 +45,18 @@ class MyApplication : TcnVendApplication() {
             AppCrashHandler(this, defaultHandler)
         )
 
+    }
+
+    private fun setupCrashServiceHandle() {
+        try {
+            val myService = MyService(this)
+            myService.setAppListen(packageName, 5) // Restart app if crash, after 5 seconds
+//            myService.setAppListen(null, 0); //turn off
+            val listeningApp = myService.appListen
+            Log.d("AppStartup", "Listening app: $listeningApp")
+        } catch (e: Exception) {
+            Log.e("AppStartup", "Failed to register app for auto-restart", e)
+        }
     }
 
     private fun initTcnVend() {

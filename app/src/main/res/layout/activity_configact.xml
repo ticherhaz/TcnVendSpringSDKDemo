@@ -682,6 +682,25 @@
                         android:background="@color/colorPrimarySoft" />
 
                     <LinearLayout
+                        android:layout_width="450dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:theme="@style/Theme.Xyshjdemo">
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/material_switch_app_auto_restart"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:text="Enable App Auto Restart" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:id="@+id/ll_body4"
                         android:layout_width="450dp"
                         android:layout_height="wrap_content"

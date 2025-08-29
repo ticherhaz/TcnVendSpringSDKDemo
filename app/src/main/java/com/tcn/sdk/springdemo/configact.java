@@ -1,11 +1,15 @@
 package com.tcn.sdk.springdemo;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +24,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.widget.TextViewCompat;
 
 import com.google.android.material.materialswitch.MaterialSwitch;
+import com.proembed.service.MyService;
 import com.tcn.sdk.springdemo.DBUtils.configdata;
 import com.tcn.sdk.springdemo.DBUtils.dbutis;
 import com.tcn.sdk.springdemo.Model.CongifModel;
@@ -27,6 +32,7 @@ import com.tcn.sdk.springdemo.Note.MainNoteActivity;
 import com.tcn.sdk.springdemo.PayWave.PayWaveMainActivity;
 import com.tcn.sdk.springdemo.SarawakPay.SarawakMainActivity;
 import com.tcn.sdk.springdemo.Utilities.DialogUtils;
+import com.tcn.sdk.springdemo.Utilities.RestartReceiver;
 import com.tcn.sdk.springdemo.Utilities.RollingLogger;
 import com.tcn.sdk.springdemo.Utilities.SharedPref;
 import com.tcn.sdk.springdemo.tcnSpring.MainAct;
@@ -370,6 +376,68 @@ public class configact extends AppCompatActivity {
                 RollingLogger.i(TAG, "Cash+coin UnTicked");
             }
         });
+
+        // Enable App Auto Restart
+
+        MaterialSwitch checkAppAutoRestart = findViewById(R.id.material_switch_app_auto_restart);
+
+        if (checkAppAutoRestart != null) {
+            // Optional: Set or override text again
+            checkAppAutoRestart.setText("Enable App Auto Restart");
+
+            // Restore saved switch state from SharedPref
+            String appAutoRestartEnable = SharedPref.read(SharedPref.APP_AUTO_RESTART_ENABLE, "true");
+            checkAppAutoRestart.setChecked("true".equalsIgnoreCase(appAutoRestartEnable));
+
+            checkAppAutoRestart.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+//                SharedPref.write(SharedPref.APP_AUTO_RESTART_ENABLE, isChecked ? "true" : "");
+                RollingLogger.i(TAG, "appAutoRestartEnable " + (isChecked ? "Ticked" : "UnTicked"));
+
+                try {
+                    MyService myService = new MyService(this);
+
+                    if (isChecked) {
+                        myService.setAppListen(getPackageName(), 5); // Enable auto-restart
+                        SharedPref.write(SharedPref.APP_AUTO_RESTART_ENABLE, "true");
+                    } else {
+                        myService.setAppListen(null, 0); // Disable auto-restart
+                        SharedPref.write(SharedPref.APP_AUTO_RESTART_ENABLE, "false");
+
+                        // Recheck in 15 minutes
+                        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                        if (alarmManager != null) {
+                            Intent intent = new Intent(this, RestartReceiver.class);
+                            PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                                    this,
+                                    101,
+                                    intent,
+                                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+                            );
+
+                            long triggerAtMillis = System.currentTimeMillis() + 15 * 60 * 1000;
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+                            } else {
+                                alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+                            }
+
+                            Log.d(TAG, "Auto-restart scheduled in 15 minutes");
+                        }
+                    }
+
+                    String listeningApp = myService.getAppListen();
+                    Log.d("AppStartup", "Listening app: " + listeningApp);
+
+                } catch (Exception e) {
+                    Log.e("AppStartup", "Error configuring app auto-restart", e);
+                }
+            });
+        } else {
+            Log.e(TAG, "Switch view not found. Check layout or ID");
+        }
+
+        // -----------
+
 
 
         MaterialSwitch chkSarawakOnly = findViewById(R.id.chkSarawakOnly);
